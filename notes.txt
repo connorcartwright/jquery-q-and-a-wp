@@ -1,0 +1,16 @@
+Notes
+________________________________________________________________________________________________________________________
+
+wp_editor can be used to get the preview window (https://codex.wordpress.org/Function_Reference/wp_editor):
+
+    $post = get_post(3, OBJECT, 'edit' ); // get post
+    $content = $post->post_content; // get content
+    $editor_id = 'editpost'; // set editor
+    wp_editor( $content, $editor_id ); // create editor
+________________________________________________________________________________________________________________________
+
+You can just preview the page by using the same as above:
+
+    $post = get_post(3, OBJECT, 'edit' ); // get post
+    $content = $post->post_content; // get content
+    echo $content; // print content

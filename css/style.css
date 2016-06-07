@@ -1,0 +1,287 @@
+div.qa-tbl {
+    width: 100%;
+    display: table;
+    position: relative;
+}
+
+div.qa-tbl-row {
+    height: 32px;
+    display: table-row;
+}
+
+div.qa-tbl-row.qa-tbl-hdr {
+    cursor: default;
+}
+
+
+div.qa-tbl-row {
+    background-color: #EAEAEA;
+    cursor: pointer;
+}
+
+div.qa-tbl-row.page:hover {
+    background-color: #D8D8D8 !important;
+}
+
+div.qa-tbl>div.qa-tbl-row.qa-stripe:nth-of-type(odd) {
+    background-color: #DFDFDF;
+}
+
+div.qa-tbl-row>div {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+div.qa-tbl-row.qa-tbl-hdr>div {
+    font-weight: bold;
+}
+
+div.qa-tbl-col-1 {
+    text-align: center;
+}
+
+div.questions {
+    width: 100%;
+    position: absolute;
+}
+
+div.qst-table {
+    width: 96%;
+    display: table;
+    margin: 5px 2%;
+}
+
+div.qst-table div.qa-tbl-row>div {
+    height: 32px;
+}
+
+div.qst-table div.qa-tbl-row:nth-of-type(odd) {
+    background-color: #C1C1C1;
+}
+
+div.qa-tbl-row.question:hover {
+    background-color: #E1E1E1 !important;
+}
+
+div.qst-table div.qa-tbl-row.question:nth-of-type(odd):hover {
+    background-color: #BEBEBE !important;
+}
+
+div.qst-table button {
+    height: 28px;
+    width: 28px;
+    padding: 1px;
+}
+
+.btn {
+     display: inline-block;
+     font-weight: 400;
+     text-align: center;
+     vertical-align: middle;
+     cursor: pointer;
+     -webkit-user-select: none;
+     -moz-user-select: none;
+     -ms-user-select: none;
+     user-select: none;
+     border: 1px solid transparent;
+     border-radius: .25rem;
+     color: #fff;
+ }
+
+.btn.page-preview {
+    position: relative;
+}
+
+.btn.page-preview a, .btn.page-preview a:hover, .btn.page-preview a:active, .btn.page-preview a:focus {
+    height: 100%;
+    width: 100%;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.btn.page-preview a, .btn.page-preview a:hover, .btn.page-preview a:active, .btn.page-preview a:focus {
+    color: #fff;
+}
+
+.btn-default {
+    color: #373a3c;
+    background-color: #fff;
+    border-color: #ccc;
+}
+
+.btn-default:hover {
+    background-color: #e6e6e6;
+    border-color: #adadad;
+}
+
+.btn-success {
+    background-color: #5cb85c;
+    border-color: #5cb85c;
+}
+
+.btn-success:hover {
+    background-color: #449d44;
+    border-color: #419641;
+}
+
+.btn-primary {
+    background-color: #0275d8;
+    border-color: #0275d8;
+}
+
+.btn-primary:hover {
+    background-color: #025aa5;
+    border-color: #01549b;
+}
+
+.btn-info {
+    background-color: #5bc0de;
+    border-color: #5bc0de;
+}
+
+.btn-info:hover {
+    background-color: #31b0d5;
+    border-color: #2aabd2;
+}
+
+.btn-danger {
+    background-color: #d9534f;
+    border-color: #d9534f;
+}
+
+.btn-danger:hover {
+    background-color: #c9302c;
+    border-color: #c12e2a;
+}
+
+div.q-name, div.q-add {
+    padding-left: 10px;
+}
+
+.qa-center {
+    text-align: center;
+}
+
+div.q-name, div.q-embed, div.q-edit, div.q-preview, div.q-report, div.q-report, div.q-delete {
+    padding: 0 10px;
+}
+
+div.qa-page-preview {
+    padding: 0 1%;
+}
+
+div.modal {
+    height: 100%;
+    width: 100%;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(33,33,33,0.6);
+    z-index: 100000;
+}
+
+div.modal-content {
+    height: auto;
+    max-height: 90%;
+    width: 80%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    background-color: rgba(233,233,233,0.95);
+    border-radius: 7px;
+    box-shadow: 0px 0px 10px #222;
+}
+
+div.modal-body {
+    height: 80%;
+    width: 100%;
+    display: inline-block;
+    position: relative;
+}
+
+.wp-editor-wrap, .wp-editor-container, .wp-editor-container textarea.wp-editor-area {
+    height: 100%;
+}
+
+div.modal-header {
+    height: auto;
+    max-height: 68px;
+    overflow-y: scroll;
+    display: inline-block;
+    position: relative;
+    margin: 0.5% 4%;
+    margin: 14px;
+    margin-right: 36px;
+    top: 0;
+    left: 0;
+}
+
+div.modal-header>h1 {
+    display: inline-block;
+    margin: 0;
+    font-size: 24px;
+}
+
+div.modal-close {
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    right: 4px;
+    top: 4px;
+    cursor: pointer;
+}
+
+div.modal-close>span.glyphicon {
+    font-size: 20px;
+}
+
+div.modal-footer {
+    height: 60px;
+    width: 100%;
+    display: table;
+    position: absolute;
+    bottom: 0;
+    text-align: right;
+}
+
+div.modal-footer-buttons {
+    display: table-cell;
+    vertical-align: middle;
+    padding-right: 20px;
+}
+
+div.modal-footer-buttons>button {
+    height: 36px;
+    width: 100px;
+    margin-left: 10px;
+    border-radius: 4px;
+}
+
+div.modal-message-overlay {
+    height: 100%;
+    width: 100%;
+    display: table;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(222,222,222, 0.8);
+    z-index: 1;
+    border-radius: 7px;
+}
+
+div.modal-message-content {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+#adminmenu .wp-menu-image img {
+    max-height: 100%;
+    padding: 0;
+}
