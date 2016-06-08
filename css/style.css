@@ -364,6 +364,17 @@ div.input-group-addon button {
 
 /* Multiple choice text */
 
+/* Code editor */
+
+div#editor {
+    height: 300px;
+    width: 100%;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+/* Code editor */
+
 #adminmenu .wp-menu-image img {
     max-height: 100%;
     padding: 0;

@@ -205,6 +205,11 @@ $(function() {
         $(type_select).on('change', function() {
             console.log('type change, selected option: ' + type_select.find('option:selected').text());
             type_area.html(questionTypeChange(type_select.find('option:selected').text()));
+            if (type_select.find('option:selected').text() != 'Multiple Choice Text') {
+                var editor = ace.edit('editor');
+                editor.setTheme('ace/theme/monokai');
+                editor.getSession().setMode("ace/mode/javascript");
+            }
         });
 
 
@@ -248,7 +253,8 @@ $(function() {
                 return r;
                 break;
             case 'Multiple Choice Code':
-                return '';
+                var div_editor = $('<div id="editor" class="code-editor mc-code"></div>');
+                return div_editor;
                 break;
             case 'Bug Fix':
             default:
