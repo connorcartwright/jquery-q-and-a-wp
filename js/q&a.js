@@ -109,7 +109,14 @@ $(function() {
                 questionTable.append(question);
             }
 
-            questionTable.append('<div class="qa-tbl-row question"><div class="q-add"><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span></button></div>');
+
+            var addButton = $('<div class="qa-tbl-row question"><div class="q-add"><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span></button></div>');
+
+            addButton.find('button').on('click', function() {
+               addQuestionButtonClick(page_id);
+            });
+
+            questionTable.append(addButton);
             var blankSpace = $('<div class="qa-tbl-row blank-row"></div>');
             $(this).after(questions);
             questions.append(questionTable).after(blankSpace);
@@ -173,6 +180,128 @@ $(function() {
 
     function questionDeleteButtonClick() { // question id
         // TO DO
+    }
+
+    function addQuestionButtonClick(page_id) {
+        $('div#q-add-edit-modal').data('p-id', page_id);
+        var modal_body = $('div#q-add-edit-modal .modal-body');
+        modal_body.empty();
+
+        var question_form = $('<form></form>');
+
+        var question_name = $('<fieldset class="form-group"> <label for="q-name-input">Question Name </label> <input type="text" id="q-name-input" class="form-control" placeholder="Question Name"></fieldset>');
+
+        var question_type = $('<fieldset class="form-group"> <label for="q-type-select">Question Type </label></fieldset>');
+
+        var type_select = $('<select class="form-control" id="q-type-select"><option>Multiple Choice Text</option><option>Multiple Choice Code</option>' +
+            '<option>Bug Fix</option><option>Missing Code</option><option>Code Complete</option></select>');
+
+        question_type.append(type_select);
+
+        var question_statement = $('<fieldset class="form-group"> <label for="q-statement-input">Question Statement </label> <input type="text" id="q-statement-input" class="form-control" placeholder="Question Statement"></fieldset>');
+
+        var type_area = $('<div class="question-type-area"></div>');
+
+        $(type_select).on('change', function() {
+            console.log('type change, selected option: ' + type_select.find('option:selected').text());
+            type_area.html(questionTypeChange(type_select.find('option:selected').text()));
+        });
+
+
+
+        question_form.append(question_name.add(question_type).add(question_statement));
+        type_area.html(questionTypeChange(type_select.find('option:selected').text()));
+        question_form.append(type_area);
+
+        modal_body.append(question_form);
+
+        $('div#q-add-edit-modal').fadeIn(600);
+    }
+
+    // probably better to operate on the option text (if order changes)
+    function questionTypeChange(type) {
+        var modal_body = $('div#q-add-edit-modal .modal-body');
+        switch (type) {
+            case 'Multiple Choice Text':
+                var r = $();
+                var num_options = $('<fieldset class="form-group mc-num"><label for="q-num-options-select">No. Options </label><select class="form-control" id="q-num-options-select">' +
+                    '<option>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select></fieldset>');
+
+                num_options.find('select').val(4);
+
+                r = r.add(num_options).add(createMultipleChoiceOptions(4));
+
+                return r;
+                break;
+            case 'Multiple Choice Code':
+                return '';
+                break;
+            case 'Bug Fix':
+            default:
+                return '';
+                break;
+            case 'Missing Code':
+                return '';
+                break;
+            case 'Complete Code':
+                return '';
+                break;
+        }
+    }
+
+    function createMultipleChoiceOptions(n) {
+        var r = $('<label">Set Options</label>');
+        for (var i = 0; i < n; i++) {
+
+            var option = $('<fieldset class="form-group"><div class="input-group input"><input type="text" class="form-control" id="q-mc-option-' + i + '" placeholder="Option Text">' +
+                '<div class="input-group-addon correct-answer"></div><div class="input-group-addon wrong-answer"></div></div></div></fieldset>');
+
+
+            var correct_button = $('<button type="button" class="btn btn-default mc-correct-answer"><span class="glyphicon glyphicon-ok"></span></button>');
+            var wrong_button = $('<button type="button" class="btn btn-default mc-wrong-answer"><span class="glyphicon glyphicon-remove"></span></button>');
+
+            correct_button.on('click', function() {
+                var input = $(this).closest('.input-group').find('input');
+
+                if ($(this).hasClass('btn-success')) {
+                    $(this).removeClass('btn-success').addClass('btn-default');
+                    input.removeClass('correct');
+                }
+                else {
+                    if (input.hasClass('wrong')) {
+                        console.log('INPUT HAS CLASS WRONG');
+                        input.removeClass('wrong');
+                        $('.btn.mc-wrong-answer').removeClass('btn-danger').addClass('btn-default');
+                    }
+                    $(this).addClass('btn-success').removeClass('btn-default');
+                    input.addClass('correct');
+                }
+            });
+
+            wrong_button.on('click', function() {
+                var input = $(this).closest('.input-group').find('input');
+
+                if ($(this).hasClass('btn-danger')) {
+                    $(this).removeClass('btn-danger').addClass('btn-default');
+                    input.removeClass('wrong');
+                }
+                else {
+                    if (input.hasClass('correct')) {
+                        console.log('INPUT HAS CLASS CORRECT');
+                        input.removeClass('correct');
+                        $('.btn.mc-correct-answer').removeClass('btn-success').addClass('btn-default');
+                    }
+                    $(this).addClass('btn-danger').removeClass('btn-default');
+                    input.addClass('wrong');
+                }
+            });
+
+            option.find('.correct-answer').append(correct_button);
+            option.find('.wrong-answer').append(wrong_button);
+
+            r = r.add(option);
+        }
+        return r;
     }
 
     $('div#q-embed-preview-modal button.btn-success').on('click', function() {

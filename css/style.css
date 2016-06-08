@@ -288,7 +288,84 @@ div.modal-message-content {
     text-align: center;
 }
 
+
+/* QUESTION FORM */
+
+div.modal-body form {
+    width: 96%;
+    margin: 0 2%;
+}
+
+div.modal-body form .form-control:focus {
+    border-color: #66afe9;
+    outline: 0;
+}
+
+div.modal-body fieldset {
+    border: none;
+    padding: 0;
+    padding-bottom: 8px;
+}
+
+div.modal-body label {
+    display: inline-block;
+    margin-bottom: 4px;
+    margin-left: 2px;
+}
+
+div.modal-body input, div.modal-body select {
+    height: 30px;
+    width: 100%;
+    display: block;
+    padding: 3px 12px;
+    border-radius: 4px;
+}
+
+/* Multiple choice text */
+
+div.input-group {
+    width: 100%;
+    display: inline-table;
+}
+
+div.input-group input {
+    display: table-cell;
+    border-radius: 4px 0px 0px 4px
+}
+
+div.input-group input.correct {
+     color: #3c763d;
+     background-color: #dff0d8;
+     border-color: #d6e9c6;
+ }
+
+div.input-group input.wrong {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+}
+
+div.input-group-addon {
+    height: 30px;
+    width: 30px;
+    vertical-align: middle;
+    display: table-cell;
+    text-align: center;
+    border: 1px solid rgba(200,200,200,0.5);
+    border-radius: 4px;
+}
+
+div.input-group-addon button {
+    height: 30px;
+    width: 30px;
+    display: inline-block;
+    border: none;
+}
+
+/* Multiple choice text */
+
 #adminmenu .wp-menu-image img {
     max-height: 100%;
     padding: 0;
 }
+
