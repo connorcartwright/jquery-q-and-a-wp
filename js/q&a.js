@@ -225,7 +225,21 @@ $(function() {
             case 'Multiple Choice Text':
                 var r = $();
                 var num_options = $('<fieldset class="form-group mc-num"><label for="q-num-options-select">No. Options </label><select class="form-control" id="q-num-options-select">' +
-                    '<option>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select></fieldset>');
+                    '<option>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select></fieldset><label">Set Options</label>');
+
+                num_options.find('select').on('change', function() {
+                    var new_count = $(this).find('option:selected').text();
+                    var old_count = $('fieldset.mc-text-entry').length;
+
+                    if ( new_count > old_count ) {
+                        $('fieldset.mc-text-entry').last().after(createMultipleChoiceOptions(new_count - old_count))
+                    }
+                    else if ( new_count < old_count ) {
+                        for (var i = 0; i < old_count - new_count; i++) {
+                            $('fieldset.mc-text-entry').last().remove();
+                        }
+                    }
+                });
 
                 num_options.find('select').val(4);
 
@@ -250,12 +264,11 @@ $(function() {
     }
 
     function createMultipleChoiceOptions(n) {
-        var r = $('<label">Set Options</label>');
+        var r = $('');
         for (var i = 0; i < n; i++) {
 
-            var option = $('<fieldset class="form-group"><div class="input-group input"><input type="text" class="form-control" id="q-mc-option-' + i + '" placeholder="Option Text">' +
+            var option = $('<fieldset class="form-group mc-text-entry"><div class="input-group input"><input type="text" class="form-control" id="q-mc-option-' + i + '" placeholder="Option Text">' +
                 '<div class="input-group-addon correct-answer"></div><div class="input-group-addon wrong-answer"></div></div></div></fieldset>');
-
 
             var correct_button = $('<button type="button" class="btn btn-default mc-correct-answer"><span class="glyphicon glyphicon-ok"></span></button>');
             var wrong_button = $('<button type="button" class="btn btn-default mc-wrong-answer"><span class="glyphicon glyphicon-remove"></span></button>');
