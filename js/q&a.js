@@ -163,6 +163,7 @@ $(function() {
             $('div#q-embed-preview-modal').fadeIn(600);
             $('div#q-embed-preview-modal div.modal-header>h1').text(page_title + ': <iframe src="http://www.example.com"></iframe>');
             $('div#q-embed-preview-modal div.modal-body').empty().append(data.responseText);
+            resizeModalBody('q-embed-preview-modal');
         });
     }
 
@@ -222,6 +223,7 @@ $(function() {
         modal_body.append(question_form);
 
         $('div#q-add-edit-modal').fadeIn(600);
+        resizeModalBody('q-add-edit-modal');
     }
 
     // probably better to operate on the option text (if order changes)
@@ -324,6 +326,20 @@ $(function() {
         }
 
         return r;
+    }
+
+    $(window).on('resize', function() {
+        if ($('.modal:visible').length) {
+            resizeModalBody($('.modal:visible').attr('id'));
+        }
+    });
+
+    function resizeModalBody(modal_id) {
+        var modal_height = $('div#' + modal_id + ' div.modal-content').height();
+        var modal_header_height = $('div#' + modal_id + ' div.modal-header').outerHeight(true);
+        var modal_footer_height = $('div#' + modal_id + ' div.modal-footer').outerHeight(true);
+
+        $('div#' + modal_id + ' div.modal-body').height(modal_height - (modal_header_height + modal_footer_height));
     }
 
     $('div#q-embed-preview-modal button.btn-success').on('click', function() {
