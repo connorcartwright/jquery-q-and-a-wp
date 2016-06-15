@@ -248,7 +248,7 @@ $(function() {
 
                 add_remove_options.append(remove_option.add(add_option));
 
-                return createMultipleChoiceOptions(4).add(add_remove_options); // default create 4 options
+                return add_remove_options.add(createMultipleChoiceOptions(4)); // default create 4 options
 
                 break;
             case 'Multiple Choice Code':
