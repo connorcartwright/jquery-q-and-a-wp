@@ -254,8 +254,8 @@ $(function() {
                 return r;
                 break;
             case 'Multiple Choice Code':
-                var div_editor = $('<div id="editor" class="code-editor mc-code"></div>');
-                return div_editor;
+                var editor = $('<div id="editor" class="code-editor mc-code"></div>');
+                return editor;
                 break;
             case 'Bug Fix':
             default:
