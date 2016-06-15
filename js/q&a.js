@@ -202,7 +202,7 @@ $(function() {
 
         var question_statement = $('<fieldset class="form-group"> <label for="q-statement-input">Question Statement</label><textarea class="form-control" id="q-statement-input" rows="3"></textarea></fieldset>');
 
-        var type_area = $('<div class="question-type-area"></div>');
+        var type_area = $('<div class="question-type-area multiple-choice-text"></div>');
 
         $(type_select).on('change', function() {
             console.log('type change, selected option: ' + type_select.find('option:selected').text());
@@ -231,6 +231,7 @@ $(function() {
         var modal_body = $('div#q-add-edit-modal .modal-body');
         switch (type) {
             case 'Multiple Choice Text':
+                $('div.question-type-area').attr('class', 'question-type-area multiple-choice-text');
 
                 var add_remove_options = $('<fieldset class="form-group mc-option-change"></fieldset>');
 
@@ -252,18 +253,22 @@ $(function() {
 
                 break;
             case 'Multiple Choice Code':
+                $('div.question-type-area').attr('class', 'question-type-area multiple-choice-code');
                 var editor = $('<div id="editor" class="code-editor mc-code"></div>');
                 return editor;
                 break;
             case 'Bug Fix':
+                $('div.question-type-area').attr('class', 'question-type-area bug-fix');
                 var editor = $('<div id="editor" class="code-editor mc-code"></div>');
                 return editor;
                 break;
             case 'Missing Code':
+                $('div.question-type-area').attr('class', 'question-type-area missing-code');
                 var editor = $('<div id="editor" class="code-editor mc-code"></div>');
                 return editor;
                 break;
             case 'Complete Code':
+                $('div.question-type-area').attr('class', 'question-type-area complete-code');
                 var editor = $('<div id="editor" class="code-editor mc-code"></div>');
                 return editor;
                 break;
