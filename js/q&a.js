@@ -205,7 +205,6 @@ $(function() {
         var type_area = $('<div class="question-type-area multiple-choice-text"></div>');
 
         $(type_select).on('change', function() {
-            console.log('type change, selected option: ' + type_select.find('option:selected').text());
             type_area.html(questionTypeChange(type_select.find('option:selected').text()));
             if (type_select.find('option:selected').text() != 'Multiple Choice Text') {
                 var editor = ace.edit('editor');
