@@ -274,7 +274,7 @@ $(function() {
                 '<div class="input-group-addon correct-answer"></div><div class="input-group-addon wrong-answer"></div></div></div></fieldset>');
 
             var correct_button = $('<button type="button" class="btn btn-default mc-correct-answer"><span class="glyphicon glyphicon-ok"></span></button>');
-            var wrong_button = $('<button type="button" class="btn btn-default mc-wrong-answer"><span class="glyphicon glyphicon-remove"></span></button>');
+            var wrong_button = $('<button type="button" class="btn btn-danger mc-wrong-answer"><span class="glyphicon glyphicon-remove"></span></button>');
 
             correct_button.on('click', function() {
                 var input = $(this).closest('.input-group').find('input');
