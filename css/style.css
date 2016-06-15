@@ -211,6 +211,7 @@ div.modal-body {
     width: 100%;
     display: inline-block;
     position: relative;
+    overflow-y: scroll;
 }
 
 .wp-editor-wrap, .wp-editor-container, .wp-editor-container textarea.wp-editor-area {
