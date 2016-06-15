@@ -313,12 +313,15 @@ div.modal-body label {
     margin-left: 2px;
 }
 
-div.modal-body input, div.modal-body select {
-    height: 30px;
+div.modal-body input, div.modal-body select, div.modal-body textarea {
     width: 100%;
     display: block;
     padding: 3px 12px;
     border-radius: 4px;
+}
+
+div.modal-body input, div.modal-body select {
+    height: 30px;
 }
 
 /* Multiple choice text */

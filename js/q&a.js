@@ -198,7 +198,8 @@ $(function() {
 
         question_type.append(type_select);
 
-        var question_statement = $('<fieldset class="form-group"> <label for="q-statement-input">Question Statement </label> <input type="text" id="q-statement-input" class="form-control" placeholder="Question Statement"></fieldset>');
+
+        var question_statement = $('<fieldset class="form-group"> <label for="q-statement-input">Question Statement</label><textarea class="form-control" id="q-statement-input" rows="3"></textarea></fieldset>');
 
         var type_area = $('<div class="question-type-area"></div>');
 
