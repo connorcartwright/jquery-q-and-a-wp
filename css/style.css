@@ -214,6 +214,10 @@ div.modal-body {
     overflow-y: scroll;
 }
 
+div.modal-body textarea {
+    resize: vertical;
+}
+
 .wp-editor-wrap, .wp-editor-container, .wp-editor-container textarea.wp-editor-area {
     height: 100%;
 }
