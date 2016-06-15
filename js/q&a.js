@@ -287,7 +287,7 @@ $(function() {
                     if (input.hasClass('wrong')) {
                         console.log('INPUT HAS CLASS WRONG');
                         input.removeClass('wrong');
-                        $('.btn.mc-wrong-answer').removeClass('btn-danger').addClass('btn-default');
+                        $(this).parent().next().find('.btn.mc-wrong-answer').removeClass('btn-danger').addClass('btn-default');
                     }
                     $(this).addClass('btn-success').removeClass('btn-default');
                     input.addClass('correct');
@@ -305,7 +305,7 @@ $(function() {
                     if (input.hasClass('correct')) {
                         console.log('INPUT HAS CLASS CORRECT');
                         input.removeClass('correct');
-                        $('.btn.mc-correct-answer').removeClass('btn-success').addClass('btn-default');
+                        $(this).parent().prev().find('.btn.mc-correct-answer').removeClass('btn-success').addClass('btn-default');
                     }
                     $(this).addClass('btn-danger').removeClass('btn-default');
                     input.addClass('wrong');
