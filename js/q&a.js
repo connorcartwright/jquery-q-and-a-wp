@@ -371,7 +371,7 @@ $(function() {
             var $message = $('<div class="modal-message-overlay"><div class="modal-message-content"><h2>The ' + page_title +  ' page has been updated successfully!</h2></div></div>');
 
             $('div#q-embed-preview-modal .modal-content').append($message);
-            $message.hide().fadeIn(1000, function() { setTimeout(function() { $message.fadeOut(800, function() { $message.remove(); }) }, 1200) });
+            $message.hide().fadeIn(600, function() { setTimeout(function() { $message.fadeOut(800, function() { $message.remove(); }) }, 2200) });
         });
     });
 
