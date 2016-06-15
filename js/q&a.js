@@ -229,29 +229,25 @@ $(function() {
         var modal_body = $('div#q-add-edit-modal .modal-body');
         switch (type) {
             case 'Multiple Choice Text':
-                var r = $();
-                var num_options = $('<fieldset class="form-group mc-num"><label for="q-num-options-select">No. Options </label><select class="form-control" id="q-num-options-select">' +
-                    '<option>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select></fieldset><label">Set Options</label>');
 
-                num_options.find('select').on('change', function() {
-                    var new_count = $(this).find('option:selected').text();
-                    var old_count = $('fieldset.mc-text-entry').length;
+                var add_remove_options = $('<fieldset class="form-group mc-option-change"></fieldset>');
 
-                    if ( new_count > old_count ) {
-                        $('fieldset.mc-text-entry').last().after(createMultipleChoiceOptions(new_count - old_count))
-                    }
-                    else if ( new_count < old_count ) {
-                        for (var i = 0; i < old_count - new_count; i++) {
-                            $('fieldset.mc-text-entry').last().remove();
-                        }
-                    }
+                var add_option = $('<button type="button" class="btn btn-default mc-correct-answer"><span class="glyphicon glyphicon-plus"></span></button>');
+
+                add_option.on('click', function() {
+                    $('fieldset.mc-text-entry').last().after(createMultipleChoiceOptions(1));
                 });
 
-                num_options.find('select').val(4);
+                var remove_option = $('<button type="button" class="btn btn-default mc-correct-answer"><span class="glyphicon glyphicon-minus"></span></button>');
 
-                r = r.add(num_options).add(createMultipleChoiceOptions(4));
+                remove_option.on('click', function() {
+                    $('fieldset.mc-text-entry').last().remove();
+                });
 
-                return r;
+                add_remove_options.append(remove_option.add(add_option));
+
+                return createMultipleChoiceOptions(4).add(add_remove_options); // default create 4 options
+
                 break;
             case 'Multiple Choice Code':
                 var editor = $('<div id="editor" class="code-editor mc-code"></div>');
@@ -321,6 +317,7 @@ $(function() {
 
             r = r.add(option);
         }
+
         return r;
     }
 
