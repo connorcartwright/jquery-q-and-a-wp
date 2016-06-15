@@ -270,7 +270,7 @@ $(function() {
         var r = $('');
         for (var i = 0; i < n; i++) {
 
-            var option = $('<fieldset class="form-group mc-text-entry"><div class="input-group input"><input type="text" class="form-control" id="q-mc-option-' + i + '" placeholder="Option ' + (i + 1) + ' Text">' +
+            var option = $('<fieldset class="form-group mc-text-entry"><div class="input-group input"><input type="text" class="form-control wrong" id="q-mc-option-' + i + '" placeholder="Option ' + (i + $('.mc-text-entry').length) + ' Text">' +
                 '<div class="input-group-addon correct-answer"></div><div class="input-group-addon wrong-answer"></div></div></div></fieldset>');
 
             var correct_button = $('<button type="button" class="btn btn-default mc-correct-answer"><span class="glyphicon glyphicon-ok"></span></button>');
