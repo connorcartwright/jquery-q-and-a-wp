@@ -254,13 +254,18 @@ $(function() {
                 return editor;
                 break;
             case 'Bug Fix':
-            default:
-                return '';
+                var editor = $('<div id="editor" class="code-editor mc-code"></div>');
+                return editor;
                 break;
             case 'Missing Code':
-                return '';
+                var editor = $('<div id="editor" class="code-editor mc-code"></div>');
+                return editor;
                 break;
             case 'Complete Code':
+                var editor = $('<div id="editor" class="code-editor mc-code"></div>');
+                return editor;
+                break;
+            default:
                 return '';
                 break;
         }
