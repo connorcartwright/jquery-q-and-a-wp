@@ -291,37 +291,23 @@ $(function() {
             correct_button.on('click', function() {
                 var input = $(this).closest('.input-group').find('input');
 
-                if ($(this).hasClass('btn-success')) {
-                    $(this).removeClass('btn-success').addClass('btn-default');
-                    input.removeClass('correct');
+                if (input.hasClass('wrong')) {
+                    input.removeClass('wrong');
+                    $(this).parent().next().find('.btn.mc-wrong-answer').removeClass('btn-danger').addClass('btn-default');
                 }
-                else {
-                    if (input.hasClass('wrong')) {
-                        console.log('INPUT HAS CLASS WRONG');
-                        input.removeClass('wrong');
-                        $(this).parent().next().find('.btn.mc-wrong-answer').removeClass('btn-danger').addClass('btn-default');
-                    }
-                    $(this).addClass('btn-success').removeClass('btn-default');
-                    input.addClass('correct');
-                }
+                $(this).addClass('btn-success').removeClass('btn-default');
+                input.addClass('correct');
             });
 
             wrong_button.on('click', function() {
                 var input = $(this).closest('.input-group').find('input');
 
-                if ($(this).hasClass('btn-danger')) {
-                    $(this).removeClass('btn-danger').addClass('btn-default');
-                    input.removeClass('wrong');
+                if (input.hasClass('correct')) {
+                    input.removeClass('correct');
+                    $(this).parent().prev().find('.btn.mc-correct-answer').removeClass('btn-success').addClass('btn-default');
                 }
-                else {
-                    if (input.hasClass('correct')) {
-                        console.log('INPUT HAS CLASS CORRECT');
-                        input.removeClass('correct');
-                        $(this).parent().prev().find('.btn.mc-correct-answer').removeClass('btn-success').addClass('btn-default');
-                    }
-                    $(this).addClass('btn-danger').removeClass('btn-default');
-                    input.addClass('wrong');
-                }
+                $(this).addClass('btn-danger').removeClass('btn-default');
+                input.addClass('wrong');
             });
 
             option.find('.correct-answer').append(correct_button);
