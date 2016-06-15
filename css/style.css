@@ -337,14 +337,14 @@ div.input-group input {
 }
 
 div.input-group input.correct {
-     color: #3c763d;
-     background-color: #dff0d8;
+     color: #1D621D;
+     background-color: #E7FFE1;
      border-color: #d6e9c6;
  }
 
 div.input-group input.wrong {
-    color: #a94442;
-    background-color: #f2dede;
+    color: #A40A0A;
+    background-color: #FFEBEB;
     border-color: #ebccd1;
 }
 
