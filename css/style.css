@@ -383,3 +383,15 @@ div#editor {
     padding: 0;
 }
 
+/* WP Editor */
+
+.wp-editor-wrap {
+    width: 98%;
+    margin: 0 1%;
+}
+
+.wp-editor-tools {
+    padding: 0;
+    display: none;
+}
+
