@@ -238,13 +238,13 @@ $(function() {
                 var add_option = $('<button type="button" class="btn btn-default mc-correct-answer"><span class="glyphicon glyphicon-plus"></span></button>');
 
                 add_option.on('click', function() {
-                    $('fieldset.mc-text-entry').last().after(createMultipleChoiceOptions(1));
+                    $('fieldset.mc-text-option').last().after(createMultipleChoiceOptions(1));
                 });
 
                 var remove_option = $('<button type="button" class="btn btn-default mc-correct-answer"><span class="glyphicon glyphicon-minus"></span></button>');
 
                 remove_option.on('click', function() {
-                    $('fieldset.mc-text-entry').last().remove();
+                    $('fieldset.mc-text-option').last().remove();
                 });
 
                 add_remove_options.append(remove_option.add(add_option));
@@ -282,7 +282,7 @@ $(function() {
         var r = $('');
         for (var i = 0; i < n; i++) {
 
-            var option = $('<fieldset class="form-group mc-text-entry"><div class="input-group input"><input type="text" class="form-control wrong" id="q-mc-option-' + i + '" placeholder="Option ' + ((i + 1) + $('.mc-text-entry').length) + ' Text">' +
+            var option = $('<fieldset class="form-group mc-text-option"><div class="input-group input"><input type="text" class="form-control wrong" id="q-mc-option-' + i + '" placeholder="Option ' + ((i + 1) + $('.mc-text-option').length) + ' Text">' +
                 '<div class="input-group-addon correct-answer"></div><div class="input-group-addon wrong-answer"></div></div></div></fieldset>');
 
             var correct_button = $('<button type="button" class="btn btn-default mc-correct-answer"><span class="glyphicon glyphicon-ok"></span></button>');
