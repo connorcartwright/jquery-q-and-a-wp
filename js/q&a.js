@@ -64,7 +64,7 @@ $(function() {
             var questions = $('<div class="questions"></div></div>')
             var questionTable = $('<div class="qst-table"></div>');
             questionTable.append('<div class="qa-tbl-row qa-tbl-hdr"><div class="q-name"><span>Question Name</span></div><div class="q-embed qa-center"><span>Embed</span></div>' +
-                '<div class="q-edit qa-center"><span>Edit</span></div><div class="q-preview qa-center"><span>Preview</span></div><div class="q-report qa-center"><span>View Report</span></div>' +
+                '<div class="q-edit qa-center"><span>Edit</span></div><div class="q-preview qa-center"><span>Preview</span></div>' +
                 '<div class="q-delete qa-center"><span>Delete</span></div></div>');
 
             for (var i = 0; i < 5; i++) {
@@ -89,12 +89,6 @@ $(function() {
                    // questionPreviewButtonClick(page_id, page_title);
                 });
 
-                var reportButton = $('<div class="q-report qa-center"><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-list-alt"></span></button></div>');
-
-                reportButton.find('button').on('click', function() {
-                    questionReportButtonClick(); // question id
-                });
-
                 var deleteButton = $('<div  class="q-delete qa-center"><button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button></div>');
 
                 deleteButton.find('button').on('click', function() {
@@ -104,7 +98,6 @@ $(function() {
                 question.append(embedButton);
                 question.append(editButton);
                 question.append(previewButton);
-                question.append(reportButton);
                 question.append(deleteButton);
                 questionTable.append(question);
             }
@@ -174,10 +167,6 @@ $(function() {
     // function questionPreviewButtonClick() {
     //     // TO DO - probably just an <a> link
     // }
-
-    function questionReportButtonClick() { // question id
-        // TO DO
-    }
 
     function questionDeleteButtonClick() { // question id
         // TO DO
