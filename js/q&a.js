@@ -195,7 +195,7 @@ $(function() {
         var question_type = $('<fieldset class="form-group"> <label for="q-type-select">Question Type </label></fieldset>');
 
         var type_select = $('<select class="form-control" id="q-type-select"><option>Multiple Choice Text</option><option>Multiple Choice Code</option>' +
-            '<option>Bug Fix</option><option>Missing Code</option><option>Code Complete</option></select>');
+            '<option>Bug Fix</option><option>Missing Code</option><option>Complete Code</option></select>');
 
         question_type.append(type_select);
 
