@@ -234,13 +234,13 @@ $(function() {
 
                 var add_remove_options = $('<fieldset class="form-group mc-option-change"></fieldset>');
 
-                var add_option = $('<button type="button" class="btn btn-default mc-correct-answer"><span class="glyphicon glyphicon-plus"></span></button>');
+                var add_option = $('<button type="button" class="btn btn-default mc-add-option"><span class="glyphicon glyphicon-plus"></span></button>');
 
                 add_option.on('click', function() {
                     $('fieldset.mc-text-option').last().after(createMultipleChoiceOptions(1));
                 });
 
-                var remove_option = $('<button type="button" class="btn btn-default mc-correct-answer"><span class="glyphicon glyphicon-minus"></span></button>');
+                var remove_option = $('<button type="button" class="btn btn-default mc-remove-option"><span class="glyphicon glyphicon-minus"></span></button>');
 
                 remove_option.on('click', function() {
                     $('fieldset.mc-text-option').last().remove();
