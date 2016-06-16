@@ -390,6 +390,10 @@ fieldset.mc-option-change button.mc-add-option {
     border-radius: 0 4px 4px 0;
 }
 
+fieldset.hints label {
+    display: block;
+}
+
 /* Multiple choice text */
 
 /* Code editor */
