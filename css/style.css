@@ -394,6 +394,10 @@ fieldset.hints label {
     display: block;
 }
 
+fieldset.hints textarea {
+    margin-top: 8px;
+}
+
 /* Multiple choice text */
 
 /* Code editor */
