@@ -217,6 +217,36 @@ $(function() {
         type_area.html(questionTypeChange(type_select.find('option:selected').text()));
         question_form.append(type_area);
 
+        var hints = $('<fieldset class="form-group hints"> <label>Hints </label></fieldset>');
+        var hint_button_1 = $('<button type="button" class="btn btn-default hint hint-1 active" data-hint="1"><span>Hint 1</span></button>');
+
+        var hint_button_2 = $('<button type="button" class="btn btn-default hint hint-2" data-hint="2"><span>2</span></button>');
+
+        var hint_button_3 = $('<button type="button" class="btn btn-default hint hint-3" data-hint="3"><span>3</span></button>');
+
+        var hint_textarea = $('<textarea class="form-control" id="q-statement-input" rows="3"></textarea>');
+
+        hints.append(hint_button_1);
+        hints.append(hint_button_2);
+        hints.append(hint_button_3);
+        hints.append(hint_textarea);
+
+        hint_button_1.add(hint_button_2).add(hint_button_3).on('click', function() {
+            console.log('button click');
+            var button = $(this);
+            if (! button.hasClass('active')) {
+                button.find('span').text('Hint ' + button.data('hint'));
+                $('fieldset.hints button.hint.active').data('hint-text', $('fieldset.hints textarea').val());
+                $('fieldset.hints textarea').val(button.data('hint-text'));
+                $('button.hint.active>span').text($('button.hint.active').data('hint'));
+                $('button.hint.active').removeClass('active');
+                button.addClass('active');
+                $('fieldset.hints textarea').focus();
+            }
+        });
+
+        question_form.append(hints);
+
         modal_body.append(question_form);
 
         $('div#q-add-edit-modal').fadeIn(600);
