@@ -243,7 +243,9 @@ $(function() {
                 var remove_option = $('<button type="button" class="btn btn-default mc-remove-option"><span class="glyphicon glyphicon-minus"></span></button>');
 
                 remove_option.on('click', function() {
-                    $('fieldset.mc-text-option').last().remove();
+                    if ($('fieldset.mc-text-option').length > 2) {
+                        $('fieldset.mc-text-option').last().remove();
+                    }
                 });
 
                 add_remove_options.append(remove_option.add(add_option));
