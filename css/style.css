@@ -301,6 +301,10 @@ div.modal-body form {
     margin: 0 2%;
 }
 
+div.modal-body form label {
+    cursor: default;
+}
+
 div.modal-body form .form-control:focus {
     border-color: #66afe9;
     outline: 0;
