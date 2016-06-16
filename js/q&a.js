@@ -248,22 +248,7 @@ $(function() {
 
                 add_remove_options.append(remove_option.add(add_option));
 
-                var hints = $('<fieldset class="form-group hints"> <label>Hints </label></fieldset>');
-                var hint_button_1 = $('<button type="button" class="btn btn-default"><span>Hint 1</span></button>');
-
-                var hint_button_2 = $('<button type="button" class="btn btn-default"><span>2</span></button>');
-
-                var hint_button_3 = $('<button type="button" class="btn btn-default"><span>3</span></button>');
-
-                var hint_textarea = $('<textarea class="form-control" id="q-statement-input" rows="3"></textarea>');
-
-                hints.append(hint_button_1);
-                hints.append(hint_button_2);
-                hints.append(hint_button_3);
-                hints.append(hint_textarea);
-
-
-                return add_remove_options.add(createMultipleChoiceOptions(4).add(hints)); // default create 4 options
+                return add_remove_options.add(createMultipleChoiceOptions(4)); // default create 4 options
 
                 break;
             case 'Multiple Choice Code':
