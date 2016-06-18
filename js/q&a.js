@@ -270,23 +270,10 @@ $(function() {
                 return add_remove_options.add(createMultipleChoiceOptions(4)); // default create 4 options
 
                 break;
-            case 'Bug Fix':
+            default:
                 $('div.question-type-area').attr('class', 'question-type-area bug-fix');
                 var editor = $('<div id="editor" class="code-editor mc-code"></div>');
                 return editor;
-                break;
-            case 'Missing Code':
-                $('div.question-type-area').attr('class', 'question-type-area missing-code');
-                var editor = $('<div id="editor" class="code-editor mc-code"></div>');
-                return editor;
-                break;
-            case 'Complete Code':
-                $('div.question-type-area').attr('class', 'question-type-area complete-code');
-                var editor = $('<div id="editor" class="code-editor mc-code"></div>');
-                return editor;
-                break;
-            default:
-                return '';
                 break;
         }
     }
