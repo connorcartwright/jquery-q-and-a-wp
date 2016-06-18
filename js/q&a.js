@@ -271,7 +271,7 @@ $(function() {
 
                 break;
             default:
-                $('div.question-type-area').attr('class', 'question-type-area bug-fix');
+                $('div.question-type-area').attr('class', 'question-type-area coding');
                 var editor = $('<div id="editor" class="code-editor mc-code"></div>');
                 return editor;
                 break;
