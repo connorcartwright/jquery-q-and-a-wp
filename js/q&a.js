@@ -245,7 +245,6 @@ $(function() {
 
     // probably better to operate on the option text (if order changes)
     function questionTypeChange(type) {
-        var modal_body = $('div#q-add-edit-modal .modal-body');
         switch (type) {
             case 'Multiple Choice Text':
                 $('div.question-type-area').attr('class', 'question-type-area multiple-choice-text');
