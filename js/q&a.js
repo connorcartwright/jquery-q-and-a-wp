@@ -184,7 +184,7 @@ $(function() {
 
         var question_type = $('<fieldset class="form-group"> <label for="q-type-select">Question Type </label></fieldset>');
 
-        var type_select = $('<select class="form-control" id="q-type-select"><option>Multiple Choice Text</option><option>Multiple Choice Code</option>' +
+        var type_select = $('<select class="form-control" id="q-type-select"><option>Multiple Choice Text</option>' +
             '<option>Bug Fix</option><option>Missing Code</option><option>Complete Code</option></select>');
 
         question_type.append(type_select);
@@ -270,11 +270,6 @@ $(function() {
 
                 return add_remove_options.add(createMultipleChoiceOptions(4)); // default create 4 options
 
-                break;
-            case 'Multiple Choice Code':
-                $('div.question-type-area').attr('class', 'question-type-area multiple-choice-code');
-                var editor = $('<div id="editor" class="code-editor mc-code"></div>');
-                return editor;
                 break;
             case 'Bug Fix':
                 $('div.question-type-area').attr('class', 'question-type-area bug-fix');
