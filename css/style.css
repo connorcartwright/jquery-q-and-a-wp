@@ -156,6 +156,18 @@ div.qst-table button {
     border-color: #c12e2a;
 }
 
+div.qa-page-id {
+    width: 70px;
+}
+
+div.qa-page-q-count {
+    width: 120px;
+}
+
+div.qa-page-preview {
+    width: 74px;
+}
+
 div.q-name, div.q-add {
     padding-left: 10px;
 }
@@ -164,13 +176,11 @@ div.q-name, div.q-add {
     text-align: center;
 }
 
-div.q-name, div.q-embed, div.q-edit, div.q-preview, div.q-report, div.q-report, div.q-delete {
-    padding: 0 10px;
+div.q-embed, div.q-edit, div.q-preview, div.q-delete {
+    width: 64px;
 }
 
-div.qa-page-preview {
-    padding: 0 1%;
-}
+
 
 div.modal {
     height: 100%;
