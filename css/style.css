@@ -275,6 +275,10 @@ div.modal-footer-buttons>button {
     border-radius: 4px;
 }
 
+div.modal-footer-buttons a   {
+    color: #FFF;
+}
+
 div.modal-message-overlay {
     height: 100%;
     width: 100%;

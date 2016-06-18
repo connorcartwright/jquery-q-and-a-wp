@@ -39,7 +39,7 @@ $(function() {
     }
 
     function addModals() {
-        $('div#q-and-a-plugin').append('<div id ="q-embed-preview-modal" class="modal"><div class="modal-content"><div class="modal-close"><span class="glyphicon glyphicon-remove"></span></div><div class="modal-header"><h1></h1></div><div class="modal-body"></div><div class="modal-footer"><div class="modal-footer-buttons"><button class="btn btn-default">Close</button><button class="btn btn-success">Save</button></div></div></div></div>');
+        $('div#q-and-a-plugin').append('<div id ="q-embed-preview-modal" class="modal"><div class="modal-content"><div class="modal-close"><span class="glyphicon glyphicon-remove"></span></div><div class="modal-header"><h1></h1></div><div class="modal-body"></div><div class="modal-footer"><div class="modal-footer-buttons"><button class="btn btn-default">Close</button><button class="btn btn-primary"><a rel="noopener" target="_blank">Preview</a></button><button class="btn btn-success">Save</button></div></div></div></div>');
         $('div#q-and-a-plugin').append('<div id ="q-add-edit-modal" class="modal"><div class="modal-content"><div class="modal-close"><span class="glyphicon glyphicon-remove"></span></div><div class="modal-header"><h1>New Question</h1></div><div class="modal-body"></div><div class="modal-footer"><div class="modal-footer-buttons"><button class="btn btn-default">Close</button><button class="btn btn-success">Save</button></div></div></div></div>');
     }
 
@@ -74,7 +74,7 @@ $(function() {
                 var embedButton = $('<div class="q-embed qa-center"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-link"></span></button></td>');
 
                 embedButton.find('button').on('click', function() {
-                    questionEmbedButtonClick(page_id, page_title);
+                    questionEmbedButtonClick(page_id, page_title, $(this).closest('div.questions').prev().find('.qa-page-preview a').attr('href'));
                 });
 
                 var editButton = $('<div class="q-edit qa-center"><button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></button></div>');
@@ -129,7 +129,7 @@ $(function() {
         e.stopPropagation();
     });
 
-    function questionEmbedButtonClick(page_id, page_title) {
+    function questionEmbedButtonClick(page_id, page_title, preview_link) {
         var data = {
             action: 'embed_question',
             page_id: page_id
@@ -150,9 +150,10 @@ $(function() {
         .always(function(data) {
             console.log('always - get edit page');
             console.log(data);
-
+            
             $('div#q-embed-preview-modal').data('p-id', page_id);
             $('div#q-embed-preview-modal').data('p-title', page_title);
+            $('div#q-embed-preview-modal div.modal-footer button.btn-primary>a').attr('href', preview_link);
             $('div#q-embed-preview-modal').fadeIn(600);
             $('div#q-embed-preview-modal div.modal-header>h1').text(page_title + ': <iframe src="http://www.example.com"></iframe>');
             $('div#q-embed-preview-modal div.modal-body').empty().append(data.responseText);
