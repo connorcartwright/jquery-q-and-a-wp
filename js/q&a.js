@@ -302,35 +302,25 @@ $(function() {
         for (var i = 0; i < n; i++) {
 
             var option = $('<fieldset class="form-group mc-text-option"><div class="input-group input"><input type="text" class="form-control wrong" id="q-mc-option-' + i + '" placeholder="Option ' + ((i + 1) + $('.mc-text-option').length) + ' Text">' +
-                '<div class="input-group-addon correct-answer"></div><div class="input-group-addon wrong-answer"></div></div></div></fieldset>');
+                '<div class="input-group-addon correct-answer"></div></div></div></fieldset>');
 
             var correct_button = $('<button type="button" class="btn btn-default mc-correct-answer"><span class="glyphicon glyphicon-ok"></span></button>');
-            var wrong_button = $('<button type="button" class="btn btn-danger mc-wrong-answer"><span class="glyphicon glyphicon-remove"></span></button>');
 
             correct_button.on('click', function() {
                 var input = $(this).closest('.input-group').find('input');
 
                 if (input.hasClass('wrong')) {
-                    input.removeClass('wrong');
-                    $(this).parent().next().find('.btn.mc-wrong-answer').removeClass('btn-danger').addClass('btn-default');
+                    input.removeClass('wrong').addClass('correct');
+                    $(this).addClass('btn-success').removeClass('btn-default');
                 }
-                $(this).addClass('btn-success').removeClass('btn-default');
-                input.addClass('correct');
-            });
+                else {
+                    input.removeClass('correct').addClass('wrong');
 
-            wrong_button.on('click', function() {
-                var input = $(this).closest('.input-group').find('input');
-
-                if (input.hasClass('correct')) {
-                    input.removeClass('correct');
-                    $(this).parent().prev().find('.btn.mc-correct-answer').removeClass('btn-success').addClass('btn-default');
+                    $(this).removeClass('btn-success').addClass('btn-default');
                 }
-                $(this).addClass('btn-danger').removeClass('btn-default');
-                input.addClass('wrong');
             });
 
             option.find('.correct-answer').append(correct_button);
-            option.find('.wrong-answer').append(wrong_button);
 
             r = r.add(option);
         }
