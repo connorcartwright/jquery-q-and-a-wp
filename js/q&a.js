@@ -26,8 +26,8 @@ $(function() {
 
     function getPageRows() {
         var $pageRows = $();
-        for (var i = 0; i < wp_pages.length; i++) {
-            var page = wp_pages[i];
+        for (var i = 0; i < pages.length; i++) {
+            var page = pages[i];
             var $row = $( '<div class="qa-tbl-row qa-stripe page" data-p-id="' + page[0] + '" data-p-title="' + page[1] + '"></div>' );
             $row.append( '<div class="qa-page-id qa-center"><span>' + page[0] + '</span></div>' );
             $row.append( '<div class="qa-page-title"><span>' + page[1] + '</span></div>' );

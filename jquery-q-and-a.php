@@ -38,7 +38,7 @@ function enqueue_scripts($pages) {
     wp_enqueue_script( 'ace' );
 
     wp_localize_script( 'q&a', 'wp_ajax', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) ); // add wp ajax object into script
-    wp_localize_script( 'q&a', 'wp_pages', $pages ); // pass page data into script
+    wp_localize_script( 'q&a', 'pages', $pages ); // pass page data into script
 }
 
 function init_options_page(){
