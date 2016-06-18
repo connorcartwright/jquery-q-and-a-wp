@@ -222,7 +222,6 @@ $(function() {
         hints.append(hint_textarea);
 
         hint_button_1.add(hint_button_2).add(hint_button_3).on('click', function() {
-            console.log('button click');
             var button = $(this);
             if (! button.hasClass('active')) {
                 button.find('span').text('Hint ' + button.data('hint'));
