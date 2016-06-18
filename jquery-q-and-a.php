@@ -72,12 +72,14 @@ function embed_question() {
 }
 
 function update_page() {
-    $post_id = intval( $_POST['post_id'] );
+    $post_id = intval( $_POST['page_id'] );
+
+    echo $post_id;
 
     $updated_post = array(
         'ID'           =>  $post_id,
         'post_title'   => get_the_title($post_id),
-        'post_content' => $_POST['post_content'],
+        'post_content' => $_POST['page_content'],
     );
 
     wp_update_post( $updated_post ); // Update the post into the database
