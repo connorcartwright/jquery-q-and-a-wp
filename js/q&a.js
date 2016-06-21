@@ -120,9 +120,12 @@ $(function() {
 
 
 
-    $('div.modal-close').add('div.modal-footer .btn-default').add('.modal').on('click', function() {
-        $('div.modal').fadeOut(300);
-        $('body').css('overflow','auto');
+    $('div.modal-close, .modal, div.modal-footer .btn-default').on('click', function() {
+        if(!getSelection().toString()){
+            $('div.modal').fadeOut(300);
+            $('body').css('overflow','auto');
+        }
+
     });
 
     // stop modal overlay close event
