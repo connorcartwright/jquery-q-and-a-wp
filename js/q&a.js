@@ -219,7 +219,7 @@ $(function() {
 
         var hint_button_3 = $('<button type="button" class="btn btn-default hint hint-3" data-hint="3"><span>3</span></button>');
 
-        var hint_textarea = $('<textarea class="form-control" id="q-statement-input" rows="3"></textarea>');
+        var hint_textarea = $('<textarea class="form-control" id="q-statement-input" rows="3" placeholder="Hint 1"></textarea>');
 
         hints.append(hint_button_1);
         hints.append(hint_button_2);
@@ -232,6 +232,7 @@ $(function() {
                 button.find('span').text('Hint ' + button.data('hint'));
                 $('fieldset.hints button.hint.active').data('hint-text', $('fieldset.hints textarea').val());
                 $('fieldset.hints textarea').val(button.data('hint-text'));
+                $('fieldset.hints textarea').attr('placeholder', 'Hint ' + button.data('hint'));
                 $('button.hint.active>span').text($('button.hint.active').data('hint'));
                 $('button.hint.active').removeClass('active');
                 button.addClass('active');
