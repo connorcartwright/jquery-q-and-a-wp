@@ -40,7 +40,7 @@ $(function() {
 
     function addModals() {
         $('div#q-and-a-plugin').append('<div id ="q-embed-preview-modal" class="modal"><div class="modal-content"><div class="modal-close"><span class="glyphicon glyphicon-remove"></span></div><div class="modal-header"><h1></h1></div><div class="modal-body"></div><div class="modal-footer"><div class="modal-footer-buttons"><button class="btn btn-default">Close</button><button class="btn btn-primary"><a rel="noopener" target="_blank">Preview</a></button><button class="btn btn-success">Save</button></div></div></div></div>');
-        $('div#q-and-a-plugin').append('<div id ="q-add-edit-modal" class="modal"><div class="modal-content"><div class="modal-close"><span class="glyphicon glyphicon-remove"></span></div><div class="modal-header"><h1>New Question</h1></div><div class="modal-body"></div><div class="modal-footer"><div class="modal-footer-buttons"><button class="btn btn-default">Close</button><button class="btn btn-success">Save</button></div></div></div></div>');
+        $('div#q-and-a-plugin').append('<div id ="q-add-edit-modal" class="modal"><div class="modal-content"><div class="modal-close"><span class="glyphicon glyphicon-remove"></span></div><div class="modal-header"><h1>New Question</h1></div><div class="modal-body"></div><div class="modal-footer"><div class="modal-footer-buttons"><button class="btn btn-default">Close</button><button class="btn btn-success create-question">Create</button></div></div></div></div>');
     }
 
     // stop click of the preview opening/closing a row
