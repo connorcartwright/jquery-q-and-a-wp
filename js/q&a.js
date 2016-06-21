@@ -282,9 +282,57 @@ $(function() {
                 break;
             default:
                 $('div.question-type-area').attr('class', 'question-type-area coding');
-                var editor = $('<div id="editor" class="code-editor mc-code"></div>');
-                return editor;
+                var editor = $('<div id="editor" class="code-editor mc-code">// Enter your code here</div>');
+
+                var io = $('<fieldset class="form-group input-output"> <label>Input / Output </label></fieldset>');
+                var io_1 = $('<button type="button" class="btn btn-default io io-1 active" data-io="1"><span>IO 1</span></button>');
+
+                var io_2 = $('<button type="button" class="btn btn-default io io-2" data-io="2"><span>2</span></button>');
+
+                var io_3 = $('<button type="button" class="btn btn-default io io-3" data-io="3"><span>3</span></button>');
+
+                var add_io = $('<button type="button" class="btn btn-default io io-3" data-io="3"><span>3</span></button>');
+
+                var input_textarea = $('<textarea class="form-control" id="input_textarea" rows="3" placeholder="Question Input 1"></textarea>');
+                var output_input = $('<input type="text" id="output-input" class="form-control" placeholder="Expected Output 1">');
+
+                io.append(io_1);
+                io.append(io_2);
+                io.append(io_3);
+                io.append(input_textarea);
+                io.append(output_input);
+
+                io_1.add(io_2).add(io_3).on('click', function() {
+                    ioButtonClick($(this));
+                });
+
+                input_textarea.on('keyup', function() {
+                    $('button.io.active').data('input', $(this).val());
+                });
+
+                output_input.on('keyup', function() {
+                    $('button.io.active').data('output', $(this).val());
+                });
+
+                return editor.add(io);
                 break;
+        }
+    }
+
+    function ioButtonClick(button) {
+        console.log('teest');
+        if (! button.hasClass('active')) {
+            button.find('span').text('IO ' + button.data('io'));
+            $('fieldset.input-output button.io.active').data('input', $('fieldset.input-output textarea').val());
+            $('fieldset.input-output button.io.active').data('output', $('fieldset.input-output input').val());
+            $('fieldset.input-output textarea').val(button.data('input'));
+            $('fieldset.input-output input').val(button.data('output'));
+            $('fieldset.input-output textarea').attr('placeholder', 'Question Input ' + button.data('io'));
+            $('fieldset.input-output input').attr('placeholder', 'Expected Output ' + button.data('io'));
+            $('button.io.active>span').text($('button.io.active').data('io'));
+            $('button.io.active').removeClass('active');
+            button.addClass('active');
+            $('fieldset.input-output textarea').focus();
         }
     }
 
