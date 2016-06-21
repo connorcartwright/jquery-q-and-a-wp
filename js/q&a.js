@@ -240,6 +240,10 @@ $(function() {
             }
         });
 
+        hint_textarea.on('keyup', function() {
+            $('button.hint.active').data('hint-text', $(this).val());
+        });
+
         question_form.append(hints);
 
         modal_body.append(question_form);
