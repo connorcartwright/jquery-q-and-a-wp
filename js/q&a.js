@@ -319,6 +319,25 @@ $(function() {
         }
     }
 
+    $('div.modal button.create-question').on('click', function() {
+        var q_name = $('#q-name-input').val();
+        var q_type = $('#q-type-select').find('option:selected').text();
+        var q_statement = $('#q-statement-input').val();
+        if (q_type != 'Multiple Choice Text') {
+            var editor = ace.edit('editor');
+            var q_code = editor.getValue();
+
+            console.log('q code: ' + q_code);
+        }
+
+        console.log('q_name: ' + q_name);
+        console.log('q_type: ' + q_type);
+        console.log('q_statement: ' + q_statement);
+        // e.stopPropagation();
+        console.log('success');
+    });
+
+
     function ioButtonClick(button) {
         console.log('teest');
         if (! button.hasClass('active')) {
