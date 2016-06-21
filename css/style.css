@@ -10,21 +10,20 @@ div.qa-tbl-row {
 }
 
 div.qa-tbl-row.qa-tbl-hdr {
-    cursor: default;
+    cursor: default
 }
-
 
 div.qa-tbl-row {
     background-color: #EAEAEA;
     cursor: pointer;
 }
 
-div.qa-tbl-row.page:hover {
-    background-color: #D8D8D8 !important;
+div.qa-tbl-row.qa-stripe:nth-of-type(odd) {
+    background-color: #DFDFDF
 }
 
-div.qa-tbl>div.qa-tbl-row.qa-stripe:nth-of-type(odd) {
-    background-color: #DFDFDF;
+div.qa-tbl-row.page:hover {
+    background-color: #D8D8D8
 }
 
 div.qa-tbl-row>div {
@@ -33,11 +32,11 @@ div.qa-tbl-row>div {
 }
 
 div.qa-tbl-row.qa-tbl-hdr>div {
-    font-weight: bold;
+    font-weight: bold
 }
 
 div.qa-tbl-col-1 {
-    text-align: center;
+    text-align: center
 }
 
 div.questions {
@@ -52,19 +51,19 @@ div.qst-table {
 }
 
 div.qst-table div.qa-tbl-row>div {
-    height: 32px;
+    height: 32px
 }
 
-div.qst-table div.qa-tbl-row:nth-of-type(odd) {
-    background-color: #C1C1C1;
+div.qa-tbl-row:nth-of-type(odd) {
+    background-color: #C1C1C1
 }
 
 div.qa-tbl-row.question:hover {
-    background-color: #E1E1E1 !important;
+    background-color: #E1E1E1
 }
 
-div.qst-table div.qa-tbl-row.question:nth-of-type(odd):hover {
-    background-color: #BEBEBE !important;
+div.qa-tbl-row.question:nth-of-type(odd):hover {
+    background-color: #BCBCBC
 }
 
 div.qst-table button {
@@ -74,25 +73,28 @@ div.qst-table button {
 }
 
 .btn {
-     display: inline-block;
-     font-weight: 400;
-     text-align: center;
-     vertical-align: middle;
-     cursor: pointer;
-     -webkit-user-select: none;
-     -moz-user-select: none;
-     -ms-user-select: none;
-     user-select: none;
-     border: 1px solid transparent;
-     border-radius: .25rem;
-     color: #fff;
- }
-
-.btn.page-preview {
-    position: relative;
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    color: #fff;
 }
 
-.btn.page-preview a, .btn.page-preview a:hover, .btn.page-preview a:active, .btn.page-preview a:focus {
+.btn.page-preview {
+    position: relative
+}
+
+.btn.page-preview a,
+.btn.page-preview a:hover,
+.btn.page-preview a:active,
+.btn.page-preview a:focus {
     height: 100%;
     width: 100%;
     display: block;
@@ -101,8 +103,11 @@ div.qst-table button {
     left: 0;
 }
 
-.btn.page-preview a, .btn.page-preview a:hover, .btn.page-preview a:active, .btn.page-preview a:focus {
-    color: #fff;
+.btn.page-preview a,
+.btn.page-preview a:hover,
+.btn.page-preview a:active,
+.btn.page-preview a:focus {
+    color: #fff
 }
 
 .btn-default {
@@ -157,30 +162,32 @@ div.qst-table button {
 }
 
 div.qa-page-id {
-    width: 70px;
+    width: 70px
 }
 
 div.qa-page-q-count {
-    width: 120px;
+    width: 120px
 }
 
 div.qa-page-preview {
-    width: 74px;
+    width: 74px
 }
 
-div.q-name, div.q-add {
-    padding-left: 10px;
+div.q-name,
+div.q-add {
+    padding-left: 10px
 }
 
 .qa-center {
-    text-align: center;
+    text-align: center
 }
 
-div.q-embed, div.q-edit, div.q-preview, div.q-delete {
-    width: 64px;
+div.q-embed,
+div.q-edit,
+div.q-preview,
+div.q-delete {
+    width: 64px
 }
-
-
 
 div.modal {
     height: 100%;
@@ -225,11 +232,13 @@ div.modal-body {
 }
 
 div.modal-body textarea {
-    resize: vertical;
+    resize: vertical
 }
 
-.wp-editor-wrap, .wp-editor-container, .wp-editor-container textarea.wp-editor-area {
-    height: 100%;
+.wp-editor-wrap,
+.wp-editor-container,
+.wp-editor-container textarea.wp-editor-area {
+    height: 100%
 }
 
 div.modal-header {
@@ -260,7 +269,7 @@ div.modal-close {
 }
 
 div.modal-close>span.glyphicon {
-    font-size: 20px;
+    font-size: 20px
 }
 
 div.modal-footer {
@@ -285,8 +294,8 @@ div.modal-footer-buttons>button {
     border-radius: 4px;
 }
 
-div.modal-footer-buttons a   {
-    color: #FFF;
+div.modal-footer-buttons a {
+    color: #FFF
 }
 
 div.modal-message-overlay {
@@ -307,7 +316,6 @@ div.modal-message-content {
     text-align: center;
 }
 
-
 /* QUESTION FORM */
 
 div.modal-body form {
@@ -316,7 +324,7 @@ div.modal-body form {
 }
 
 div.modal-body form label {
-    cursor: default;
+    cursor: default
 }
 
 div.modal-body form .form-control:focus {
@@ -336,15 +344,18 @@ div.modal-body label {
     margin-left: 2px;
 }
 
-div.modal-body input, div.modal-body select, div.modal-body textarea {
+div.modal-body input,
+div.modal-body select,
+div.modal-body textarea {
     width: 100%;
     display: block;
     padding: 3px 12px;
     border-radius: 4px;
 }
 
-div.modal-body input, div.modal-body select {
-    height: 30px;
+div.modal-body input,
+div.modal-body select {
+    height: 30px
 }
 
 /* Multiple choice text */
@@ -361,14 +372,14 @@ div.input-group {
 
 div.input-group input {
     display: table-cell;
-    border-radius: 4px 0px 0px 4px
+    border-radius: 4px 0px 0px 4px;
 }
 
 div.input-group input.correct {
-     color: #1D621D;
-     background-color: #E7FFE1;
-     border-color: #d6e9c6;
- }
+    color: #1D621D;
+    background-color: #E7FFE1;
+    border-color: #d6e9c6;
+}
 
 div.input-group input.wrong {
     color: #A40A0A;
@@ -392,15 +403,15 @@ div.input-group-addon button {
 }
 
 div.input-group-addon.correct-answer button {
-    border-radius: 0;
+    border-radius: 0
 }
 
 div.input-group-addon.wrong-answer button {
-    border-radius: 0 4px 4px 0;
+    border-radius: 0 4px 4px 0
 }
 
 fieldset.mc-option-change button.mc-remove-option {
-    border-radius: 4px 0 0 4px;
+    border-radius: 4px 0 0 4px
 }
 
 fieldset.mc-option-change button.mc-add-option {
@@ -409,11 +420,25 @@ fieldset.mc-option-change button.mc-add-option {
 }
 
 fieldset.hints label {
-    display: block;
+    display: block
 }
 
 fieldset.hints textarea {
-    margin-top: 8px;
+    margin-top: 8px
+}
+
+button.hint-1 {
+    border-radius: 3px 0 0 3px
+}
+
+button.hint-2 {
+    border-radius: 0;
+    border-left: 0;
+}
+
+button.hint-3 {
+    border-radius: 0 3px 3px 0;
+    border-left: 0;
 }
 
 /* Multiple choice text */
@@ -445,4 +470,3 @@ div#editor {
     padding: 0;
     display: none;
 }
-
