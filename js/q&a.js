@@ -121,7 +121,8 @@ $(function() {
 
 
     $('div.modal-close').add('div.modal-footer .btn-default').add('.modal').on('click', function() {
-       $('div.modal').fadeOut(300);
+        $('div.modal').fadeOut(300);
+        $('body').css('overflow','auto');
     });
 
     // stop modal overlay close event
@@ -155,6 +156,7 @@ $(function() {
             $('div#q-embed-preview-modal').data('p-title', page_title);
             $('div#q-embed-preview-modal div.modal-footer button.btn-primary>a').attr('href', preview_link);
             $('div#q-embed-preview-modal').fadeIn(600);
+            $('body').css('overflow','hidden');
             $('div#q-embed-preview-modal div.modal-header>h1').text(page_title + ': <iframe src="http://www.example.com"></iframe>');
             $('div#q-embed-preview-modal div.modal-body').empty().append(data.responseText);
             resizeModalBody('q-embed-preview-modal');
@@ -239,6 +241,7 @@ $(function() {
         modal_body.append(question_form);
 
         $('div#q-add-edit-modal').fadeIn(600);
+        $('body').css('overflow','hidden');
         resizeModalBody('q-add-edit-modal');
     }
 
