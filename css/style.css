@@ -419,23 +419,28 @@ fieldset.mc-option-change button.mc-add-option {
     border-radius: 0 4px 4px 0;
 }
 
-
 fieldset.hints textarea,
 fieldset.input-output textarea {
     margin: 8px 0
 }
 
-button.hint-1 {
-    border-radius: 3px 0 0 3px
+.form-group.hints button:first-of-type,
+.form-group.input-output button:first-of-type
+{
+    border-radius: 3px 0 0 3px;
+    border-left: 1px solid #ccc;
 }
 
-button.hint-2 {
+.form-group.hints button,
+.form-group.input-output button {
     border-radius: 0;
     border-left: 0;
 }
 
-button.hint-3 {
-    border-radius: 0 3px 3px 0;
+.form-group.hints button:last-of-type,
+.form-group.input-output button:last-of-type
+{
+    border-radius: 3px 0 0 3px;
     border-left: 0;
 }
 
