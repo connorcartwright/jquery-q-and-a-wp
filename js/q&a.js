@@ -226,18 +226,9 @@ $(function() {
         hints.append(hint_button_3);
         hints.append(hint_textarea);
 
+        
         hint_button_1.add(hint_button_2).add(hint_button_3).on('click', function() {
-            var button = $(this);
-            if (! button.hasClass('active')) {
-                button.find('span').text('Hint ' + button.data('hint'));
-                $('fieldset.hints button.hint.active').data('hint-text', $('fieldset.hints textarea').val());
-                $('fieldset.hints textarea').val(button.data('hint-text'));
-                $('fieldset.hints textarea').attr('placeholder', 'Hint ' + button.data('hint'));
-                $('button.hint.active>span').text($('button.hint.active').data('hint'));
-                $('button.hint.active').removeClass('active');
-                button.addClass('active');
-                $('fieldset.hints textarea').focus();
-            }
+            hintButtonClick($(this));
         });
 
         hint_textarea.on('keyup', function() {
@@ -251,6 +242,19 @@ $(function() {
         $('div#q-add-edit-modal').fadeIn(600);
         $('body').css('overflow','hidden');
         resizeModalBody('q-add-edit-modal');
+    }
+
+    function hintButtonClick(button) {
+        if (! button.hasClass('active')) {
+            button.find('span').text('Hint ' + button.data('hint'));
+            $('fieldset.hints button.hint.active').data('hint-text', $('fieldset.hints textarea').val());
+            $('fieldset.hints textarea').val(button.data('hint-text'));
+            $('fieldset.hints textarea').attr('placeholder', 'Hint ' + button.data('hint'));
+            $('button.hint.active>span').text($('button.hint.active').data('hint'));
+            $('button.hint.active').removeClass('active');
+            button.addClass('active');
+            $('fieldset.hints textarea').focus();
+        }
     }
 
     // probably better to operate on the option text (if order changes)
