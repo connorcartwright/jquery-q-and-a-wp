@@ -1,0 +1,46 @@
+{
+  "1" : [
+    {
+      "Question Name" : "How to use .next()",
+      "Question Type" : "Bug Fix",
+      "Question Statement" : "Given some HTML containing at least one element of class `hello`, find the value of the element directly after the latest occurring element with class ‘hello’."
+      "Question Code:" : "var lastHello = $(‘.hello’).first()\\n;var element = lastHello.next();\\nreturn element.val();",
+      "Input" : {
+        "1" : "<div class=“hello”></div><span>Answer 1</span>",
+        "2" : "<div class=“hello”></div><span class=“hello”>Wrong</span><span>Potato</span>",
+        "3" : "<span class=“hello”>One</span><span class=“hello”>Two</span><span class=“hello”>Three</span><span class=“hello”>Four</span><span>Five</span>"
+      },
+      "Output" : {
+        "1" : "Answer 1",
+        "2" : "Potato",
+        "3" : "Five"
+      },
+      "Hints" : {
+        "1" : "Placeholder",
+        "2" : "Placeholder".
+        "3" : "Placeholder"
+      }
+    },
+    {
+      "Question Name" : "How to use .next()",
+      "Question Type" : "Multiple Choice",
+      "Question Statement" : "Given some HTML containing at least one element of class `hello`, find the value of the element directly after the latest occurring element with class ‘hello’."
+      "Question Code:" : "var lastHello = $(‘.hello’).first()\\n;var element = lastHello.next();\\nreturn element.val();",
+      "Input" : {
+        "1" : "<div class=“hello”></div><span>Answer 1</span>",
+        "2" : "<div class=“hello”></div><span class=“hello”>Wrong</span><span>Potato</span>",
+        "3" : "<span class=“hello”>One</span><span class=“hello”>Two</span><span class=“hello”>Three</span><span class=“hello”>Four</span><span>Five</span>"
+      },
+      "Output" : {
+        "1" : "Answer 1",
+        "2" : "Potato",
+        "3" : "Five"
+      },
+      "Hints" : {
+        "1" : "Placeholder",
+        "2" : "Placeholder".
+        "3" : "Placeholder"
+      }
+    }
+  ]
+}

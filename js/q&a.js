@@ -189,7 +189,7 @@ $(function() {
 
         var question_type = $('<fieldset class="form-group"> <label for="q-type-select">Question Type </label></fieldset>');
 
-        var type_select = $('<select class="form-control" id="q-type-select"><option>Multiple Choice Text</option>' +
+        var type_select = $('<select class="form-control" id="q-type-select"><option>Multiple Choice</option>' +
             '<option>Bug Fix</option><option>Missing Code</option><option>Complete Code</option></select>');
 
         question_type.append(type_select);
@@ -197,11 +197,11 @@ $(function() {
 
         var question_statement = $('<fieldset class="form-group"> <label for="q-statement-input">Question Statement</label><textarea class="form-control" id="q-statement-input" rows="3"></textarea></fieldset>');
 
-        var type_area = $('<div class="question-type-area multiple-choice-text"></div>');
+        var type_area = $('<div class="question-type-area multiple-choice"></div>');
 
         $(type_select).on('change', function() {
             type_area.html(questionTypeChange(type_select.find('option:selected').text()));
-            if (type_select.find('option:selected').text() != 'Multiple Choice Text') {
+            if (type_select.find('option:selected').text() != 'Multiple Choice') {
                 var editor = ace.edit('editor');
                 editor.setTheme('ace/theme/monokai');
                 editor.getSession().setMode("ace/mode/javascript");
@@ -225,7 +225,6 @@ $(function() {
         hints.append(hint_button_2);
         hints.append(hint_button_3);
         hints.append(hint_textarea);
-
         
         hint_button_1.add(hint_button_2).add(hint_button_3).on('click', function() {
             hintButtonClick($(this));
@@ -260,8 +259,8 @@ $(function() {
     // probably better to operate on the option text (if order changes)
     function questionTypeChange(type) {
         switch (type) {
-            case 'Multiple Choice Text':
-                $('div.question-type-area').attr('class', 'question-type-area multiple-choice-text');
+            case 'Multiple Choice':
+                $('div.question-type-area').attr('class', 'question-type-area multiple-choice');
 
                 var add_remove_options = $('<fieldset class="form-group mc-option-change"></fieldset>');
 
@@ -327,7 +326,7 @@ $(function() {
         var q_name = $('#q-name-input').val();
         var q_type = $('#q-type-select').find('option:selected').text();
         var q_statement = $('#q-statement-input').val();
-        if (q_type != 'Multiple Choice Text') {
+        if (q_type != 'Multiple Choice') {
             var editor = ace.edit('editor');
             var q_code = editor.getValue();
 
