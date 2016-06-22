@@ -440,7 +440,7 @@ fieldset.input-output textarea {
 .form-group.hints button:last-of-type,
 .form-group.input-output button:last-of-type
 {
-    border-radius: 3px 0 0 3px;
+    border-radius: 0 3px 3px 0;
     border-left: 0;
 }
 
