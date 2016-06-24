@@ -1,10 +1,11 @@
 {
   "1" : [
     {
+      "Question ID" : 0,
       "Question Name" : "How to use .next()",
       "Question Type" : "Bug Fix",
       "Question Statement" : "Given some HTML containing at least one element of class `hello`, find the value of the element directly after the latest occurring element with class ‘hello’."
-      "Question Code:" : "var lastHello = $(‘.hello’).first()\\n;var element = lastHello.next();\\nreturn element.val();",
+      "Question Code:" : "var lastHello = $(‘.hello’).first();\\nvar element = lastHello.next();\\nreturn element.val();",
       "Input" : {
         "1" : "<div class=“hello”></div><span>Answer 1</span>",
         "2" : "<div class=“hello”></div><span class=“hello”>Wrong</span><span>Potato</span>",
@@ -17,15 +18,41 @@
       },
       "Hints" : {
         "1" : "Placeholder",
-        "2" : "Placeholder".
+        "2" : "Placeholder",
         "3" : "Placeholder"
       }
     },
     {
-      "Question Name" : "How to use .next()",
+      "Question ID" : 1,
+      "Question Name" : "How to use .next() MC",
       "Question Type" : "Multiple Choice",
+      "Question Statement" : "Given the snippet: <div class=“hello“><span>Hi!</span></div><span>Goodbye</span><div class=“hello“><span>Bye!</span></div><span>Cya</span> \\n If you used `$('.hello').last().next().val()`, what would the output be?",
+      "Options" : {
+        "1" : "Hello",
+        "2" : "Goodbye",
+        "3" : "Cya",
+        "4" : "Hi!"
+      },
+      "Answers" : {
+        "1" : "False",
+        "2" : "False",
+        "3" : "True",
+        "4" : "False"
+      },
+      "Hints" : {
+        "1" : "Placeholder",
+        "2" : "Placeholder",
+        "3" : "Placeholder"
+      }
+    }
+  ],
+  "3" : [
+    {
+      "Question ID" : 2,
+      "Question Name" : "How to use .next()",
+      "Question Type" : "Bug Fix",
       "Question Statement" : "Given some HTML containing at least one element of class `hello`, find the value of the element directly after the latest occurring element with class ‘hello’."
-      "Question Code:" : "var lastHello = $(‘.hello’).first()\\n;var element = lastHello.next();\\nreturn element.val();",
+      "Question Code:" : "var lastHello = $(‘.hello’).first();\\nvar element = lastHello.next();\\nreturn element.val();",
       "Input" : {
         "1" : "<div class=“hello”></div><span>Answer 1</span>",
         "2" : "<div class=“hello”></div><span class=“hello”>Wrong</span><span>Potato</span>",
@@ -38,7 +65,7 @@
       },
       "Hints" : {
         "1" : "Placeholder",
-        "2" : "Placeholder".
+        "2" : "Placeholder",
         "3" : "Placeholder"
       }
     }
