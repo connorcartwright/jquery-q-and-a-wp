@@ -1,4 +1,10 @@
 
+$(window).on('resize', function() {
+    if ($('.modal:visible').length) {
+        resizeModalBody($('.modal:visible').attr('id'));
+    }
+});
+
 function resizeModalBody() {
     var modal_height = $('div.modal div.modal-content').height();
     var modal_header_height = $('div.modal div.modal-header').outerHeight(true);

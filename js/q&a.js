@@ -21,11 +21,3 @@
         // TO DO
     }
 
-
-    $(window).on('resize', function() {
-        if ($('.modal:visible').length) {
-            resizeModalBody($('.modal:visible').attr('id'));
-        }
-    });
-
-
