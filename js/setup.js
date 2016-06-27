@@ -34,7 +34,7 @@
 
         return $page_table;
     }
-    
+
     $('div#q-and-a-plugin').on('click', 'div.qa-tbl-row.page', function() {
         pageRowClick($(this), $(this).data('p-id'), $(this).data('p-title'));
     });
@@ -91,6 +91,6 @@
     //     questionPreviewButtonClick(row.data('p-id'), row.data('p-title'));
     // });
 
-    $('div#q-and-a-plugin').on('click', 'div.q-delete>button', function() {
-        questionDeleteButtonClick(); // question_id
-    });
+    // $('div#q-and-a-plugin').on('click', 'div.q-delete>button', function() {
+    //     questionDeleteButtonClick(); // question_id
+    // });
