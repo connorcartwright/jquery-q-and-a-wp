@@ -12,12 +12,3 @@
     $('button.page-preview').click(function(e) {
         e.stopPropagation();
     });
-
-    // function questionPreviewButtonClick() {
-    //     // TO DO - probably just an <a> link
-    // }
-
-    function questionDeleteButtonClick() { // question id
-        // TO DO
-    }
-
