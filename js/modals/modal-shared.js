@@ -11,7 +11,7 @@ $('.modal-close, .modal-overlay, .close-modal').on('click', function() {
 });
 
 function closeModal() {
-    if(!getSelection().toString()){
+    if(!getSelection().toString()) {
         var modal = $('div.modal');
         modal.fadeOut(600, function() {
             if (modal.hasClass('page')) {
