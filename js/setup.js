@@ -91,11 +91,6 @@
         }
     }
 
-    // $('div#q-and-a-plugin').on('click', 'div.q-preview>button', function() {
-    //     var row = $(this).closest('div.questions');
-    //     questionPreviewButtonClick(row.data('p-id'), row.data('p-title'));
-    // });
-
     // $('div#q-and-a-plugin').on('click', 'div.q-delete>button', function() {
     //     questionDeleteButtonClick(); // question_id
     // });
