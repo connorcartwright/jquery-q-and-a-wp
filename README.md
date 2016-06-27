@@ -12,6 +12,4 @@ Add the line `'jquery-q-and-a/jquery-q-and-a.php',` under the active plugins of 
 Run `node install` and `grunt`.
 
 
-Waffle.io board:
-
-https://waffle.io/ConnorCartwright/jquery-q-and-a-wp
+[Waffle.io board](https://waffle.io/ConnorCartwright/jquery-q-and-a-wp)
