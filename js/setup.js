@@ -35,6 +35,11 @@
         return $page_table;
     }
 
+    // stop click of the preview opening/closing a row
+    $('button.page-preview').click(function(e) {
+        e.stopPropagation();
+    });
+
     $('div#q-and-a-plugin').on('click', 'div.qa-tbl-row.page', function() {
         pageRowClick($(this), $(this).data('p-id'), $(this).data('p-title'));
     });
