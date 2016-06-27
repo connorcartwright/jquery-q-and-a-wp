@@ -23,6 +23,7 @@ function questionEmbedButtonClick(page_id, page_title, preview_link) {
         })
         .always(function(data) {
             console.log('always - get edit page');
+            var modal = $('div.modal');
             modal.addClass('page embed');
             modal.data('p-id', page_id);
             modal.data('p-title', page_title);
@@ -36,11 +37,12 @@ function questionEmbedButtonClick(page_id, page_title, preview_link) {
         });
 }
 
-modal.on('click', 'button.save', function() {
+$('div.modal').on('click', 'button.save', function() {
    savePage();
 });
 
 function savePage() {
+    var modal = $('div.modal');
     var page_id = modal.data('p-id');
     var page_title = modal.data('p-title');
     var page_content = modal.find('textarea.wp-editor-area').val();

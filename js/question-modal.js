@@ -8,6 +8,7 @@ $('div#q-and-a-plugin').on('click', 'div.q-add>button', function() {
 });
 
 function editQuestionButtonClick(page_id) { // needs question id
+    var modal = $('div.modal');
     modal.data('p-id', page_id);
     modal.addClass('question');
     modal.find('div.modal-footer button.btn-success').addClass('edit-question').removeClass('create-question');
@@ -15,6 +16,7 @@ function editQuestionButtonClick(page_id) { // needs question id
 }
 
 function addQuestionButtonClick(page_id) {
+    var modal = $('div.modal');
     modal.data('p-id', page_id);
     modal.addClass('question');
     modal.find('div.modal-header h1').text('Add Question');
@@ -227,7 +229,6 @@ function ioButtonClick(button) {
 }
 
 $('div.modal').on('click', ' button.create-question', function() {
-    console.log('yiiis');
     $('div.modal *').removeClass('error');
     $('div.modal .error-text').remove();
     var q_name = $('#q-name-input');

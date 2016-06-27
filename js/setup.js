@@ -1,31 +1,27 @@
 
-    var modal = $('<div class="modal"><div class="modal-overlay"></div><div class="modal-content"><div class="modal-close"><span class="glyphicon glyphicon-remove"></span></div><div class="modal-header"><h1></h1></div><div class="modal-body"></div><div class="modal-footer"><div class="modal-footer-buttons"><button class="btn btn-default close-modal">Close</button><button class="btn btn-success">Save</button></div></div></div></div>');
-    $('div#q-and-a-plugin').append(modal);
-
     setup();
 
     function setup() {
         var $plugin_body = $('<div class="plugin-body"></div>');
         $plugin_body.append('<h1>Learning Center Pages</h1>');
+        $plugin_body.append(createPageTable());
+        $('div#q-and-a-plugin').append($plugin_body);
+        $('div#q-and-a-plugin').append(createModal());
+    }
 
+    function createModal() {
+        return $('<div class="modal"><div class="modal-overlay"></div><div class="modal-content"><div class="modal-close"><span class="glyphicon glyphicon-remove"></span></div><div class="modal-header"><h1></h1></div><div class="modal-body"></div><div class="modal-footer"><div class="modal-footer-buttons"><button class="btn btn-default close-modal">Close</button><button class="btn btn-success">Save</button></div></div></div></div>');
+    }
+
+    function createPageTable() {
         var $page_table = $('<div class="qa-tbl"></div>');
-
         var $table_header = $('<div class="qa-tbl-row qa-tbl-hdr qa-stripe"></div>');
         $table_header.append('<div class="qa-page-id qa-center"><span>Page ID</span></div>');
         $table_header.append('<div class="qa-page-title"><span>Page Title</span></div>');
         $table_header.append('<div class="qa-page-q-count qa-center"><span>Question Count</span></div>');
         $table_header.append('<div class="qa-page-preview qa-center"><span>Preview</span></div>');
-
         $page_table.append($table_header);
 
-        $page_table.append(getPageRows());
-
-        $plugin_body.append($page_table);
-        $('div#q-and-a-plugin').append($plugin_body);
-    }
-    
-    function getPageRows() {
-        var $pageRows = $();
         for (var i = 0; i < pages.length; i++) {
             var page = pages[i];
             var $row = $('<div class="qa-tbl-row qa-stripe page" data-p-id="' + page[0] + '" data-p-title="' + page[1] + '"></div>');
@@ -33,11 +29,12 @@
             $row.append('<div class="qa-page-title"><span>' + page[1] + '</span></div>');
             $row.append('<div class="qa-page-q-count qa-center"><span> 0 </span></div>');
             $row.append('<div class="qa-page-preview qa-center"><button type="button" class="btn btn-success page-preview"><span class="glyphicon glyphicon-eye-open"></span><a href="' + page[2] + '" target="_blank" rel="noopener"></a></button></div>');
-            $pageRows = $pageRows.add($row);
+            $page_table.append($row);
         }
-        return $pageRows;
-    }
 
+        return $page_table;
+    }
+    
     $('div#q-and-a-plugin').on('click', 'div.qa-tbl-row.page', function() {
         pageRowClick($(this), $(this).data('p-id'), $(this).data('p-title'));
     });
@@ -89,10 +86,10 @@
         }
     }
 
-    $('div#q-and-a-plugin').on('click', 'div.q-preview>button', function() {
-        var row = $(this).closest('div.questions');
-        questionPreviewButtonClick(row.data('p-id'), row.data('p-title'));
-    });
+    // $('div#q-and-a-plugin').on('click', 'div.q-preview>button', function() {
+    //     var row = $(this).closest('div.questions');
+    //     questionPreviewButtonClick(row.data('p-id'), row.data('p-title'));
+    // });
 
     $('div#q-and-a-plugin').on('click', 'div.q-delete>button', function() {
         questionDeleteButtonClick(); // question_id
