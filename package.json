@@ -1,0 +1,32 @@
+{
+  "name": "jquery-q-and-a",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ConnorCartwright/jQuery-q-and-a.git"
+  },
+  "author": "connor cartwright",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ConnorCartwright/jQuery-q-and-a/issues"
+  },
+  "homepage": "https://github.com/ConnorCartwright/jQuery-q-and-a#readme",
+  "description": "",
+  "dependencies": {
+    "fs": "0.0.2",
+    "grunt": "~0.4.5",
+    "grunt-contrib": "^0.11.0",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-jshint": "~0.10.0",
+    "grunt-contrib-nodeunit": "~0.4.1",
+    "grunt-contrib-qunit": "^1.2.0",
+    "grunt-contrib-uglify": "~0.5.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "http": "0.0.0"
+  }
+}

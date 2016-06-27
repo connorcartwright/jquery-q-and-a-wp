@@ -31,14 +31,15 @@ function enqueue_scripts($pages) {
     wp_register_script( 'jQuery', 'https://code.jquery.com/jquery-2.2.4.min.js' );
     wp_enqueue_script( 'jQuery' );
 
-    wp_register_script( 'q&a', plugins_url('js/q&a.js',__FILE__));
+    wp_register_script( 'q&a', plugins_url('jquery-q-and-a.js',__FILE__));
     wp_enqueue_script( 'q&a' );
+
+    wp_localize_script( 'q&a', 'wp_ajax', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) ); // add wp ajax object into script
+    wp_localize_script( 'q&a', 'pages', $pages ); // pass page data into script
 
     wp_register_script( 'ace', 'https://cdn.jsdelivr.net/ace/1.2.3/min/ace.js' );
     wp_enqueue_script( 'ace' );
 
-    wp_localize_script( 'q&a', 'wp_ajax', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) ); // add wp ajax object into script
-    wp_localize_script( 'q&a', 'pages', $pages ); // pass page data into script
 }
 
 function init_options_page(){

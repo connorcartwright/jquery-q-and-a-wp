@@ -196,8 +196,14 @@ div.modal {
     position: fixed;
     top: 0;
     left: 0;
-    background-color: rgba(33,33,33,0.6);
     z-index: 100000;
+}
+
+div.modal-overlay {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background: rgba(0,0,0,0.9);
 }
 
 div.modal-content {
@@ -212,13 +218,13 @@ div.modal-content {
     box-shadow: 0px 0px 10px #222;
 }
 
-div#q-embed-preview-modal>div.modal-content {
+div.modal.page>div.modal-content {
     height: auto;
     max-height: 90%;
     width: 80%;
 }
 
-div#q-add-edit-modal>div.modal-content {
+div.question>div.modal-content {
     height: 800px;
     width: 660px;
 }
@@ -324,7 +330,10 @@ div.modal-body form {
 }
 
 div.modal-body form label {
-    cursor: default
+    cursor: default;
+    display: inline-block;
+    margin-bottom: 4px;
+    margin-left: 2px;
 }
 
 div.modal-body form .form-control:focus {
@@ -335,13 +344,8 @@ div.modal-body form .form-control:focus {
 div.modal-body fieldset {
     border: none;
     padding: 0;
-    padding-bottom: 8px;
-}
-
-div.modal-body label {
-    display: block;
-    margin-bottom: 4px;
-    margin-left: 2px;
+    margin-bottom: 8px;
+    border-radius: 5px;
 }
 
 div.modal-body input,
@@ -410,6 +414,11 @@ div.input-group-addon.wrong-answer button {
     border-radius: 0 4px 4px 0
 }
 
+fieldset.mc-option-change {
+    display: inline-block;
+    margin-right: 12px;
+}
+
 fieldset.mc-option-change button.mc-remove-option {
     border-radius: 4px 0 0 4px
 }
@@ -417,6 +426,11 @@ fieldset.mc-option-change button.mc-remove-option {
 fieldset.mc-option-change button.mc-add-option {
     border-left: 0;
     border-radius: 0 4px 4px 0;
+}
+
+fieldset.form-group.hints>label,
+fieldset.form-group.input-output>label {
+    display: block;
 }
 
 fieldset.hints textarea,
@@ -472,4 +486,15 @@ div#editor {
 .wp-editor-tools {
     padding: 0;
     display: none;
+}
+
+div#q-and-a-plugin div.modal .error {
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(196,19,19,1);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(196,19,19,1);
+    box-shadow: 0px 0px 10px 0px rgba(196,19,19,1);
+}
+
+div#q-and-a-plugin div.modal .error-text {
+    font-size: 14px;
+    color: #A40A0A;
 }
