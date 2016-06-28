@@ -250,7 +250,8 @@ $(function() {
         }
     }
 
-    $('.modal').on('click', ' .create-question', function () {
+    $('#q-and-a-plugin').on('click', ' .modal .create-question', function () {
+        console.log('test');
         $('.modal *').removeClass('error');
         $('.modal .error-text').remove();
         var questionName = $('#q-name-input');
