@@ -16,11 +16,12 @@ $(function() {
     // });
 
     function editQuestionButtonClick(page_id) { // needs question id
-        var modal = $('div.modal');
-        modal.data('p-id', page_id);
-        modal.addClass('question');
-        modal.find('div.modal-footer button.btn-success').addClass('edit-question').removeClass('create-question');
-        // TO DO
+        $('div.modal')
+            .data('p-id', page_id)
+            .addClass('question')
+            .find('div.modal-footer button.btn-success')
+                .addClass('edit-question')
+                .removeClass('create-question');
     }
 
     function addQuestionButtonClick(page_id) {
