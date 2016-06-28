@@ -13,11 +13,16 @@ function closeModal() {
         var modal = $('.modal');
         modal.fadeOut(600, function() {
             if (modal.hasClass('page')) {
-                modal.find('.preview').remove();
+                modal
+                    .find('.preview')
+                    .remove();
             }
 
-            modal.find('.modal-footer .btn-success').attr('class', 'btn btn-success');
-            modal.attr('class', 'modal');
+            modal
+                .attr('class', 'modal')
+                .find('.modal-footer .btn-success')
+                    .attr('class', 'btn btn-success');
+
         });
         $('body').css('overflow','auto');
     }
