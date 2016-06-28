@@ -87,13 +87,13 @@ $(function() {
 
                 modal.find('.modal-content').append($message);
 
-                $message.hide().fadeIn(600, function () {
-                    setTimeout(function () {
-                        $message.fadeOut(800, function () {
-                            $message.remove();
-                        });
-                    }, 2200);
-                });
+                $message
+                    .hide()
+                    .fadeIn(600)
+                    .delay(2200)
+                    .fadeOut(800, function() {
+                        $message.remove();
+                    });
             });
     }
 });
