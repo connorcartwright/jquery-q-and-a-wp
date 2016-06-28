@@ -30,7 +30,6 @@ $(window).on('resize', function() {
 });
                                                                                                                                                                                                                                                                                                                                             //
 $('#q-and-a-plugin').on('click', '.modal-close, .modal-overlay, .close-modal', function() {
-    console.log('close click');
     closeModal();
 });
 
