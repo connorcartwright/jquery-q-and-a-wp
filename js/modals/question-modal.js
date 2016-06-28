@@ -52,9 +52,6 @@ $(function() {
         $(typeSelect).on('change', function () {
             var type = typeSelect.find('option:selected').text();
 
-                // if type wasn't already MC, AND the area isn't already coding
-            console.log($('.question-type-area.coding').length);
-
                 if (type == 'Multiple Choice') {
                     questionTypeArea.html(questionTypeChange(type));
                 } else if (!$('.question-type-area.coding').length) {
@@ -106,13 +103,15 @@ $(function() {
 
     function hintButtonClick(button) {
         if (!button.hasClass('active')) {
-            button.find('span').text('Hint ' + button.data('hint'));
+            button
+                .addClass('active')
+                .find('span')
+                    .text('Hint ' + button.data('hint'));
             $('fieldset.hints .hint.active').data('hint-text', $('fieldset.hints textarea').val());
             $('fieldset.hints textarea').val(button.data('hint-text'));
             $('fieldset.hints textarea').attr('placeholder', 'Hint ' + button.data('hint'));
             $('.hint.active>span').text($('.hint.active').data('hint'));
             $('.hint.active').removeClass('active');
-            button.addClass('active');
             $('fieldset.hints textarea').focus();
         }
     }
@@ -236,7 +235,10 @@ $(function() {
 
     function ioButtonClick(button) {
         if (!button.hasClass('active')) {
-            button.find('span').text('IO ' + button.data('io'));
+            button
+                .addClass('active')
+                .find('span')
+                    .text('IO ' + button.data('io'));
             $('fieldset.input-output .io.active').data('input', $('fieldset.input-output textarea').val());
             $('fieldset.input-output .io.active').data('output', $('fieldset.input-output input').val());
             $('fieldset.input-output textarea').val(button.data('input'));
@@ -245,13 +247,11 @@ $(function() {
             $('fieldset.input-output input').attr('placeholder', 'Expected Output ' + button.data('io'));
             $('.io.active>span').text($('.io.active').data('io'));
             $('.io.active').removeClass('active');
-            button.addClass('active');
             $('fieldset.input-output textarea').focus();
         }
     }
 
     $('#q-and-a-plugin').on('click', ' .modal .create-question', function () {
-        console.log('test');
         $('.modal *').removeClass('error');
         $('.modal .error-text').remove();
         var questionName = $('#q-name-input');
