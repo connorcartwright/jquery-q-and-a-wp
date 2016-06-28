@@ -75,18 +75,19 @@ $(function() {
     }
 
     function createHints() {
-        var hints = $('<fieldset class="form-group hints"> <label>Hints </label></fieldset>');
-        var hint_button_1 = $('<button type="button" class="btn btn-default hint hint-1 active" data-hint="1"><span>Hint 1</span></button>');
-        var hint_button_2 = $('<button type="button" class="btn btn-default hint hint-2" data-hint="2"><span>2</span></button>');
-        var hint_button_3 = $('<button type="button" class="btn btn-default hint hint-3" data-hint="3"><span>3</span></button>');
-        var hint_textarea = $('<textarea class="form-control" id="q-statement-input" rows="3" placeholder="Hint 1"></textarea>');
+        var $hints = $('<fieldset class="form-group hints"> <label>Hints </label></fieldset>');
+        var hint_button_1 = '<button type="button" class="btn btn-default hint hint-1 active" data-hint="1"><span>Hint 1</span></button>';
+        var hint_button_2 = '<button type="button" class="btn btn-default hint hint-2" data-hint="2"><span>2</span></button>';
+        var hint_button_3 = '<button type="button" class="btn btn-default hint hint-3" data-hint="3"><span>3</span></button>';
+        var $hint_textarea = $('<textarea class="form-control" id="q-statement-input" rows="3" placeholder="Hint 1"></textarea>');
 
-        hints.append(hint_button_1);
-        hints.append(hint_button_2);
-        hints.append(hint_button_3);
-        hints.append(hint_textarea);
+        $hints
+            .append(hint_button_1)
+            .append(hint_button_2)
+            .append(hint_button_3)
+            .append($hint_textarea);
 
-        hint_textarea.on('keyup', function () {
+        $hint_textarea.on('keyup', function () {
             $('button.hint.active').data('hint-text', $(this).val());
         });
 
@@ -94,7 +95,7 @@ $(function() {
             hintButtonClick($(this));
         });
 
-        return hints;
+        return $hints;
     }
 
     function hintButtonClick(button) {
