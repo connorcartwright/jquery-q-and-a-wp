@@ -19,7 +19,7 @@ $(function() {
         $('.modal')
             .data('p-id', page_id)
             .addClass('question')
-            .find('.modal-footer button.btn-success')
+            .find('.modal-footer .btn-success')
                 .addClass('edit-question')
                 .removeClass('create-question');
     }
@@ -32,7 +32,7 @@ $(function() {
             .find('.modal-header h1')
                 .text('Add Question')
             .end()
-            .find('.modal-footer button.btn-success')
+            .find('.modal-footer .btn-success')
                 .addClass('create-question')
                 .removeClass('edit-question')
                 .text('Create');
@@ -88,10 +88,10 @@ $(function() {
             .append($hint_textarea);
 
         $hint_textarea.on('keyup', function () {
-            $('button.hint.active').data('hint-text', $(this).val());
+            $('.hint.active').data('hint-text', $(this).val());
         });
 
-        $('.modal').on('click', 'button.hint', function () {
+        $('.modal').on('click', '.hint', function () {
             hintButtonClick($(this));
         });
 
@@ -101,11 +101,11 @@ $(function() {
     function hintButtonClick(button) {
         if (!button.hasClass('active')) {
             button.find('span').text('Hint ' + button.data('hint'));
-            $('fieldset.hints button.hint.active').data('hint-text', $('fieldset.hints textarea').val());
+            $('fieldset.hints .hint.active').data('hint-text', $('fieldset.hints textarea').val());
             $('fieldset.hints textarea').val(button.data('hint-text'));
             $('fieldset.hints textarea').attr('placeholder', 'Hint ' + button.data('hint'));
-            $('button.hint.active>span').text($('button.hint.active').data('hint'));
-            $('button.hint.active').removeClass('active');
+            $('.hint.active>span').text($('.hint.active').data('hint'));
+            $('.hint.active').removeClass('active');
             button.addClass('active');
             $('fieldset.hints textarea').focus();
         }
@@ -156,7 +156,6 @@ $(function() {
         }
         else {
             input.removeClass('correct').addClass('wrong');
-
             button.removeClass('btn-success').addClass('btn-default');
         }
     }
@@ -188,17 +187,17 @@ $(function() {
         var io_3 = $('<button type="button" class="btn btn-default io" data-io="3"><span>3</span></button>');
 
         remove_io.on('click', function () {
-            if ($('button.io').length > 3) {
-                $('button.io').last().remove();
+            if ($('.io').length > 3) {
+                $('.io').last().remove();
             }
         });
 
         add_io.on('click', function () {
-            var io_length = $('button.io').length;
+            var io_length = $('.io').length;
             if (io_length < 8) {
-                var io_count = ($('button.io').length + 1);
+                var io_count = ($('.io').length + 1);
                 var new_io = $('<button type="button" class="btn btn-default io" data-io="' + io_count + '"><span>' + io_count + '</span></button>');
-                $('button.io').last().after(new_io);
+                $('.io').last().after(new_io);
             }
         });
 
@@ -213,16 +212,16 @@ $(function() {
         io.append(input_textarea);
         io.append(output_input);
 
-        $('.modal').on('click', 'button.io', function () {
+        $('.modal').on('click', '.io', function () {
             ioButtonClick($(this));
         });
 
         input_textarea.on('keyup', function () {
-            $('button.io.active').data('input', $(this).val());
+            $('.io.active').data('input', $(this).val());
         });
 
         output_input.on('keyup', function () {
-            $('button.io.active').data('output', $(this).val());
+            $('.io.active').data('output', $(this).val());
         });
 
         return editor.add(io);
@@ -231,20 +230,20 @@ $(function() {
     function ioButtonClick(button) {
         if (!button.hasClass('active')) {
             button.find('span').text('IO ' + button.data('io'));
-            $('fieldset.input-output button.io.active').data('input', $('fieldset.input-output textarea').val());
-            $('fieldset.input-output button.io.active').data('output', $('fieldset.input-output input').val());
+            $('fieldset.input-output .io.active').data('input', $('fieldset.input-output textarea').val());
+            $('fieldset.input-output .io.active').data('output', $('fieldset.input-output input').val());
             $('fieldset.input-output textarea').val(button.data('input'));
             $('fieldset.input-output input').val(button.data('output'));
             $('fieldset.input-output textarea').attr('placeholder', 'Question Input ' + button.data('io'));
             $('fieldset.input-output input').attr('placeholder', 'Expected Output ' + button.data('io'));
-            $('button.io.active>span').text($('button.io.active').data('io'));
-            $('button.io.active').removeClass('active');
+            $('.io.active>span').text($('.io.active').data('io'));
+            $('.io.active').removeClass('active');
             button.addClass('active');
             $('fieldset.input-output textarea').focus();
         }
     }
 
-    $('.modal').on('click', ' button.create-question', function () {
+    $('.modal').on('click', ' .create-question', function () {
         $('.modal *').removeClass('error');
         $('.modal .error-text').remove();
         var q_name = $('#q-name-input');
@@ -275,14 +274,14 @@ $(function() {
         else {
             q_code = ace.edit('editor').getValue();
 
-            $('button.io').each(function () {
+            $('.io').each(function () {
                 if (!$(this).data('input') || !$(this).data('output')) {
                     $(this).addClass('error');
                 }
             });
         }
 
-        $('button.hint').each(function () {
+        $('.hint').each(function () {
             if ($(this).data('hint-text')) {
                 if ($(this).data('hint-text').length < 20) {
                     $(this).addClass('error');

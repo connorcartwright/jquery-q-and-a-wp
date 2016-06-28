@@ -39,7 +39,7 @@ $(function() {
     }
 
     // stop click of the preview opening/closing a row
-    $('button.page-preview').click(function(e) {
+    $('.page-preview').click(function(e) {
         e.stopPropagation();
     });
 

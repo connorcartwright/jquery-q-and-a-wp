@@ -16,7 +16,7 @@ function closeModal() {
                 modal.find('.preview').remove();
             }
 
-            modal.find('.modal-footer button.btn-success').attr('class', 'btn btn-success');
+            modal.find('.modal-footer .btn-success').attr('class', 'btn btn-success');
             modal.attr('class', 'modal');
         });
         $('body').css('overflow','auto');
