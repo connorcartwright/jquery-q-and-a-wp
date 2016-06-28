@@ -47,7 +47,7 @@ $(function() {
         pageRowClick($(this), $(this).data('p-id'), $(this).data('p-title'));
     });
 
-    function pageRowClick(row, page_id, page_title) {
+    function pageRowClick(row, pageId, pageTitle) {
         // if the questions for this page are open
         if ($(row).next().hasClass('questions')) {
             $('.questions, .blank-row').slideUp(400, function () {
@@ -56,7 +56,7 @@ $(function() {
         } else {
             $('.questions, .blank-row').remove();
 
-            var questions = $('<div class="questions" data-p-id="' + page_id + '" data-p-title="' + page_title + '"></div></div>');
+            var questions = $('<div class="questions" data-p-id="' + pageId + '" data-p-title="' + pageTitle + '"></div></div>');
             var questionTable = $('<div class="qst-table"></div>');
             questionTable.append('<div class="qa-tbl-row qa-tbl-hdr"><div class="q-name"><span>Question Name</span></div><div class="q-embed qa-center"><span>Embed</span></div>' +
                 '<div class="q-edit qa-center"><span>Edit</span></div><div class="q-preview qa-center"><span>Preview</span></div>' +

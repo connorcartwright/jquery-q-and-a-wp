@@ -15,19 +15,19 @@ $(function() {
     //     questionPreviewButtonClick(row.data('p-id'), row.data('p-title'));
     // });
 
-    function editQuestionButtonClick(page_id) { // needs question id
+    function editQuestionButtonClick(pageId) { // needs question id
         $('.modal')
-            .data('p-id', page_id)
+            .data('p-id', pageId)
             .addClass('question')
             .find('.modal-footer .btn-success')
                 .addClass('edit-question')
                 .removeClass('create-question');
     }
 
-    function addQuestionButtonClick(page_id) {
+    function addQuestionButtonClick(pageId) {
         var modal = $('.modal');
         modal
-            .data('p-id', page_id)
+            .data('p-id', pageId)
             .addClass('question')
             .find('.modal-header h1')
                 .text('Add Question')
@@ -200,11 +200,11 @@ $(function() {
         });
 
         addIo.on('click', function () {
-            var io_length = $('.io').length;
-            if (io_length < 8) {
-                var io_count = ($('.io').length + 1);
-                var new_io = $('<button type="button" class="btn btn-default io" data-io="' + io_count + '"><span>' + io_count + '</span></button>');
-                $('.io').last().after(new_io);
+            var ioLength = $('.io').length;
+            if (ioLength < 8) {
+                var ioCount = (ioLength + 1);
+                var newIo = $('<button type="button" class="btn btn-default io" data-io="' + ioCount + '"><span>' + ioCount + '</span></button>');
+                $('.io').last().after(newIo);
             }
         });
 
@@ -271,11 +271,11 @@ $(function() {
         var questionCode;
 
         if (questionType == 'Multiple Choice') {
-            var option_count = $('.mc-text-option').length;
+            var optionCount = $('.mc-text-option').length;
             if (!$('.mc-text-option .form-control.wrong').length) {
                 $('.mc-option-change').after('<span class="error-text">There must be at least one wrong answer!</span>');
             }
-            else if ($('.mc-text-option .form-control.wrong').length == option_count) {
+            else if ($('.mc-text-option .form-control.wrong').length == optionCount) {
                 $('.mc-option-change').after('<span class="error-text">There must be at least one correct answer!</span>');
             }
         }

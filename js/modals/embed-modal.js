@@ -7,11 +7,11 @@ $(function() {
         questionEmbedButtonClick(row.data('p-id'), row.data('p-title'), row.prev().find('.qa-page-preview a').attr('href'));
     });
 
-    function questionEmbedButtonClick(page_id, page_title, preview_link) {
+    function questionEmbedButtonClick(pageId, pageTitle, previewLink) {
         var modal = $('.modal');
         var data = {
             action: 'embed_question',
-            page_id: page_id
+            page_id: pageId
         };
 
         $.ajax({
@@ -29,18 +29,18 @@ $(function() {
                 console.log('always - get edit page');
                 modal
                     .data({
-                        'p-id': page_id,
-                        'p-title': page_title
+                        'p-id': pageId,
+                        'p-title': pageTitle
                     })
                     .addClass('page embed')
                     .find('.modal-header>h1')
-                        .text(page_title + ': <iframe src="http://www.example.com"></iframe>')
+                        .text(pageTitle + ': <iframe src="http://www.example.com"></iframe>')
                     .end()
                     .find('.modal-body')
                         .html(data)
                     .end()
                     .find('.modal-footer .close-modal')
-                        .after('<button class="btn btn-primary preview"><a href="' + preview_link + '" rel="noopener" target="_blank">Preview</a></button>')
+                        .after('<button class="btn btn-primary preview"><a href="' + previewLink + '" rel="noopener" target="_blank">Preview</a></button>')
                     .end()
                     .find('.modal-footer .btn-success')
                         .addClass('save')
