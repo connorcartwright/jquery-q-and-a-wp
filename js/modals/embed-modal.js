@@ -29,8 +29,8 @@ $(function() {
                 console.log('always - get edit page');
                 modal
                     .data({
-                    'p-id': page_id,
-                    'p-title': page_title
+                        'p-id': page_id,
+                        'p-title': page_title
                     })
                     .addClass('page embed')
                     .find('.modal-header>h1')
