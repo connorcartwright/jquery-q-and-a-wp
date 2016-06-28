@@ -1,16 +1,16 @@
 
 function resizeModalBody() {
     "use strict";
-    var modal_height = $('div.modal div.modal-content').height();
-    var modal_header_height = $('div.modal div.modal-header').outerHeight(true);
-    var modal_footer_height = $('div.modal div.modal-footer').outerHeight(true);
-    $('div.modal div.modal-body').height(modal_height - (modal_header_height + modal_footer_height));
+    var modal_height = $('.modal .modal-content').height();
+    var modal_header_height = $('.modal .modal-header').outerHeight(true);
+    var modal_footer_height = $('.modal .modal-footer').outerHeight(true);
+    $('.modal .modal-body').height(modal_height - (modal_header_height + modal_footer_height));
 }
 
 function closeModal() {
     "use strict";
     if(!getSelection().toString()) {
-        var modal = $('div.modal');
+        var modal = $('.modal');
         modal.fadeOut(600, function() {
             if (modal.hasClass('page')) {
                 modal.find('.preview').remove();
@@ -29,7 +29,8 @@ $(window).on('resize', function() {
     }
 });
                                                                                                                                                                                                                                                                                                                                             //
-$('.modal-close, .modal-overlay, .close-modal').on('click', function() {
+$('#q-and-a-plugin').on('click', '.modal-close, .modal-overlay, .close-modal', function() {
+    console.log('close click');
     closeModal();
 });
 

@@ -16,23 +16,23 @@ $(function() {
     // });
 
     function editQuestionButtonClick(page_id) { // needs question id
-        $('div.modal')
+        $('.modal')
             .data('p-id', page_id)
             .addClass('question')
-            .find('div.modal-footer button.btn-success')
+            .find('.modal-footer button.btn-success')
                 .addClass('edit-question')
                 .removeClass('create-question');
     }
 
     function addQuestionButtonClick(page_id) {
-        var modal = $('div.modal');
+        var modal = $('.modal');
         modal
             .data('p-id', page_id)
             .addClass('question')
-            .find('div.modal-header h1')
+            .find('.modal-header h1')
                 .text('Add Question')
             .end()
-            .find('div.modal-footer button.btn-success')
+            .find('.modal-footer button.btn-success')
                 .addClass('create-question')
                 .removeClass('edit-question')
                 .text('Create');
@@ -91,7 +91,7 @@ $(function() {
             $('button.hint.active').data('hint-text', $(this).val());
         });
 
-        $('div.modal').on('click', 'button.hint', function () {
+        $('.modal').on('click', 'button.hint', function () {
             hintButtonClick($(this));
         });
 
@@ -112,7 +112,7 @@ $(function() {
     }
 
     function questionTypeChange(type) {
-        $('div.modal *').removeClass('error');
+        $('.modal *').removeClass('error');
         switch (type) {
             case 'Multiple Choice':
                 return createMultipleChoiceArea();
@@ -213,7 +213,7 @@ $(function() {
         io.append(input_textarea);
         io.append(output_input);
 
-        $('div.modal').on('click', 'button.io', function () {
+        $('.modal').on('click', 'button.io', function () {
             ioButtonClick($(this));
         });
 
@@ -244,9 +244,9 @@ $(function() {
         }
     }
 
-    $('div.modal').on('click', ' button.create-question', function () {
-        $('div.modal *').removeClass('error');
-        $('div.modal .error-text').remove();
+    $('.modal').on('click', ' button.create-question', function () {
+        $('.modal *').removeClass('error');
+        $('.modal .error-text').remove();
         var q_name = $('#q-name-input');
 
         if (q_name.val().length < 10) {
