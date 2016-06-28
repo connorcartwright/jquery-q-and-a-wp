@@ -60,11 +60,12 @@ $(function() {
         });
 
         question_type.append(type_select);
-        question_form.append(question_name);
-        question_form.append(question_type);
-        question_form.append(question_statement);
-        question_form.append(question_type_area);
-        question_form.append(createHints());
+        question_form
+            .append(question_name)
+            .append(question_type)
+            .append(question_statement)
+            .append(question_type_area)
+            .append(createHints());
 
         modal_body.append(question_form);
 
