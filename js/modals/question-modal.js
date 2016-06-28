@@ -26,10 +26,17 @@ $(function() {
 
     function addQuestionButtonClick(page_id) {
         var modal = $('div.modal');
-        modal.data('p-id', page_id);
-        modal.addClass('question');
-        modal.find('div.modal-header h1').text('Add Question');
-        modal.find('div.modal-footer button.btn-success').addClass('create-question').removeClass('edit-question').text('Create');
+        modal
+            .data('p-id', page_id)
+            .addClass('question')
+            .find('div.modal-header h1')
+                .text('Add Question')
+            .end()
+            .find('div.modal-footer button.btn-success')
+                .addClass('create-question')
+                .removeClass('edit-question')
+                .text('Create');
+
         var modal_body = modal.find('.modal-body');
         modal_body.empty();
 
