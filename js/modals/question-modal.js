@@ -2,15 +2,15 @@ $(function() {
 
     "use strict";
 
-    $('div#q-and-a-plugin').on('click', 'div.q-edit>button', function () {
+    $('#q-and-a-plugin').on('click', 'div.q-edit>button', function () {
         editQuestionButtonClick($(this).closest('div.questions').data('p-id'));
     });
 
-    $('div#q-and-a-plugin').on('click', 'div.q-add>button', function () {
+    $('#q-and-a-plugin').on('click', 'div.q-add>button', function () {
         addQuestionButtonClick($(this).closest('div.questions').data('p-id'));
     });
 
-    // $('div#q-and-a-plugin').on('click', 'div.q-preview>button', function() {
+    // $('#q-and-a-plugin').on('click', 'div.q-preview>button', function() {
     //     var row = $(this).closest('div.questions');
     //     questionPreviewButtonClick(row.data('p-id'), row.data('p-title'));
     // });
@@ -132,17 +132,17 @@ $(function() {
 
     bindMultipleChoiceEvents();
     function bindMultipleChoiceEvents() {
-        $('div#q-and-a-plugin').on('click', '.mc-add-option', function () {
+        $('#q-and-a-plugin').on('click', '.mc-add-option', function () {
             $('fieldset.mc-text-option').last().after(createMultipleChoiceOptions(1));
         });
 
-        $('div#q-and-a-plugin').on('click', '.mc-remove-option', function () {
+        $('#q-and-a-plugin').on('click', '.mc-remove-option', function () {
             if ($('.mc-text-option').length > 2) {
                 $('.mc-text-option').last().remove();
             }
         });
 
-        $('div#q-and-a-plugin').on('click', '.correct-answer', function () {
+        $('#q-and-a-plugin').on('click', '.correct-answer', function () {
             correctButtonClick($(this));
         });
     }

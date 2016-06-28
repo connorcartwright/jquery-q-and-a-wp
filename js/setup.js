@@ -8,8 +8,8 @@ $(function() {
         var $plugin_body = $('<div class="plugin-body"></div>');
         $plugin_body.append('<h1>Learning Center Pages</h1>');
         $plugin_body.append(createPageTable());
-        $('div#q-and-a-plugin').append($plugin_body);
-        $('div#q-and-a-plugin').append(createModal());
+        $('#q-and-a-plugin').append($plugin_body);
+        $('#q-and-a-plugin').append(createModal());
     }
 
     function createModal() {
@@ -43,7 +43,7 @@ $(function() {
         e.stopPropagation();
     });
 
-    $('div#q-and-a-plugin').on('click', 'div.qa-tbl-row.page', function() {
+    $('#q-and-a-plugin').on('click', 'div.qa-tbl-row.page', function() {
         pageRowClick($(this), $(this).data('p-id'), $(this).data('p-title'));
     });
 
@@ -94,7 +94,7 @@ $(function() {
         }
     }
 
-    // $('div#q-and-a-plugin').on('click', 'div.q-delete>button', function() {
+    // $('#q-and-a-plugin').on('click', 'div.q-delete>button', function() {
     //     questionDeleteButtonClick(); // question_id
     // });
 });

@@ -2,7 +2,7 @@ $(function() {
 
     "use strict";
 
-    $('div#q-and-a-plugin').on('click', 'div.q-embed>button', function () {
+    $('#q-and-a-plugin').on('click', 'div.q-embed>button', function () {
         var row = $(this).closest('div.questions');
         questionEmbedButtonClick(row.data('p-id'), row.data('p-title'), row.prev().find('.qa-page-preview a').attr('href'));
     });
