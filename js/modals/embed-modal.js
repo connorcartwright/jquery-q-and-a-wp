@@ -27,12 +27,20 @@ $(function() {
             })
             .always(function (data) {
                 console.log('always - get edit page');
-                modal.addClass('page embed');
-                modal.data('p-id', page_id);
-                modal.data('p-title', page_title);
-                modal.find('.modal-footer button.close-modal').after('<button class="btn btn-primary preview"><a href="' + preview_link + '" rel="noopener" target="_blank">Preview</a></button>');
-                modal.find('.modal-footer button.btn-success').addClass('save');
-                modal.fadeIn(600);
+                modal
+                    .data({
+                    'p-id': page_id,
+                    'p-title': page_title
+                    })
+                    .addClass('page embed')
+                    .find('.modal-footer button.close-modal')
+                        .after('<button class="btn btn-primary preview"><a href="' + preview_link + '" rel="noopener" target="_blank">Preview</a></button>')
+                    .end()
+                    .find('.modal-footer button.btn-success')
+                        .addClass('save')
+                        .text('Save')
+                    .end()
+                    .fadeIn(600);
                 $('body').css('overflow', 'hidden');
                 modal.find('.modal-header>h1').text(page_title + ': <iframe src="http://www.example.com"></iframe>');
                 modal.find('.modal-body').empty().append(data);
