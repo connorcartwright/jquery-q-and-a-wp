@@ -33,6 +33,12 @@ $(function() {
                     'p-title': page_title
                     })
                     .addClass('page embed')
+                    .find('.modal-header>h1')
+                        .text(page_title + ': <iframe src="http://www.example.com"></iframe>')
+                    .end()
+                    .find('.modal-body')
+                        .html(data)
+                    .end()
                     .find('.modal-footer button.close-modal')
                         .after('<button class="btn btn-primary preview"><a href="' + preview_link + '" rel="noopener" target="_blank">Preview</a></button>')
                     .end()
@@ -41,9 +47,8 @@ $(function() {
                         .text('Save')
                     .end()
                     .fadeIn(600);
+
                 $('body').css('overflow', 'hidden');
-                modal.find('.modal-header>h1').text(page_title + ': <iframe src="http://www.example.com"></iframe>');
-                modal.find('.modal-body').empty().append(data);
                 resizeModalBody();
             });
     }
