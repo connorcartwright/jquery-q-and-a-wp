@@ -1,10 +1,10 @@
 
 function resizeModalBody() {
     "use strict";
-    var modal_height = $('.modal .modal-content').height();
-    var modal_header_height = $('.modal .modal-header').outerHeight(true);
-    var modal_footer_height = $('.modal .modal-footer').outerHeight(true);
-    $('.modal .modal-body').height(modal_height - (modal_header_height + modal_footer_height));
+    var modalHeight = $('.modal .modal-content').height();
+    var modalHeaderHeight = $('.modal .modal-header').outerHeight(true);
+    var modalFooterHeight = $('.modal .modal-footer').outerHeight(true);
+    $('.modal .modal-body').height(modalHeight - (modalHeaderHeight + modalFooterHeight));
 }
 
 function closeModal() {
@@ -30,7 +30,7 @@ function closeModal() {
 
 $(window).on('resize', function() {
     if ($('.modal:visible').length) {
-        resizeModalBody($('.modal:visible').attr('id'));
+        resizeModalBody();
     }
 });
                                                                                                                                                                                                                                                                                                                                             //
