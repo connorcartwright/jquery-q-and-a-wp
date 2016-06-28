@@ -59,14 +59,14 @@ $(function() {
 
     function savePage() {
         var modal = $('.modal');
-        var page_id = modal.data('p-id');
-        var page_title = modal.data('p-title');
-        var page_content = modal.find('textarea.wp-editor-area').val();
+        var pageId = modal.data('p-id');
+        var pageTitle = modal.data('p-title');
+        var pageContent = modal.find('textarea.wp-editor-area').val();
 
         var data = {
             action: 'update_page',
-            page_id: page_id,
-            page_content: page_content
+            page_id: pageId,
+            page_content: pageContent
         };
 
         $.ajax({
@@ -83,7 +83,7 @@ $(function() {
             })
             .always(function (data) {
                 console.log('always - update page');
-                var $message = $('<div class="modal-message-overlay"><div class="modal-message-content"><h2>The ' + page_title + ' page has been updated successfully!</h2></div></div>');
+                var $message = $('<div class="modal-message-overlay"><div class="modal-message-content"><h2>The ' + pageTitle + ' page has been updated successfully!</h2></div></div>');
 
                 modal.find('.modal-content').append($message);
 
