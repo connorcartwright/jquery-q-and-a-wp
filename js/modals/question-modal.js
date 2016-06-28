@@ -1,5 +1,7 @@
 $(function() {
 
+    "use strict";
+
     $('div#q-and-a-plugin').on('click', 'div.q-edit>button', function () {
         editQuestionButtonClick($(this).closest('div.questions').data('p-id'));
     });

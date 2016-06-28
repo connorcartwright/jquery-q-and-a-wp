@@ -36,7 +36,10 @@ module.exports = function(grunt) {
                 globals: {
                     jQuery: true,
                     console: true,
-                    module: true
+                    module: true,
+                    "$" : false,
+                    global: false,
+                    window: false
                 }
             }
         },

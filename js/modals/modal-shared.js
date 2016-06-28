@@ -1,22 +1,14 @@
 
-$(window).on('resize', function() {
-    if ($('.modal:visible').length) {
-        resizeModalBody($('.modal:visible').attr('id'));
-    }
-});
-
 function resizeModalBody() {
+    "use strict";
     var modal_height = $('div.modal div.modal-content').height();
     var modal_header_height = $('div.modal div.modal-header').outerHeight(true);
     var modal_footer_height = $('div.modal div.modal-footer').outerHeight(true);
     $('div.modal div.modal-body').height(modal_height - (modal_header_height + modal_footer_height));
 }
-                                                                                                                                                                                                                                                                                                                                            //
-$('.modal-close, .modal-overlay, .close-modal').on('click', function() {
-    closeModal();
-});
 
 function closeModal() {
+    "use strict";
     if(!getSelection().toString()) {
         var modal = $('div.modal');
         modal.fadeOut(600, function() {
@@ -30,3 +22,15 @@ function closeModal() {
         $('body').css('overflow','auto');
     }
 }
+
+$(window).on('resize', function() {
+    if ($('.modal:visible').length) {
+        resizeModalBody($('.modal:visible').attr('id'));
+    }
+});
+                                                                                                                                                                                                                                                                                                                                            //
+$('.modal-close, .modal-overlay, .close-modal').on('click', function() {
+    closeModal();
+});
+
+

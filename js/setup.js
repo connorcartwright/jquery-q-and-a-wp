@@ -1,3 +1,6 @@
+$(function() {
+
+    "use strict";
 
     setup();
 
@@ -94,3 +97,4 @@
     // $('div#q-and-a-plugin').on('click', 'div.q-delete>button', function() {
     //     questionDeleteButtonClick(); // question_id
     // });
+});
