@@ -53,7 +53,7 @@ $(function() {
             });
     }
 
-    $('.modal').on('click', 'button.save', function () {
+    $('#q-and-a-plugin').on('click', '.modal .save', function () {
         savePage();
     });
 
