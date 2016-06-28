@@ -2,16 +2,16 @@ $(function() {
 
     "use strict";
 
-    $('#q-and-a-plugin').on('click', 'div.q-edit>button', function () {
-        editQuestionButtonClick($(this).closest('div.questions').data('p-id'));
+    $('#q-and-a-plugin').on('click', '.q-edit>button', function () {
+        editQuestionButtonClick($(this).closest('.questions').data('p-id'));
     });
 
-    $('#q-and-a-plugin').on('click', 'div.q-add>button', function () {
-        addQuestionButtonClick($(this).closest('div.questions').data('p-id'));
+    $('#q-and-a-plugin').on('click', '.q-add>button', function () {
+        addQuestionButtonClick($(this).closest('.questions').data('p-id'));
     });
 
-    // $('#q-and-a-plugin').on('click', 'div.q-preview>button', function() {
-    //     var row = $(this).closest('div.questions');
+    // $('#q-and-a-plugin').on('click', '.q-preview>button', function() {
+    //     var row = $(this).closest('.questions');
     //     questionPreviewButtonClick(row.data('p-id'), row.data('p-title'));
     // });
 
@@ -122,7 +122,7 @@ $(function() {
     }
 
     function createMultipleChoiceArea() {
-        $('div.question-type-area').attr('class', 'question-type-area multiple-choice');
+        $('.question-type-area').attr('class', 'question-type-area multiple-choice');
 
         var add_remove_options = $('<fieldset class="form-group mc-option-change">' +
             '<button type="button" class="btn btn-default mc-remove-option"><span class="glyphicon glyphicon-minus"></span></button>' +

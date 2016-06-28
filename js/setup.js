@@ -43,18 +43,18 @@ $(function() {
         e.stopPropagation();
     });
 
-    $('#q-and-a-plugin').on('click', 'div.qa-tbl-row.page', function() {
+    $('#q-and-a-plugin').on('click', '.qa-tbl-row.page', function() {
         pageRowClick($(this), $(this).data('p-id'), $(this).data('p-title'));
     });
 
     function pageRowClick(row, page_id, page_title) {
         // if the questions for this page are open
         if ($(row).next().hasClass('questions')) {
-            $('div.questions, div.blank-row').slideUp(400, function () {
+            $('.questions, .blank-row').slideUp(400, function () {
                 $(row).next().remove();
             });
         } else {
-            $('div.questions, div.blank-row').remove();
+            $('.questions, .blank-row').remove();
 
             var questions = $('<div class="questions" data-p-id="' + page_id + '" data-p-title="' + page_title + '"></div></div>');
             var questionTable = $('<div class="qst-table"></div>');
@@ -94,7 +94,7 @@ $(function() {
         }
     }
 
-    // $('#q-and-a-plugin').on('click', 'div.q-delete>button', function() {
+    // $('#q-and-a-plugin').on('click', '.q-delete>button', function() {
     //     questionDeleteButtonClick(); // question_id
     // });
 });
