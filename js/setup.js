@@ -21,9 +21,11 @@ $(function() {
 
    function createPageTable() {
       var $pageTable = $('<div class="qa-tbl"></div>');
-      var $tableHeader = $('<div class="qa-tbl-row qa-tbl-hdr qa-stripe"><div class="qa-page-id qa-center"><span>Page ID</span></div>' +
+      var tableHeader = '<div class="qa-tbl-row qa-tbl-hdr qa-stripe"><div class="qa-page-id qa-center"><span>Page ID</span></div>' +
               '<div class="qa-page-title"><span>Page Title</span></div><div class="qa-page-q-count qa-center"><span>Question Count</span>' +
-              '</div><div class="qa-page-preview qa-center"><span>Preview</span></div></div>');
+              '</div><div class="qa-page-preview qa-center"><span>Preview</span></div></div>';
+
+      $pageTable.append(tableHeader);
 
       for(var i = 0; i < pages.length; i++) {
          var page = pages[i];
