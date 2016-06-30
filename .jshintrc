@@ -28,7 +28,6 @@
   "nocomma": true,
   "nonbsp": true,
   "nonew": true,
-  "notypeof": true,
   "predef": [],
   "shadow": "inner",
   "singleGroups": true,
