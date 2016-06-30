@@ -62,15 +62,16 @@ module.exports = function(grunt) {
 
         watch: {
             files: ['js/**/*.js'],
-            tasks: ['concurrent:lint', 'concurrent:assemble']
+            tasks: ['concurrent:lint', 'concurrent:concat', 'concurrent:uglify']
         },
 
         concurrent: {
             lint: ['jshint', 'jscs'],
-            assemble: ['concat', 'uglify']
+            concat: ['concat'],
+            uglify: ['uglify']
         }
     });
 
-    grunt.registerTask('default', ['concurrent:lint', 'concurrent:assemble', 'watch']);
+    grunt.registerTask('default', ['concurrent:lint', 'concurrent:concat', 'concurrent:uglify', 'watch']);
 
 };
