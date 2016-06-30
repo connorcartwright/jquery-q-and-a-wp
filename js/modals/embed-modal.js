@@ -1,13 +1,6 @@
 $(function() {
    'use strict';
 
-   $('#q-and-a-plugin').on('click', '.q-embed>button', function() {
-      var row = $(this).closest('.questions');
-      var previewLink = row.prev().find('.qa-page-preview a').attr('href');
-
-      questionEmbedButtonClick(row.data('p-id'), row.data('p-title'), previewLink);
-   });
-
    function questionEmbedButtonClick(pageId, pageTitle, previewLink) {
       var $modal = $('.modal');
       var data = {
@@ -21,6 +14,7 @@ $(function() {
             data: data
          })
           .done(function(data) {
+            console.log(data);
             console.log('success - get edit page');
          })
           .fail(function() {
@@ -35,18 +29,18 @@ $(function() {
                })
                 .addClass('page embed')
                 .find('.modal-header>h1')
-                    .text(pageTitle + ': <iframe src="http://www.example.com"></iframe>')
+                .text(pageTitle + ': <iframe src="http://www.example.com"></iframe>')
                 .end()
                 .find('.modal-body')
-                    .html(data)
+                .html(data)
                 .end()
                 .find('.modal-footer .close-modal')
-                    .after('<button class="btn btn-primary preview"><a href="' + previewLink + '" rel="noopener" ' +
-                        'target="_blank">Preview</a></button>')
+                .after('<button class="btn btn-primary preview"><a href="' + previewLink + '" rel="noopener" ' +
+                    'target="_blank">Preview</a></button>')
                 .end()
                 .find('.modal-footer .btn-success')
-                    .addClass('save')
-                    .text('Save')
+                .addClass('save')
+                .text('Save')
                 .end()
                 .fadeIn(600);
 
@@ -54,10 +48,6 @@ $(function() {
             resizeModalBody();
          });
    }
-
-   $('#q-and-a-plugin').on('click', '.modal .save', function() {
-      savePage();
-   });
 
    function savePage() {
       var $modal = $('.modal');
@@ -79,12 +69,14 @@ $(function() {
          })
           .done(function(data) {
             console.log('success - update page');
+            console.log(data);
          })
           .fail(function() {
             console.log('error - update page');
          })
           .always(function(data) {
             console.log('always - update page');
+            console.log(data);
             var $message = $('<div class="modal-message-overlay"><div class="modal-message-content">' +
                 '<h2>The ' + pageTitle + ' page has been updated successfully!</h2></div></div>');
 
@@ -99,4 +91,15 @@ $(function() {
                });
          });
    }
+
+   $('#q-and-a-plugin').on('click', '.q-embed>button', function() {
+      var row = $(this).closest('.questions');
+      var previewLink = row.prev().find('.qa-page-preview a').attr('href');
+
+      questionEmbedButtonClick(row.data('p-id'), row.data('p-title'), previewLink);
+   });
+
+   $('#q-and-a-plugin').on('click', '.modal .save', function() {
+      savePage();
+   });
 });

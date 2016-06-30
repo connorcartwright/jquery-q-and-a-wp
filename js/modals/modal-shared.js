@@ -32,12 +32,16 @@ function closeModal() {
 }
 
 $(window).on('resize', function() {
+   'use strict';
+
    if ($('.modal:visible').length) {
       resizeModalBody();
    }
 });
 
 $('#q-and-a-plugin').on('click', '.modal-close, .modal-overlay, .close-modal', function() {
+   'use strict';
+
    closeModal();
 });
 
