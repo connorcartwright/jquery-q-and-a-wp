@@ -72,6 +72,8 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.registerTask('default', ['concurrent:lint', 'concurrent:concat', 'concurrent:uglify', 'watch']);
+    grunt.registerTask('default', ['concurrent']);
+    grunt.registerTask('dev', ['concurrent', 'watch']);
+
 
 };
