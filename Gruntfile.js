@@ -2,8 +2,17 @@ module.exports = function(grunt) {
 
     "use strict";
 
+    require('time-grunt')(grunt);
+    require('jit-grunt')(grunt);
+
+    var config = {
+        src: 'js',
+        dist: 'dist'
+    };
+
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
+        config: config,
 
         concat: {
             options: {
@@ -30,33 +39,37 @@ module.exports = function(grunt) {
             }
         },
 
-        jshint: {
-            // define the files to lint
-            files: ['Gruntfile.js', 'js/**/*.js'],
-            // configure JSHint (documented at http://www.jshint.com/docs/)
+        jscs: {
             options: {
-                // more options here if you want to override JSHint defaults
-                globals: {
-                    jQuery: true,
-                    console: true,
-                    module: true,
-                    "$" : false,
-                    global: false,
-                    window: false
-                }
-            }
+                config: '.jscsrc',
+                fix: true
+            },
+            src: [
+                '<%= config.src %>/**/*.js'
+            ]
+        },
+
+        jshint: {
+            options: {
+                jshintrc: '.jshintrc',
+                reporter: require('jshint-stylish'),
+            },
+            src: [
+                '<%= config.src %>/**/*.js',
+                'Gruntfile.js'
+            ]
         },
 
         watch: {
-            files: ['<%= jshint.files %>'],
-            tasks: ['jshint', 'concat', 'uglify']
+            files: ['js/**/*.js'],
+            tasks: ['lint', 'concat', 'uglify']
         }
     });
 
-    grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-contrib-jshint');
-    grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.registerTask('lint', [
+        'jshint',
+        'jscs'
+    ]);
 
-    grunt.registerTask('default', ['jshint', 'concat', 'uglify', 'watch']);
+    grunt.registerTask('default', ['lint', 'concat', 'uglify', 'watch']);
 };
