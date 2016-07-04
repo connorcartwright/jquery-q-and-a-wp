@@ -10,10 +10,10 @@
   "globals": {
     "ace": false,
     "getSelection": false,
-    "module": false, // environment option only available in ECS6
-    "pages": false, // passed through the plugins .php file
+    "module": false,
+    "pages": false,
     "resizeModalBody": false,
-    "wpAjax": false // passed through the plugins .php file
+    "wpAjax": false
   },
   "iterator": false,
   "jquery": true,
