@@ -8,13 +8,12 @@
   "funcscope": false,
   "devel": true,
   "globals": {
-    "wpAjax": false,
-    "pages": false,
-    "console": false,
-    "resizeModalBody": false,
+    "ace": false,
     "getSelection": false,
-    "module": false,
-    "ace": false
+    "module": false, // environment option only available in ECS6
+    "pages": false, // passed through the plugins .php file
+    "resizeModalBody": false,
+    "wpAjax": false // passed through the plugins .php file
   },
   "iterator": false,
   "jquery": true,
