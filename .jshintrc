@@ -14,7 +14,6 @@
     "resizeModalBody": false,
     "getSelection": false,
     "module": false,
-    "require": false,
     "ace": false
   },
   "iterator": false,
@@ -27,6 +26,7 @@
   "maxstatements": 20,
   "noarg": true,
   "nocomma": true,
+  "node": true,
   "nonbsp": true,
   "nonew": true,
   "predef": [],
