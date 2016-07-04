@@ -6,7 +6,6 @@
   "forin": false,
   "freeze": true,
   "funcscope": false,
-  "jquery": true,
   "globals": {
     "wpAjax": false,
     "pages": false,
@@ -18,6 +17,7 @@
     "ace": false
   },
   "iterator": false,
+  "jquery": true,
   "latedef": true,
   "maxcomplexity": 6,
   "maxdepth": 3,
