@@ -61,8 +61,10 @@ module.exports = function(grunt) {
         },
 
         watch: {
-            files: ['js/**/*.js'],
-            tasks: ['concurrent', 'concat', 'uglify']
+            js: {
+                files: ['js/**/*.js'],
+                tasks: ['concurrent', 'concat', 'uglify']
+            }
         },
 
         concurrent: {
