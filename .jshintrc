@@ -6,8 +6,8 @@
   "forin": false,
   "freeze": true,
   "funcscope": false,
+  "jquery": true,
   "globals": {
-    "$": false,
     "wpAjax": false,
     "pages": false,
     "console": false,
