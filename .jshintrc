@@ -6,6 +6,7 @@
   "forin": false,
   "freeze": true,
   "funcscope": false,
+  "devel": true,
   "globals": {
     "wpAjax": false,
     "pages": false,
