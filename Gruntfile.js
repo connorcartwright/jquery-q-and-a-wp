@@ -3,7 +3,9 @@ module.exports = function(grunt) {
     "use strict";
 
     require('time-grunt')(grunt);
-    require('jit-grunt')(grunt);
+    require('jit-grunt')(grunt, {
+        scsslint: 'grunt-scss-lint',
+    });
 
     var config = {
         src: 'js',
@@ -37,6 +39,24 @@ module.exports = function(grunt) {
                     '<%= pkg.name %>.min.js': ['<%= concat.dist.dest %>']
                 }
             }
+        },
+
+        sass: {
+            dist: {
+                files: {
+                    'css/style.css' : 'css/**/*.scss'
+                }
+            }
+        },
+
+        scsslint: {
+            allFiles: [
+                'css/**/*.scss',
+            ],
+            options: {
+                config: '.scss-lint.yml',
+                colorizeOutput: true
+            },
         },
 
         jscs: {
