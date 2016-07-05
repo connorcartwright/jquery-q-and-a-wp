@@ -64,8 +64,4 @@ linters:
 
   StringQuotes:
     style: single_quotes
-
-
-
-
-
+    
