@@ -77,10 +77,10 @@ $(function() {
 
       if (input.hasClass('wrong')) {
          input.removeClass('wrong').addClass('correct');
-         button.addClass('btn-success').removeClass('btn-default');
+         button.find('.btn').addClass('btn-success').removeClass('btn-default');
       } else {
          input.removeClass('correct').addClass('wrong');
-         button.removeClass('btn-success').addClass('btn-default');
+         button.find('.btn').removeClass('btn-success').addClass('btn-default');
       }
    }
 
