@@ -1,0 +1,553 @@
+@charset 'utf-8';
+
+$page-even-row: #eaeaea;
+$page-odd-row: #dfdfdf;
+$page-row-hover: #d8d8d8;
+$page-text: #444;
+$question-even-row: #ececec;
+$question-odd-row: #cbcbcb;
+$question-even-row-hover: #c5c5c5;
+$question-odd-row-hover: #e6e6e6;
+$question-text: #333;
+$red: #f00;
+$row-height: 32px;
+$btn-height: 28px;
+$btn-width: 28px;
+$btn-text: #fff;
+
+$btn-default-background: #fff;
+$btn-default-border: #ccc;
+$btn-default: #373a3c;
+
+$btn-default-background-hover: #e6e6e6;
+$btn-default-border-hover: #adadad;
+
+$btn-primary: #0275d8;
+$btn-primary-background-hover: #025aa5;
+$btn-primary-border-hover: #01549b;
+
+$btn-success: #5cb85c;
+$btn-success-background-hover: #449d44;
+$btn-success-border-hover: #419641;
+
+$btn-danger: #d9534f;
+$btn-danger-background-hover: #c9302c;
+$btn-danger-border-hover: #c12e2a;
+
+$modal-shadow: #222;
+$modal-error-text: #a40a0a;
+
+$form-focus: #66afe9;
+
+$input-correct: #1d621d;
+$input-correct-background: #e7ffe1;
+$input-correct-border: #1d621d;
+
+$input-wrong: #a40a0a;
+$input-wrong-background: #ebccd1;
+$input-wrong-border: #a40a0a;
+
+.wp-menu-image {
+
+  img {
+    max-height: 100%;
+  }
+
+}
+
+.wp-editor-wrap {
+  margin: 0 1%;
+  width: 98%;
+}
+
+.wp-editor-tools {
+  display: none;
+  padding: 0;
+}
+
+
+.q-and-a-plugin {
+
+  .qa-center {
+    text-align: center;
+  }
+
+  .btn {
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    color: $btn-text;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 400;
+    padding: 1px;
+    position: relative;
+    text-align: center;
+    user-select: none;
+    vertical-align: middle;
+
+    a {
+      height: 100%;
+      width: 100%;
+    }
+
+    a,
+    a:hover,
+    a:active,
+    a:focus {
+      color: $btn-text;
+    }
+
+    >div {
+      height: 100%;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 100%;
+
+      >a {
+        display: block;
+      }
+
+    }
+
+  }
+
+  .btn-default {
+    background-color: $btn-default-background;
+    border-color: $btn-default-border;
+    color: $btn-default;
+  }
+
+  .btn-default:hover {
+    background-color: $btn-default-background-hover;
+    border-color: $btn-default-border-hover;
+  }
+
+  .btn-primary {
+    background-color: $btn-primary;
+    border-color: $btn-primary;
+  }
+
+  .btn-primary:hover {
+    background-color: $btn-primary-background-hover;
+    border-color: $btn-primary-border-hover;
+  }
+
+  .btn-success {
+    background-color: $btn-success;
+    border-color: $btn-success;
+  }
+
+  .btn-success:hover {
+    background-color: $btn-success-background-hover;
+    border-color: $btn-success-border-hover;
+  }
+
+  .btn-danger {
+    background-color: $btn-danger;
+    border-color: $btn-danger;
+  }
+
+  .btn-danger:hover {
+    background-color: $btn-danger-background-hover;
+    border-color: $btn-danger-border-hover;
+  }
+
+  .plugin-header {
+    font-size: 28px;
+    margin: 8px;
+  }
+
+  .qa-tbl {
+    color: $page-text;
+    display: table;
+    position: relative;
+    width: 100%;
+
+    .btn {
+      height: $btn-height;
+      width: $btn-width;
+    }
+
+    .qa-tbl-hdr {
+      cursor: default;
+
+      >div {
+        font-weight: bold;
+      }
+
+    }
+
+    .qa-tbl-row {
+      background-color: $page-even-row;
+      cursor: pointer;
+      display: table-row;
+      height: $row-height;
+
+      >div {
+        display: table-cell;
+        vertical-align: middle;
+      }
+
+    }
+
+    .qa-tbl-row:nth-of-type( odd ) {
+      background-color: $page-odd-row;
+    }
+
+    .page {
+
+      .qa-page-id {
+        width: 70px;
+      }
+
+      .qa-page-q-count {
+        width: 120px;
+      }
+
+      .qa-page-preview {
+        width: 74px;
+      }
+
+    }
+
+    .page:hover {
+      background-color: $page-row-hover;
+    }
+
+  }
+
+  .questions {
+    color: $question-text;
+    position: absolute;
+    width: 100%;
+
+    .qst-table {
+      display: table;
+      margin: 5px 2%;
+      width: 96%;
+
+      > .qa-tbl-row {
+        background-color: $question-even-row;
+      }
+
+      > .qa-tbl-row:nth-of-type( odd ) {
+        background-color: $question-odd-row;
+      }
+
+      > .question:hover {
+        background-color: $question-odd-row-hover;
+      }
+
+      > .question:nth-of-type( odd ):hover {
+        background-color: $question-even-row-hover;
+      }
+
+      > div {
+
+        .q-name,
+        .q-add {
+          padding-left: 10px;
+        }
+
+        .q-embed,
+        .q-edit,
+        .q-preview,
+        .q-delete {
+          width: 64px;
+        }
+
+      }
+
+    }
+
+  }
+
+  .modal {
+    display: none;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100000;
+
+    .error {
+      box-shadow: 0 0 10px 0 rgba( 196, 19, 19, 1 );
+    }
+
+    .error-text {
+      color: $modal-error-text;
+      font-size: 14px;
+    }
+
+    .modal-overlay {
+      background: rgba( 0, 0, 0, .9 );
+      height: 100%;
+      position: absolute;
+      width: 100%;
+    }
+
+    &.page>.modal-content {
+      height: auto;
+      max-height: 90%;
+      width: 80%;
+    }
+
+    &.question>.modal-content {
+      height: 800px;
+      width: 660px;
+    }
+
+    .modal-content {
+      background-color: rgba( 255, 255, 255, .95 );
+      border-radius: 7px;
+      bottom: 0;
+      box-shadow: 0 0 10px $modal-shadow;
+      left: 0;
+      margin: auto;
+      position: absolute;
+      right: 0;
+      top: 0;
+
+      >.modal-close {
+        cursor: pointer;
+        height: 20px;
+        position: absolute;
+        right: 4px;
+        top: 4px;
+        width: 20px;
+
+        >.glyphicon {
+          font-size: 20px;
+        }
+
+      }
+
+      >.modal-header {
+        display: inline-block;
+        height: auto;
+        left: 0;
+        margin: 14px;
+        margin-right: 36px;
+        max-height: 68px;
+        overflow-y: scroll;
+        position: relative;
+        top: 0;
+
+        >h1 {
+          display: inline-block;
+          font-size: 24px;
+          margin: 0;
+        }
+
+      }
+
+      >.modal-body {
+        display: inline-block;
+        height: auto;
+        overflow-y: scroll;
+        position: relative;
+        width: 100%;
+
+        .wp-editor-area {
+          resize: vertical;
+        }
+
+        .wp-editor-wrap,
+        .wp-editor-container,
+        .wp-editor-container
+        .wp-editor-area {
+          height: 100%;
+        }
+
+        >form {
+          margin: 0 2%;
+          width: 96%;
+
+          label {
+            cursor: default;
+            display: inline-block;
+            margin-bottom: 4px;
+            margin-left: 2px;
+          }
+
+          .form-control:focus {
+            border-color: $form-focus;
+            outline: 0;
+          }
+
+          fieldset {
+            border: 0;
+            border-radius: 5px;
+            margin-bottom: 8px;
+            padding: 0;
+
+            .mc-option-change {
+              display: inline-block;
+              margin-right: 12px;
+            }
+
+            .btn.mc-remove-option {
+              border-radius: 4px 0 0 4px;
+            }
+
+            .btn.mc-add-option {
+              border-left: 0;
+              border-radius: 0 4px 4px 0;
+            }
+
+            &.hints,
+            &.input-output {
+
+              >label {
+                display: block;
+              }
+
+              textarea {
+                margin: 8px 0;
+              }
+
+              .btn:first-of-type {
+                border-left: 1px solid $btn-default-border;
+                border-radius: 3px 0 0 3px;
+              }
+
+              .btn {
+                border-left: 0;
+                border-radius: 0;
+              }
+
+              .btn:last-of-type {
+                border-left: 0;
+                border-radius: 0 3px 3px 0;
+              }
+
+            }
+
+          }
+
+          input,
+          select,
+          textarea {
+            border-radius: 4px;
+            display: block;
+            padding: 3px 12px;
+            width: 100%;
+          }
+
+          input,
+          select {
+            height: 30px;
+          }
+
+          .input-group {
+            display: inline-table;
+            width: 100%;
+
+            input {
+              border: 0;
+              border-radius: 4px 0 0 4px;
+              display: table-cell;
+            }
+
+            .correct {
+              background-color: $input-correct-background;
+              color: $input-correct;
+            }
+
+            .wrong {
+              background-color: $input-wrong-background;
+              color: $input-wrong;
+            }
+
+            .input-group-addon {
+              display: table-cell;
+              height: 30px;
+              text-align: center;
+              vertical-align: middle;
+              width: 30px;
+
+              .btn {
+                border: 0;
+                display: inline-block;
+                height: 30px;
+                width: 30px;
+              }
+
+              &.correct-answer .btn {
+                border-radius: 0;
+              }
+
+              &.wrong-answer .btn {
+                border-radius: 0 4px 4px 0;
+              }
+
+            }
+
+          }
+
+          .mc-text-option .input-group {
+            border: 1px solid rgba( 33, 33, 33, .2 );
+            border-radius: 5px;
+          }
+
+          .code-editor {
+            border-radius: 4px;
+            height: 240px;
+            margin: 10px 0;
+            width: 100%;
+          }
+
+        }
+
+      }
+
+      .modal-footer {
+        bottom: 0;
+        display: table;
+        height: 60px;
+        position: absolute;
+        text-align: right;
+        width: 100%;
+
+        >.modal-footer-buttons {
+          display: table-cell;
+          padding-right: 20px;
+          vertical-align: middle;
+
+          >.btn {
+            border-radius: 4px;
+            height: 36px;
+            margin-left: 10px;
+            width: 100px;
+          }
+
+        }
+
+      }
+
+      >.modal-message-overlay {
+        background: rgba( 222, 222, 222, .8 );
+        border-radius: 7px;
+        display: table;
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 1;
+
+        .modal-message-content {
+          display: table-cell;
+          text-align: center;
+          vertical-align: middle;
+        }
+
+      }
+
+    }
+
+  }
+
+}
