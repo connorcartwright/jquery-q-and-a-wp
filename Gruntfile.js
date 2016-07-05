@@ -83,16 +83,28 @@ module.exports = function(grunt) {
         watch: {
             js: {
                 files: ['js/**/*.js'],
-                tasks: ['concurrent', 'concat', 'uglify']
+                tasks: ['jslint', 'concat', 'uglify']
+            },
+            css: {
+                files: ['css/**/*.scss'],
+                tasks: ['scsslint', 'sass']
             }
         },
 
         concurrent: {
-            lint: ['jshint', 'jscs']
+            jslint: ['jslint'],
+            js: [['concurrent:jslint', 'concat', 'uglify']],
+            css: [['scsslint', 'sass']],
+            master: ['concurrent:js', 'concurrent:css']
         }
     });
 
-    grunt.registerTask('default', ['concurrent', 'concat', 'uglify']);
-    grunt.registerTask('dev', ['concurrent', 'concat', 'uglify', 'watch']);
+    grunt.registerTask('jslint', [
+        'jshint',
+        'jscs'
+    ]);
+
+    grunt.registerTask('default', ['concurrent:master']);
+    grunt.registerTask('dev', ['concurrent:master', 'watch']);
 
 };
