@@ -1,9 +1,6 @@
 @charset 'utf-8';
 @import 'settings/colors';
-
-$row-height: 32px;
-$btn-height: 28px;
-$btn-width: 28px;
+@import 'settings/sizings';
 
 .wp-menu-image {
 
@@ -123,8 +120,8 @@ $btn-width: 28px;
     width: 100%;
 
     .btn {
-      height: $btn-height;
-      width: $btn-width;
+      height: $sqr-btn-small;
+      width: $sqr-btn-small;
     }
 
     .qa-tbl-hdr {
