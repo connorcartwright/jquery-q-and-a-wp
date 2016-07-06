@@ -12,15 +12,27 @@ $(function() {
 
       for(var i = 0; i < pages.length; i++) {
          var page = pages[i];
-         var $row = $('<div class="qa-tbl-row qa-stripe page" data-p-id="' + page[0] + '" data-p-title="' + page[1] + '"></div>');
+         var $row = $templates.find('.js-page-row')
+             .clone()
+             .children();
 
          $row
-             .append('<div class="qa-page-id qa-center"><span>' + page[0] + '</span></div>')
-             .append('<div class="qa-page-title"><span>' + page[1] + '</span></div>')
-             .append('<div class="qa-page-q-count qa-center"><span> 0 </span></div>')
-             .append('<div class="qa-page-preview qa-center"><button type="button" class="btn btn-success page-preview">' +
-                 '<span class="glyphicon glyphicon-eye-open"></span><a href="' + page[2] + '" target="_blank" rel="noopener">' +
-                 '</a></button></div>');
+             .data({
+               'p-id': page[0],
+               'p-title': page[1]
+            })
+             .find('.qa-page-id>span')
+               .text(page[0])
+             .end()
+             .find('.qa-page-title>span')
+               .text(page[1])
+             .end()
+             .find('.qa-page-q-count')
+               .text('0')
+             .end()
+             .find('.qa-page-preview>a')
+               .attr('href', page[2])
+             .end();
 
          $pageTable.append($row);
       }
