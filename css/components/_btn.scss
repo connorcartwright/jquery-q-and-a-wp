@@ -2,7 +2,7 @@
 .btn {
   border: 1px solid transparent;
   border-radius: .25rem;
-  color: $pure-white;
+  color: $white;
   cursor: pointer;
   display: inline-block;
   font-weight: 400;
@@ -21,7 +21,7 @@
   a:hover,
   a:active,
   a:focus {
-    color: $pure-white;
+    color: $white;
     text-decoration: underline;
   }
 
@@ -34,7 +34,7 @@
 }
 
   &.btn-default {
-    background-color: $pure-white;
+    background-color: $white;
     border-color: $alto-dark;
     color: $shadow;
   }
