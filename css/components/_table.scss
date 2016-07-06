@@ -67,23 +67,8 @@
     margin: 5px 2%;
     width: 96%;
 
-    > .qa-tbl-row {
+    >.qa-tbl-row {
       background-color: $light-gallery;
-    }
-
-    > .qa-tbl-row:nth-of-type( odd ) {
-      background-color: $silver;
-    }
-
-    > .question:hover {
-      background-color: $mercury;
-    }
-
-    > .question:nth-of-type( odd ):hover {
-      background-color: $dark-silver;
-    }
-
-    > div {
 
       .q-name,
       .q-add {
@@ -95,6 +80,18 @@
       .q-preview,
       .q-delete {
         width: 64px;
+      }
+    }
+
+    >.qa-tbl-row:nth-of-type( odd ) {
+      background-color: $silver;
+    }
+
+    >.question:hover {
+      background-color: $mercury;
+
+      &:nth-of-type( odd ) {
+        background-color: $dark-silver;
       }
 
     }
