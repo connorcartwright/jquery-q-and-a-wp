@@ -5,48 +5,8 @@
 // then import components
 @import 'components/btn';
 @import 'components/form-questions';
+@import 'components/heading';
 @import 'components/modal';
 @import 'components/table/page-table';
 @import 'components/table/question-table';
-
-
-.wp-menu-image {
-
-  img {
-    max-height: 100%;
-  }
-
-}
-
-.wp-editor-wrap {
-  margin: 0 1%;
-  width: 98%;
-}
-
-.wp-editor-tools {
-  display: none;
-  padding: 0;
-}
-
-
-.q-and-a-plugin {
-
-  .qa-center {
-    text-align: center;
-  }
-
-  .plugin-header {
-    font-size: 28px;
-    margin: 8px;
-  }
-
-  .error {
-    box-shadow: 0 0 10px 0 rgba( 196, 19, 19, 1 );
-  }
-
-  .error-text {
-    color: $crimson;
-    font-size: 14px;
-  }
-
-}
+@import 'components/wp-override';

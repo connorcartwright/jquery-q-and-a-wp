@@ -6,6 +6,10 @@ $row-height: 32px;
   position: relative;
   width: 100%;
 
+  .qa-center {
+    text-align: center;
+  }
+
   .btn {
     height: $sqr-btn-small;
     width: $sqr-btn-small;
