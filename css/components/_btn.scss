@@ -35,7 +35,7 @@
 
   &.btn-default {
     background-color: $pure-white;
-    border-color: $silver;
+    border-color: $alto-dark;
     color: $shadow;
   }
 
@@ -51,7 +51,7 @@
 
   &.btn-primary:hover {
     background-color: $azure;
-    border-color: $light-navy;
+    border-color: $azure;
   }
 
   &.btn-success {
@@ -61,7 +61,7 @@
 
   &.btn-success:hover {
     background-color: $apple;
-    border-color: $dark-apple;
+    border-color: $apple;
   }
 
   &.btn-danger {
@@ -70,7 +70,7 @@
   }
 
   &.btn-danger:hover {
-    background-color: $persian-red;
+    background-color: $poppy;
     border-color: $poppy;
   }
 

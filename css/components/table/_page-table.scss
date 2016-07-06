@@ -1,5 +1,5 @@
 .qa-tbl {
-  color: $tundora;
+  color: $shadow;
   display: table;
   position: relative;
   width: 100%;
@@ -45,7 +45,7 @@
       width: 74px;
     }
 
-    &.page:hover {
+    &:hover:not( .qa-tbl-hdr ) {
       background-color: $alto-dark;
     }
 
