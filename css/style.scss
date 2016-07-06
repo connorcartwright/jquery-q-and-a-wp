@@ -1,51 +1,9 @@
 @charset 'utf-8';
+@import 'settings/colors';
 
-$page-even-row: #eaeaea;
-$page-odd-row: #dfdfdf;
-$page-row-hover: #d8d8d8;
-$page-text: #444;
-$question-even-row: #ececec;
-$question-odd-row: #cbcbcb;
-$question-even-row-hover: #c5c5c5;
-$question-odd-row-hover: #e6e6e6;
-$question-text: #333;
-$red: #f00;
 $row-height: 32px;
 $btn-height: 28px;
 $btn-width: 28px;
-$btn-text: #fff;
-
-$btn-default-background: #fff;
-$btn-default-border: #ccc;
-$btn-default: #373a3c;
-
-$btn-default-background-hover: #e6e6e6;
-$btn-default-border-hover: #adadad;
-
-$btn-primary: #0275d8;
-$btn-primary-background-hover: #025aa5;
-$btn-primary-border-hover: #01549b;
-
-$btn-success: #5cb85c;
-$btn-success-background-hover: #449d44;
-$btn-success-border-hover: #419641;
-
-$btn-danger: #d9534f;
-$btn-danger-background-hover: #c9302c;
-$btn-danger-border-hover: #c12e2a;
-
-$modal-shadow: #222;
-$modal-error-text: #a40a0a;
-
-$form-focus: #66afe9;
-
-$input-correct: #1d621d;
-$input-correct-background: #e7ffe1;
-$input-correct-border: #1d621d;
-
-$input-wrong: #a40a0a;
-$input-wrong-background: #ebccd1;
-$input-wrong-border: #a40a0a;
 
 .wp-menu-image {
 
@@ -75,7 +33,7 @@ $input-wrong-border: #a40a0a;
   .btn {
     border: 1px solid transparent;
     border-radius: .25rem;
-    color: $btn-text;
+    color: $pure-white;
     cursor: pointer;
     display: inline-block;
     font-weight: 400;
@@ -94,7 +52,7 @@ $input-wrong-border: #a40a0a;
     a:hover,
     a:active,
     a:focus {
-      color: $btn-text;
+      color: $pure-white;
     }
 
     >div {
@@ -113,44 +71,44 @@ $input-wrong-border: #a40a0a;
   }
 
   .btn-default {
-    background-color: $btn-default-background;
-    border-color: $btn-default-border;
-    color: $btn-default;
+    background-color: $pure-white;
+    border-color: $silver;
+    color: $shadow;
   }
 
   .btn-default:hover {
-    background-color: $btn-default-background-hover;
-    border-color: $btn-default-border-hover;
+    background-color: $mercury;
+    border-color: $steel;
   }
 
   .btn-primary {
-    background-color: $btn-primary;
-    border-color: $btn-primary;
+    background-color: $cobalt;
+    border-color: $cobalt;
   }
 
   .btn-primary:hover {
-    background-color: $btn-primary-background-hover;
-    border-color: $btn-primary-border-hover;
+    background-color: $azure;
+    border-color: $light-navy;
   }
 
   .btn-success {
-    background-color: $btn-success;
-    border-color: $btn-success;
+    background-color: $fern;
+    border-color: $fern;
   }
 
   .btn-success:hover {
-    background-color: $btn-success-background-hover;
-    border-color: $btn-success-border-hover;
+    background-color: $apple;
+    border-color: $dark-apple;
   }
 
   .btn-danger {
-    background-color: $btn-danger;
-    border-color: $btn-danger;
+    background-color: $clay;
+    border-color: $clay;
   }
 
   .btn-danger:hover {
-    background-color: $btn-danger-background-hover;
-    border-color: $btn-danger-border-hover;
+    background-color: $persian-red;
+    border-color: $poppy;
   }
 
   .plugin-header {
@@ -159,7 +117,7 @@ $input-wrong-border: #a40a0a;
   }
 
   .qa-tbl {
-    color: $page-text;
+    color: $tundora;
     display: table;
     position: relative;
     width: 100%;
@@ -179,7 +137,7 @@ $input-wrong-border: #a40a0a;
     }
 
     .qa-tbl-row {
-      background-color: $page-even-row;
+      background-color: $gallery;
       cursor: pointer;
       display: table-row;
       height: $row-height;
@@ -192,7 +150,7 @@ $input-wrong-border: #a40a0a;
     }
 
     .qa-tbl-row:nth-of-type( odd ) {
-      background-color: $page-odd-row;
+      background-color: $alto;
     }
 
     .page {
@@ -212,13 +170,13 @@ $input-wrong-border: #a40a0a;
     }
 
     .page:hover {
-      background-color: $page-row-hover;
+      background-color: $alto-dark;
     }
 
   }
 
   .questions {
-    color: $question-text;
+    color: $charcoal;
     position: absolute;
     width: 100%;
 
@@ -228,19 +186,19 @@ $input-wrong-border: #a40a0a;
       width: 96%;
 
       > .qa-tbl-row {
-        background-color: $question-even-row;
+        background-color: $light-gallery;
       }
 
       > .qa-tbl-row:nth-of-type( odd ) {
-        background-color: $question-odd-row;
+        background-color: $silver;
       }
 
       > .question:hover {
-        background-color: $question-odd-row-hover;
+        background-color: $mercury;
       }
 
       > .question:nth-of-type( odd ):hover {
-        background-color: $question-even-row-hover;
+        background-color: $dark-silver;
       }
 
       > div {
@@ -277,7 +235,7 @@ $input-wrong-border: #a40a0a;
     }
 
     .error-text {
-      color: $modal-error-text;
+      color: $crimson;
       font-size: 14px;
     }
 
@@ -303,7 +261,7 @@ $input-wrong-border: #a40a0a;
       background-color: rgba( 255, 255, 255, .95 );
       border-radius: 7px;
       bottom: 0;
-      box-shadow: 0 0 10px $modal-shadow;
+      box-shadow: 0 0 10px $night;
       left: 0;
       margin: auto;
       position: absolute;
@@ -373,7 +331,7 @@ $input-wrong-border: #a40a0a;
           }
 
           .form-control:focus {
-            border-color: $form-focus;
+            border-color: $sky;
             outline: 0;
           }
 
@@ -409,7 +367,7 @@ $input-wrong-border: #a40a0a;
               }
 
               .btn:first-of-type {
-                border-left: 1px solid $btn-default-border;
+                border-left: 1px solid $silver;
                 border-radius: 3px 0 0 3px;
               }
 
@@ -452,13 +410,13 @@ $input-wrong-border: #a40a0a;
             }
 
             .correct {
-              background-color: $input-correct-background;
-              color: $input-correct;
+              background-color: $mint-green;
+              color: $parsley;
             }
 
             .wrong {
-              background-color: $input-wrong-background;
-              color: $input-wrong;
+              background-color: $pastel-pink;
+              color: $crimson;
             }
 
             .input-group-addon {
