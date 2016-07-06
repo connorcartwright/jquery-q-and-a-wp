@@ -5,8 +5,7 @@ form {
   label {
     cursor: default;
     display: inline-block;
-    margin-bottom: 4px;
-    margin-left: 2px;
+    margin: $margin-small;
   }
 
   .form-control:focus {
@@ -17,7 +16,7 @@ form {
   fieldset {
     border: 0;
     border-radius: 5px;
-    margin-bottom: 8px;
+    margin: $margin-medium;
     padding: 0;
 
     .mc-option-change {
@@ -25,13 +24,24 @@ form {
       margin-right: 12px;
     }
 
-    .btn.mc-remove-option {
-      border-radius: 4px 0 0 4px;
-    }
+    .btn {
+      color: $poppy;
+      height: $sqr-btn-small;
+      width: $sqr-btn-small;
 
-    .btn.mc-add-option {
-      border-left: 0;
-      border-radius: 0 4px 4px 0;
+      &.active {
+        width: 60px;
+      }
+
+      &.mc-remove-option {
+        border-radius: $brdr-rad-left-med;
+      }
+
+      &.mc-add-option {
+        border-left: 0;
+        border-radius: $brdr-rad-right-med;
+      }
+
     }
 
     &.hints,
@@ -42,12 +52,12 @@ form {
       }
 
       textarea {
-        margin: 8px 0;
+        margin: $margin-vert-large;
       }
 
       .btn:first-of-type {
         border-left: 1px solid $alto-dark;
-        border-radius: 3px 0 0 3px;
+        border-radius: $brdr-rad-left-med;
       }
 
       .btn {
@@ -57,7 +67,7 @@ form {
 
       .btn:last-of-type {
         border-left: 0;
-        border-radius: 0 3px 3px 0;
+        border-radius: $brdr-rad-right-med;
       }
 
     }
