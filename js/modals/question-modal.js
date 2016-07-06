@@ -43,7 +43,7 @@ $(function() {
 
       for(var i = 0; i < n; i++) {
          var input = '<input type="text" class="form-control wrong" id="q-mc-option-' + i + '" placeholder="Option ' +
-             (i + 1 + $('.mc-text-option').length) + ' Text">';
+             (i + 1 + $('.modal .mc-text-option').length) + ' Text">';
 
          var option = '<fieldset class="form-group mc-text-option"><div class="input-group input">' + input +
              '<div class="input-group-addon correct-answer"><button type="button" class="btn btn-default mc-correct-answer">' +
