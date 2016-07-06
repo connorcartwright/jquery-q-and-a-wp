@@ -25,18 +25,13 @@
     text-decoration: underline;
   }
 
-  >div {
+  &.page-preview>a {
     height: 100%;
     left: 0;
     position: absolute;
     top: 0;
     width: 100%;
-
-    >a {
-      display: block;
-    }
-
-  }
+}
 
   &.btn-default {
     background-color: $pure-white;
