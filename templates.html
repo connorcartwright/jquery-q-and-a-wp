@@ -106,15 +106,27 @@
         </div>
     </div>
 
-    <div class="js-modal-embed">
-
-    </div>
-
     <div class="js-modal-question">
-
+        <div class="js-hints">
+            <fieldset class="form-group hints"> <label>Hints </label>
+                <button type="button" class="btn btn-default hint hint-1 active" data-hint="1"><span>Hint 1</span></button>
+                <button type="button" class="btn btn-default hint hint-2" data-hint="2"><span>2</span></button>
+                <button type="button" class="btn btn-default hint hint-3" data-hint="3"><span>3</span></button>
+                <textarea class="form-control hints-textarea" id="q-statement-input" rows="3" placeholder="Hint 1"></textarea>
+            </fieldset>
+        </div>
     </div>
 
     <div class="js-modal-q-mc">
+        <fieldset class="form-group mc-text-option">
+            <div class="input-group input">input
+                <div class="input-group-addon correct-answer">
+                    <button type="button" class="btn btn-default mc-correct-answer">
+                        <span class="glyphicon glyphicon-ok"></span>
+                    </button>
+                </div>
+            </div>
+        </fieldset>
 
     </div>
 

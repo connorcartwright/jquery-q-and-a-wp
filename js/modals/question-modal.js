@@ -22,19 +22,12 @@ $(function() {
    }
 
    function createHints() {
-      var $hints = $('<fieldset class="form-group hints"> <label>Hints </label></fieldset>');
-      var hintButton1 = '<button type="button" class="btn btn-default hint hint-1 active" data-hint="1"><span>Hint 1</span></button>';
-      var hintButton2 = '<button type="button" class="btn btn-default hint hint-2" data-hint="2"><span>2</span></button>';
-      var hintButton3 = '<button type="button" class="btn btn-default hint hint-3" data-hint="3"><span>3</span></button>';
-      var $hintTextarea = $('<textarea class="form-control" id="q-statement-input" rows="3" placeholder="Hint 1"></textarea>');
+      var $templates = $('.qa-templates');
+      var hints = $templates.find('.js-modal-question .js-hints')
+          .clone()
+          .children();
 
-      $hints
-          .append(hintButton1)
-          .append(hintButton2)
-          .append(hintButton3)
-          .append($hintTextarea);
-
-      $hintTextarea.on('keyup', function() {
+      $('.modal').on('keyup', '.hints-textarea', function() {
          $('.hint.active').data('hint-text', $(this).val());
       });
 
@@ -42,7 +35,7 @@ $(function() {
          hintButtonClick($(this));
       });
 
-      return $hints;
+      return hints;
    }
 
    function createMultipleChoiceOptions(n) {
