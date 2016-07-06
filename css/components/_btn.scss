@@ -1,0 +1,81 @@
+
+.btn {
+  border: 1px solid transparent;
+  border-radius: .25rem;
+  color: $pure-white;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 400;
+  padding: 1px;
+  position: relative;
+  text-align: center;
+  user-select: none;
+  vertical-align: middle;
+
+  a {
+    height: 100%;
+    width: 100%;
+  }
+
+  a,
+  a:hover,
+  a:active,
+  a:focus {
+    color: $pure-white;
+  }
+
+  >div {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+
+    >a {
+      display: block;
+    }
+
+  }
+
+  &.btn-default {
+    background-color: $pure-white;
+    border-color: $silver;
+    color: $shadow;
+  }
+
+  &.btn-default:hover {
+    background-color: $mercury;
+    border-color: $steel;
+  }
+
+  &.btn-primary {
+    background-color: $cobalt;
+    border-color: $cobalt;
+  }
+
+  &.btn-primary:hover {
+    background-color: $azure;
+    border-color: $light-navy;
+  }
+
+  &.btn-success {
+    background-color: $fern;
+    border-color: $fern;
+  }
+
+  &.btn-success:hover {
+    background-color: $apple;
+    border-color: $dark-apple;
+  }
+
+  &.btn-danger {
+    background-color: $clay;
+    border-color: $clay;
+  }
+
+  &.btn-danger:hover {
+    background-color: $persian-red;
+    border-color: $poppy;
+  }
+
+}
