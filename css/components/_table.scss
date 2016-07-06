@@ -29,13 +29,9 @@
       vertical-align: middle;
     }
 
-  }
-
-  .qa-tbl-row:nth-of-type( odd ) {
-    background-color: $alto;
-  }
-
-  .page {
+    &:nth-of-type( odd ) {
+      background-color: $alto;
+    }
 
     .qa-page-id {
       width: 70px;
@@ -49,11 +45,13 @@
       width: 74px;
     }
 
+    &.page:hover {
+      background-color: $alto-dark;
+    }
+
   }
 
-  .page:hover {
-    background-color: $alto-dark;
-  }
+
 
 }
 
