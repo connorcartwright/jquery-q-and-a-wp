@@ -4,6 +4,7 @@
 @import 'settings/sizings';
 // then import components
 @import 'components/btn';
+@import 'components/table';
 
 .wp-menu-image {
 
@@ -34,109 +35,6 @@
     font-size: 28px;
     margin: 8px;
   }
-
-  .qa-tbl {
-    color: $tundora;
-    display: table;
-    position: relative;
-    width: 100%;
-
-    .btn {
-      height: $sqr-btn-small;
-      width: $sqr-btn-small;
-    }
-
-    .qa-tbl-hdr {
-      cursor: default;
-
-      >div {
-        font-weight: bold;
-      }
-
-    }
-
-    .qa-tbl-row {
-      background-color: $gallery;
-      cursor: pointer;
-      display: table-row;
-      height: $row-height;
-
-      >div {
-        display: table-cell;
-        vertical-align: middle;
-      }
-
-    }
-
-    .qa-tbl-row:nth-of-type( odd ) {
-      background-color: $alto;
-    }
-
-    .page {
-
-      .qa-page-id {
-        width: 70px;
-      }
-
-      .qa-page-q-count {
-        width: 120px;
-      }
-
-      .qa-page-preview {
-        width: 74px;
-      }
-
-    }
-
-    .page:hover {
-      background-color: $alto-dark;
-    }
-
-  }
-
-  .questions {
-    color: $charcoal;
-    position: absolute;
-    width: 100%;
-
-    .qst-table {
-      display: table;
-      margin: 5px 2%;
-      width: 96%;
-
-      > .qa-tbl-row {
-        background-color: $light-gallery;
-      }
-
-      > .qa-tbl-row:nth-of-type( odd ) {
-        background-color: $silver;
-      }
-
-      > .question:hover {
-        background-color: $mercury;
-      }
-
-      > .question:nth-of-type( odd ):hover {
-        background-color: $dark-silver;
-      }
-
-      > div {
-
-        .q-name,
-        .q-add {
-          padding-left: 10px;
-        }
-
-        .q-embed,
-        .q-edit,
-        .q-preview,
-        .q-delete {
-          width: 64px;
-        }
-
-      }
-
-    }
 
   }
 
