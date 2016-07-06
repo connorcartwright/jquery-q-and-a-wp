@@ -41,10 +41,7 @@ $(function() {
    }
 
    function createModal() {
-      return $('<div class="modal"><div class="modal-overlay"></div><div class="modal-content"><div class="modal-close">' +
-          '<span class="glyphicon glyphicon-remove"></span></div><div class="modal-header"><h1></h1></div><div class="modal-body"></div>' +
-          '<div class="modal-footer"><div class="modal-footer-buttons"><button class="btn btn-default close-modal">Close</button>' +
-          '<button class="btn btn-success">Save</button></div></div></div></div>');
+      return $('.qa-templates .js-modal').clone().children();
    }
 
    function createQuestionRow() {
