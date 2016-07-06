@@ -1,0 +1,159 @@
+.modal-body {
+  display: inline-block;
+  height: auto;
+  overflow-y: scroll;
+  position: relative;
+  width: 100%;
+
+  .wp-editor-area {
+    resize: vertical;
+  }
+
+  .wp-editor-wrap,
+  .wp-editor-container,
+  .wp-editor-container
+  .wp-editor-area {
+    height: 100%;
+  }
+
+  >form {
+    margin: 0 2%;
+    width: 96%;
+
+    label {
+      cursor: default;
+      display: inline-block;
+      margin-bottom: 4px;
+      margin-left: 2px;
+    }
+
+    .form-control:focus {
+      border-color: $sky;
+      outline: 0;
+    }
+
+    fieldset {
+      border: 0;
+      border-radius: 5px;
+      margin-bottom: 8px;
+      padding: 0;
+
+      .mc-option-change {
+        display: inline-block;
+        margin-right: 12px;
+      }
+
+      .btn.mc-remove-option {
+        border-radius: 4px 0 0 4px;
+      }
+
+      .btn.mc-add-option {
+        border-left: 0;
+        border-radius: 0 4px 4px 0;
+      }
+
+      &.hints,
+      &.input-output {
+
+        >label {
+          display: block;
+        }
+
+        textarea {
+          margin: 8px 0;
+        }
+
+        .btn:first-of-type {
+          border-left: 1px solid $silver;
+          border-radius: 3px 0 0 3px;
+        }
+
+        .btn {
+          border-left: 0;
+          border-radius: 0;
+        }
+
+        .btn:last-of-type {
+          border-left: 0;
+          border-radius: 0 3px 3px 0;
+        }
+
+      }
+
+    }
+
+    input,
+    select,
+    textarea {
+      border-radius: 4px;
+      display: block;
+      padding: 3px 12px;
+      width: 100%;
+    }
+
+    input,
+    select {
+      height: 30px;
+    }
+
+    .input-group {
+      display: inline-table;
+      width: 100%;
+
+      input {
+        border: 0;
+        border-radius: 4px 0 0 4px;
+        display: table-cell;
+      }
+
+      .correct {
+        background-color: $mint-green;
+        color: $parsley;
+      }
+
+      .wrong {
+        background-color: $pastel-pink;
+        color: $crimson;
+      }
+
+      .input-group-addon {
+        display: table-cell;
+        height: 30px;
+        text-align: center;
+        vertical-align: middle;
+        width: 30px;
+
+        .btn {
+          border: 0;
+          display: inline-block;
+          height: 30px;
+          width: 30px;
+        }
+
+        &.correct-answer .btn {
+          border-radius: 0;
+        }
+
+        &.wrong-answer .btn {
+          border-radius: 0 4px 4px 0;
+        }
+
+      }
+
+    }
+
+    .mc-text-option .input-group {
+      border: 1px solid rgba( 33, 33, 33, .2 );
+      border-radius: 5px;
+    }
+
+    .code-editor {
+      border-radius: 4px;
+      height: 240px;
+      margin: 10px 0;
+      width: 100%;
+    }
+
+  }
+
+}
