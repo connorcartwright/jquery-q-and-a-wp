@@ -174,15 +174,15 @@ $(function() {
    }
 
    function createQuestionForm() {
-      var $questionForm = $('<form></form>');
-      var questionName = '<fieldset class="form-group"> <label for="q-name-input">Question Name </label>' +
-          '<input type="text" id="q-name-input" class="form-control" placeholder="Question Name"></fieldset>';
-      var $questionType = $('<fieldset class="form-group"> <label for="q-type-select">Question Type </label></fieldset>');
-      var questionStatement = '<fieldset class="form-group"> <label for="q-statement-input">Question Statement</label>' +
-          '<textarea class="form-control" id="q-statement-input" rows="3" placeholder="Question Statement"></textarea></fieldset>';
-      var $typeSelect = $('<select class="form-control" id="q-type-select"><option>Multiple Choice</option>' +
-          '<option>Bug Fix</option><option>Missing Code</option><option>Complete Code</option></select>');
-      var $questionTypeArea = $('<div class="question-type-area multiple-choice"></div>');
+      var $templates = $('.qa-templates');
+
+      var $questionForm = $templates
+          .find('.js-modal-question .js-form')
+           .clone()
+           .children();
+
+      var $typeSelect = $questionForm.find('#q-type-select');
+      var $questionTypeArea = $questionForm.find('.question-type-area');
 
       $questionTypeArea.html(questionTypeChange($typeSelect.find('option:selected').text()));
 
@@ -200,13 +200,7 @@ $(function() {
          }
       });
 
-      $questionType.append($typeSelect);
-      $questionForm
-          .append(questionName)
-          .append($questionType)
-          .append(questionStatement)
-          .append($questionTypeArea)
-          .append(createHints());
+      $questionForm.append(createHints());
 
       return $questionForm;
    }

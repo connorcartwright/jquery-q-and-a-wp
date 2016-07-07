@@ -107,6 +107,29 @@
     </div>
 
     <div class="js-modal-question">
+        <div class="js-form">
+            <form>
+                <fieldset class="form-group">
+                    <label for="q-name-input">Question Name</label>
+                    <input type="text" id="q-name-input" class="form-control" placeholder="Question Name">
+                </fieldset>
+                <fieldset class="form-group">
+                    <label for="q-type-select">Question Type</label>
+                    <select class="form-control" id="q-type-select">
+                        <option>Multiple Choice</option>
+                        <option>Bug Fix</option>
+                        <option>Missing Code</option>
+                        <option>Complete Code</option>
+                    </select>
+                </fieldset>
+                <fieldset class="form-group">
+                    <label for="q-statement-input">Question Statement</label>
+                    <textarea class="form-control" id="q-statement-input" rows="3" placeholder="Question Statement"></textarea>
+                </fieldset>
+                <div class="question-type-area multiple-choice"></div>
+            </form>
+        </div>
+
         <div class="js-hints">
             <fieldset class="form-group hints"> <label>Hints </label>
                 <button type="button" class="btn btn-default hint hint-1 active" data-hint="1"><span>Hint 1</span></button>
@@ -140,7 +163,6 @@
                 </div>
             </fieldset>
         </div>
-
     </div>
 
     <div class="js-modal-question-code">
@@ -165,7 +187,6 @@
                 <textarea class="form-control" id="input-textarea" rows="3" placeholder="Question Input 1"></textarea>
                 <input type="text" id="output-input" class="form-control" placeholder="Expected Output 1"></fieldset>
         </div>
-
     </div>
 
 
