@@ -41,7 +41,13 @@ $(function() {
    }
 
    function createModal() {
-      return $('.qa-templates .js-modal').clone().children();
+      var $modal = $('.qa-templates .js-modal')
+          .clone()
+          .children();
+
+      $modal.attr('class', 'modal');
+
+      return $modal;
    }
 
    function createQuestionRow() {
