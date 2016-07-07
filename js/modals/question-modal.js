@@ -113,23 +113,32 @@ $(function() {
       return $editor.add($io);
    }
 
-   function ioButtonClick(button) {
-      if (!button.hasClass('active')) {
-         $('.modal fieldset.input-output .io.active').data('input', $('.modal fieldset.input-output textarea').val());
-         $('.modal fieldset.input-output .io.active').data('output', $('.modal fieldset.input-output input').val());
-         $('.modal fieldset.input-output textarea').val(button.data('input'));
-         $('.modal fieldset.input-output input').val(button.data('output'));
-         $('.modal fieldset.input-output textarea').attr('placeholder', 'Question Input ' + button.data('io'));
-         $('.modal fieldset.input-output input').attr('placeholder', 'Expected Output ' + button.data('io'));
-         $('.modal .io.active>span').text($('.modal .io.active').data('io'));
-         $('.modal .io.active').removeClass('active');
+   function ioButtonClick($button) {
+      if (!$button.hasClass('active')) {
+         var $activeButton = $('.modal .io.active');
+         var $ioTextarea = $('.modal .input-output textarea');
+         var $ioOutput = $('.modal .input-output input');
 
-         button
+         $activeButton
+             .data('input', $ioTextarea.val())
+             .data('output', $ioOutput.val())
+             .removeClass('active')
+             .find('span')
+             .text($('.modal .io.active').data('io'));
+
+         $ioTextarea
+             .val($button.data('input'))
+             .attr('placeholder', 'Question Input ' + $button.data('io'));
+         $ioOutput
+             .val($button.data('output'))
+             .attr('placeholder', 'Expected Output ' + $button.data('io'));
+
+         $button
              .addClass('active')
              .find('span')
-             .text('IO ' + button.data('io'));
+             .text('IO ' + $button.data('io'));
 
-         $('.modal fieldset.input-output textarea').focus();
+         $ioTextarea.focus();
       }
    }
 
