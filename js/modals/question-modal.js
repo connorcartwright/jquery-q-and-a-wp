@@ -143,36 +143,42 @@ $(function() {
    }
 
    function bindCodeAreaEvents() {
-      $('#q-and-a-plugin').on('click', '.modal .remove-io', function() {
-         if ($('.modal .io').length > 3) {
-            $('.modal .io').last().remove();
-         }
-      });
+      var $qa = $('#q-and-a-plugin');
 
-      $('#q-and-a-plugin').on('click', '.modal .add-io', function() {
-         var ioLength = $('.modal .io').length;
+      $qa
+         .on('click', '.modal .remove-io', function() {
+            var $io = $('.modal .io');
 
-         if (ioLength < 8) {
-            var ioCount = ioLength + 1;
-            var newIo = '<button type="button" class="btn btn-default io" data-io="' + ioCount + '"><span>' + ioCount + '</span></button>';
+            if ($io.length > 3) {
+               $io.last().remove();
+            }
+         })
 
-            $('.modal .io')
-                .last()
-                .after(newIo);
-         }
-      });
+         .on('click', '.modal .add-io', function() {
+            var $io = $('.modal .io');
+            var ioLength = $io.length;
 
-      $('#q-and-a-plugin').on('click', '.modal .io', function() {
-         ioButtonClick($(this));
-      });
+            if (ioLength < 8) {
+               var count = ioLength + 1;
+               var newIo = '<button type="button" class="btn btn-default io" data-io="' + count + '"><span>' + count + '</span></button>';
 
-      $('#q-and-a-plugin').on('keyup', '.modal #input-textarea', function() {
-         $('.io.active').data('input', $(this).val());
-      });
+               $io
+                  .last()
+                  .after(newIo);
+            }
+         })
 
-      $('#q-and-a-plugin').on('keyup', '.modal #output-input', function() {
-         $('.io.active').data('output', $(this).val());
-      });
+         .on('click', '.modal .io', function() {
+            ioButtonClick($(this));
+         })
+
+         .on('keyup', '.modal #input-textarea', function() {
+            $('.io.active').data('input', $(this).val());
+         })
+
+         .on('keyup', '.modal #output-input', function() {
+            $('.io.active').data('output', $(this).val());
+         });
    }
 
    function questionTypeChange(type) {
