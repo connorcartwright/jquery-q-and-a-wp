@@ -43,7 +43,7 @@ $(function() {
    }
 
    function createMultipleChoiceOptions(n) {
-      var $r = $('');
+      var $options = $('');
       var $templates = $('.qa-templates');
 
       for(var i = 0; i < n; i++) {
@@ -56,10 +56,10 @@ $(function() {
 
          $option.find('.input-group.input').prepend(input);
 
-         $r = $r.add($option);
+         $options = $options.add($option);
       }
 
-      return $r;
+      return $options;
    }
 
    function createMultipleChoiceArea() {
