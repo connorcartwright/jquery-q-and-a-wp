@@ -14,7 +14,7 @@ $(function() {
 
          $hintsTextarea
             .val($button.data('hint-text'))
-           .attr('placeholder', 'Hint ' + $button.data('hint'));
+            .attr('placeholder', 'Hint ' + $button.data('hint'));
 
          $button
              .addClass('active')
