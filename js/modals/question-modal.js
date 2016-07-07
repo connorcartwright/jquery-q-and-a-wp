@@ -44,7 +44,10 @@ $(function() {
 
       for(var i = 0; i < n; i++) {
          var input = '<input type="text" class="form-control wrong" id="q-mc-option-' + i + '" placeholder="Option ' +
-             (i + 1 + $('.modal .mc-text-option').length) + ' Text">';
+             (i + 1 + $('.multiple-choice>.mc-text-option').length) + ' Text">';
+
+         console.log('i: ' + i);
+         console.log('length: ' + $('.multiple-choice>.mc-text-option').length);
 
          var $option = $templates.find('.js-modal-question-mc .js-mc-option')
              .clone()
@@ -61,11 +64,11 @@ $(function() {
    function createMultipleChoiceArea() {
       $('.question-type-area').attr('class', 'question-type-area multiple-choice');
 
-      var $addRemoveOptions = $('<fieldset class="form-group mc-option-change">' +
-          '<button type="button" class="btn btn-default mc-remove-option"><span class="glyphicon glyphicon-minus"></span></button>' +
-          '<button type="button" class="btn btn-default mc-add-option"><span class="glyphicon glyphicon-plus"></span></button></fieldset>');
+      var $optionControl = $('.qa-templates .js-modal-question-mc .js-mc-add-remove')
+          .clone()
+          .children();
 
-      return $addRemoveOptions.add(createMultipleChoiceOptions(4));
+      return $optionControl.add(createMultipleChoiceOptions(4));
    }
 
    function correctButtonClick(button) {
