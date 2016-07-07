@@ -46,9 +46,6 @@ $(function() {
          var input = '<input type="text" class="form-control wrong" id="q-mc-option-' + i + '" placeholder="Option ' +
              (i + 1 + $('.multiple-choice>.mc-text-option').length) + ' Text">';
 
-         console.log('i: ' + i);
-         console.log('length: ' + $('.multiple-choice>.mc-text-option').length);
-
          var $option = $templates.find('.js-modal-question-mc .js-mc-option')
              .clone()
              .children();
