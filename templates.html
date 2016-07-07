@@ -143,7 +143,28 @@
 
     </div>
 
-    <div class="js-modal-q-code">
+    <div class="js-modal-question-code">
+        <div class="js-io">
+            <fieldset class="form-group input-output">
+                <label>Input / Output </label>
+                <button type="button" class="btn btn-default remove-io">
+                    <span class="glyphicon glyphicon-minus"></span>
+                </button>
+                <button type="button" class="btn btn-default add-io">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </button>
+                <button type="button" class="btn btn-default io active" data-io="1">
+                    <span>IO 1</span>
+                </button>
+                <button type="button" class="btn btn-default io" data-io="2">
+                    <span>2</span>
+                </button>
+                <button type="button" class="btn btn-default io" data-io="3">
+                    <span>3</span>
+                </button>
+                <textarea class="form-control" id="input-textarea" rows="3" placeholder="Question Input 1"></textarea>
+                <input type="text" id="output-input" class="form-control" placeholder="Expected Output 1"></fieldset>
+        </div>
 
     </div>
 

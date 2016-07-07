@@ -97,25 +97,14 @@ $(function() {
    }
 
    function createCodeArea() {
-      $('.question-type-area').attr('class', 'question-type-area coding');
+      var $templates = $('.qa-templates');
       var $editor = $('<div id="editor" class="code-editor mc-code">// Enter your code here</div>');
-      var $io = $('<fieldset class="form-group input-output"> <label>Input / Output </label></fieldset>');
-      var $removeIo = $('<button type="button" class="btn btn-default remove-io"><span class="glyphicon glyphicon-minus"></span></button>');
-      var $addIo = $('<button type="button" class="btn btn-default add-io"><span class="glyphicon glyphicon-plus"></span></button>');
-      var io1 = '<button type="button" class="btn btn-default io active" data-io="1"><span>IO 1</span></button>';
-      var io2 = '<button type="button" class="btn btn-default io" data-io="2"><span>2</span></button>';
-      var io3 = '<button type="button" class="btn btn-default io" data-io="3"><span>3</span></button>';
-      var $inputTextarea = $('<textarea class="form-control" id="input-textarea" rows="3" placeholder="Question Input 1"></textarea>');
-      var $outputInput = $('<input type="text" id="output-input" class="form-control" placeholder="Expected Output 1">');
 
-      $io
-          .append($removeIo)
-          .append($addIo)
-          .append(io1)
-          .append(io2)
-          .append(io3)
-          .append($inputTextarea)
-          .append($outputInput);
+      $('.question-type-area').attr('class', 'question-type-area coding');
+
+      var $io = $templates.find('.js-modal-question-code .js-io')
+          .clone()
+          .children();
 
       return $editor.add($io);
    }
