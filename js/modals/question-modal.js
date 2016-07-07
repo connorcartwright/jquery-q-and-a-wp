@@ -3,18 +3,25 @@ $(function() {
 
    function hintButtonClick($button) {
       if (!$button.hasClass('active')) {
-         $('.modal fieldset.hints .hint.active').data('hint-text', $('.modal fieldset.hints textarea').val());
-         $('.modal fieldset.hints textarea').val($button.data('hint-text'));
-         $('.modal fieldset.hints textarea').attr('placeholder', 'Hint ' + $button.data('hint'));
-         $('.modal .hint.active>span').text($('.modal .hint.active').data('hint'));
-         $('.modal .hint.active').removeClass('active');
+         var $activeButton = $('.modal .hint.active');
+         var $hintsTextarea = $('.modal .hints textarea');
+
+         $activeButton
+             .data('hint-text', $('.modal fieldset.hints textarea').val())
+             .removeClass('active')
+             .find('span')
+             .text($activeButton.data('hint'));
+
+         $hintsTextarea
+            .val($button.data('hint-text'))
+           .attr('placeholder', 'Hint ' + $button.data('hint'));
 
          $button
              .addClass('active')
              .find('span')
              .text('Hint ' + $button.data('hint'));
 
-         $('.modal fieldset.hints textarea').focus();
+         $hintsTextarea.focus();
       }
    }
 
