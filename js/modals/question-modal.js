@@ -78,13 +78,13 @@ $(function() {
    }
 
    function bindMultipleChoiceEvents() {
-      $('#q-and-a-plugin').on('click', '.mc-add-option', function() {
-         $('fieldset.mc-text-option').last().after(createMultipleChoiceOptions(1));
+      $('#q-and-a-plugin').on('click', '.modal .mc-add-option', function() {
+         $('.modal fieldset.mc-text-option').last().after(createMultipleChoiceOptions(1));
       });
 
-      $('#q-and-a-plugin').on('click', '.mc-remove-option', function() {
-         if ($('.mc-text-option').length > 2) {
-            $('.mc-text-option').last().remove();
+      $('#q-and-a-plugin').on('click', '.modal .mc-remove-option', function() {
+         if ($('.modal .mc-text-option').length > 2) {
+            $('.modal .mc-text-option').last().remove();
          }
       });
 
