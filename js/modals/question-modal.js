@@ -40,16 +40,19 @@ $(function() {
 
    function createMultipleChoiceOptions(n) {
       var $r = $('');
+      var $templates = $('.qa-templates');
 
       for(var i = 0; i < n; i++) {
          var input = '<input type="text" class="form-control wrong" id="q-mc-option-' + i + '" placeholder="Option ' +
              (i + 1 + $('.modal .mc-text-option').length) + ' Text">';
 
-         var option = '<fieldset class="form-group mc-text-option"><div class="input-group input">' + input +
-             '<div class="input-group-addon correct-answer"><button type="button" class="btn btn-default mc-correct-answer">' +
-             '<span class="glyphicon glyphicon-ok"></span></button></div></div></div></fieldset>';
+         var $option = $templates.find('.js-modal-question-mc .js-mc-option')
+             .clone()
+             .children();
 
-         $r = $r.add(option);
+         $option.find('.input-group.input').prepend(input);
+
+         $r = $r.add($option);
       }
 
       return $r;
