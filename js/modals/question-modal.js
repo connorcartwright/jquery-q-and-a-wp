@@ -3,21 +3,18 @@ $(function() {
 
    function hintButtonClick($button) {
       if (!$button.hasClass('active')) {
-         console.log('hint click, not active');
-         console.log('data hint: ' + $button.data('hint'));
-
-         $('fieldset.hints .hint.active').data('hint-text', $('fieldset.hints textarea').val());
-         $('fieldset.hints textarea').val($button.data('hint-text'));
-         $('fieldset.hints textarea').attr('placeholder', 'Hint ' + $button.data('hint'));
-         $('.hint.active>span').text($('.hint.active').data('hint'));
-         $('.hint.active').removeClass('active');
+         $('.modal fieldset.hints .hint.active').data('hint-text', $('.modal fieldset.hints textarea').val());
+         $('.modal fieldset.hints textarea').val($button.data('hint-text'));
+         $('.modal fieldset.hints textarea').attr('placeholder', 'Hint ' + $button.data('hint'));
+         $('.modal .hint.active>span').text($('.modal .hint.active').data('hint'));
+         $('.modal .hint.active').removeClass('active');
 
          $button
              .addClass('active')
              .find('span')
              .text('Hint ' + $button.data('hint'));
 
-         $('fieldset.hints textarea').focus();
+         $('.modal fieldset.hints textarea').focus();
       }
    }
 
@@ -260,12 +257,12 @@ $(function() {
    setupModal();
 
    function validateMultipleChoice() {
-      if (!$('.mc-text-option .form-control.wrong').length) {
-         $('.mc-option-change').after('<span class="error-text">There must be at least one wrong answer!</span>');
+      if (!$('.modal .mc-text-option .form-control.wrong').length) {
+         $('.modal .mc-option-change').after('<span class="error-text">There must be at least one <em>wrong</em> answer!</span>');
 
          return false;
-      } else if ($('.mc-text-option .form-control.wrong').length === $('.mc-text-option').length) {
-         $('.mc-option-change').after('<span class="error-text">There must be at least one correct answer!</span>');
+      } else if ($('.modal .mc-text-option .form-control.wrong').length === $('.modal .mc-text-option').length) {
+         $('.modal .mc-option-change').after('<span class="error-text">There must be at least one <em>correct</em> answer!</span>');
 
          return false;
       } else {
@@ -296,7 +293,7 @@ $(function() {
    function validateHints() {
       var passed = true;
 
-      $('.hint').each(function() {
+      $('.modal .hint').each(function() {
          if ($(this).data('hint-text')) {
             if ($(this).data('hint-text').length < 20) {
                $(this).addClass('error');
@@ -323,21 +320,21 @@ $(function() {
 
       var passed = true;
 
-      var $questionName = $('#q-name-input');
+      var $questionName = $('.modal #q-name-input');
 
       if ($questionName.val().length < 10) {
          $questionName.addClass('error');
          passed = false;
       }
 
-      var $questionStatement = $('#q-statement-input');
+      var $questionStatement = $('.modal #q-statement-input');
 
       if ($questionStatement.val().length < 50) {
          $questionStatement.addClass('error');
          passed = false;
       }
 
-      var $questionType = $('#q-type-select').find('option:selected').text();
+      var $questionType = $('.modal #q-type-select').find('option:selected').text();
 
       if ($questionType === 'Multiple Choice') {
          passed = validateMultipleChoice() ? passed : false;
