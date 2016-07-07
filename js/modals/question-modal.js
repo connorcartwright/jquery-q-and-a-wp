@@ -111,53 +111,53 @@ $(function() {
 
    function ioButtonClick(button) {
       if (!button.hasClass('active')) {
-         $('fieldset.input-output .io.active').data('input', $('fieldset.input-output textarea').val());
-         $('fieldset.input-output .io.active').data('output', $('fieldset.input-output input').val());
-         $('fieldset.input-output textarea').val(button.data('input'));
-         $('fieldset.input-output input').val(button.data('output'));
-         $('fieldset.input-output textarea').attr('placeholder', 'Question Input ' + button.data('io'));
-         $('fieldset.input-output input').attr('placeholder', 'Expected Output ' + button.data('io'));
-         $('.io.active>span').text($('.io.active').data('io'));
-         $('.io.active').removeClass('active');
+         $('.modal fieldset.input-output .io.active').data('input', $('.modal fieldset.input-output textarea').val());
+         $('.modal fieldset.input-output .io.active').data('output', $('.modal fieldset.input-output input').val());
+         $('.modal fieldset.input-output textarea').val(button.data('input'));
+         $('.modal fieldset.input-output input').val(button.data('output'));
+         $('.modal fieldset.input-output textarea').attr('placeholder', 'Question Input ' + button.data('io'));
+         $('.modal fieldset.input-output input').attr('placeholder', 'Expected Output ' + button.data('io'));
+         $('.modal .io.active>span').text($('.modal .io.active').data('io'));
+         $('.modal .io.active').removeClass('active');
 
          button
              .addClass('active')
              .find('span')
              .text('IO ' + button.data('io'));
 
-         $('fieldset.input-output textarea').focus();
+         $('.modal fieldset.input-output textarea').focus();
       }
    }
 
    function bindCodeAreaEvents() {
-      $('.modal').on('click', '.remove-io', function() {
-         if ($('.io').length > 3) {
-            $('.io').last().remove();
+      $('#q-and-a-plugin').on('click', '.modal .remove-io', function() {
+         if ($('.modal .io').length > 3) {
+            $('.modal .io').last().remove();
          }
       });
 
-      $('.modal').on('click', '.add-io', function() {
-         var ioLength = $('.io').length;
+      $('#q-and-a-plugin').on('click', '.modal .add-io', function() {
+         var ioLength = $('.modal .io').length;
 
          if (ioLength < 8) {
             var ioCount = ioLength + 1;
             var newIo = '<button type="button" class="btn btn-default io" data-io="' + ioCount + '"><span>' + ioCount + '</span></button>';
 
-            $('.io')
+            $('.modal .io')
                 .last()
                 .after(newIo);
          }
       });
 
-      $('.modal').on('click', '.io', function() {
+      $('#q-and-a-plugin').on('click', '.modal .io', function() {
          ioButtonClick($(this));
       });
 
-      $('.modal').on('keyup', '#input-textarea', function() {
+      $('#q-and-a-plugin').on('keyup', '.modal #input-textarea', function() {
          $('.io.active').data('input', $(this).val());
       });
 
-      $('.modal').on('keyup', '#output-input', function() {
+      $('#q-and-a-plugin').on('keyup', '.modal #output-input', function() {
          $('.io.active').data('output', $(this).val());
       });
    }
