@@ -85,19 +85,22 @@ $(function() {
    }
 
    function bindMultipleChoiceEvents() {
-      $('#q-and-a-plugin').on('click', '.modal .mc-add-option', function() {
-         $('.modal fieldset.mc-text-option').last().after(createMultipleChoiceOptions(1));
-      });
+      var $qa = $('#q-and-a-plugin');
 
-      $('#q-and-a-plugin').on('click', '.modal .mc-remove-option', function() {
-         if ($('.modal .mc-text-option').length > 2) {
-            $('.modal .mc-text-option').last().remove();
-         }
-      });
+      $qa
+         .on('click', '.modal .mc-add-option', function() {
+            $('.modal fieldset.mc-text-option').last().after(createMultipleChoiceOptions(1));
+         })
 
-      $('#q-and-a-plugin').on('click', '.correct-answer', function() {
-         correctButtonClick($(this));
-      });
+         .on('click', '.modal .mc-remove-option', function() {
+            if ($('.modal .mc-text-option').length > 2) {
+               $('.modal .mc-text-option').last().remove();
+            }
+         })
+
+         .on('click', '.correct-answer', function() {
+            correctButtonClick($(this));
+         });
    }
 
    function createCodeArea() {
@@ -259,13 +262,16 @@ $(function() {
    }
 
    function setupModal() {
-      $('#q-and-a-plugin').on('click', '.q-add>button', function() {
-         addQuestionButtonClick($(this).closest('.questions').data('p-id'));
-      });
+      var $qa = $('#q-and-a-plugin');
 
-      $('#q-and-a-plugin').on('click', '.q-edit>button', function() {
-         editQuestionButtonClick($(this).closest('.questions').data('p-id'));
-      });
+      $qa
+         .on('click', '.q-add>button', function() {
+            addQuestionButtonClick($(this).closest('.questions').data('p-id'));
+         })
+
+         .on('click', '.q-edit>button', function() {
+            editQuestionButtonClick($(this).closest('.questions').data('p-id'));
+         });
 
       // $('#q-and-a-plugin').on('click', '.q-preview>button', function() {
       //     var row = $(this).closest('.questions');
