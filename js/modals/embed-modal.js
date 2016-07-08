@@ -45,7 +45,7 @@ $(function() {
                 .fadeIn(600);
 
             $('body').css('overflow', 'hidden');
-            resizeModalBody();
+            require('./modal-resize')();
          });
    }
 
