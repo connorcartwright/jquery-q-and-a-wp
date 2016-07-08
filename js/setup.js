@@ -107,7 +107,7 @@ $(function() {
          e.stopPropagation();
       });
 
-      $('#q-and-a-plugin').on('click', '.qa-tbl-row.page', function() {
+      $('#q-and-a-plugin').on('click', '.js-qa-page-row', function() {
          pageRowClick($(this), $(this).data('p-id'), $(this).data('p-title'));
       });
    }
