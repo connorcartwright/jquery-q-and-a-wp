@@ -115,7 +115,7 @@
                 </fieldset>
                 <fieldset class="form-group">
                     <label for="q-type-select">Question Type</label>
-                    <select class="form-control" id="q-type-select">
+                    <select class="form-control js-question-type-select" id="q-type-select">
                         <option>Multiple Choice</option>
                         <option>Bug Fix</option>
                         <option>Missing Code</option>
@@ -169,23 +169,23 @@
         <div class="js-io">
             <fieldset class="form-group input-output">
                 <label>Input / Output </label>
-                <button type="button" class="btn btn-default remove-io">
+                <button type="button" class="btn btn-default js-remove-io">
                     <span class="glyphicon glyphicon-minus"></span>
                 </button>
-                <button type="button" class="btn btn-default add-io">
+                <button type="button" class="btn btn-default js-add-io">
                     <span class="glyphicon glyphicon-plus"></span>
                 </button>
-                <button type="button" class="btn btn-default io active" data-io="1">
+                <button type="button" class="btn btn-default js-io-btn js-io-active" data-io="1">
                     <span>IO 1</span>
                 </button>
-                <button type="button" class="btn btn-default io" data-io="2">
+                <button type="button" class="btn btn-default js-io-btn " data-io="2">
                     <span>2</span>
                 </button>
-                <button type="button" class="btn btn-default io" data-io="3">
+                <button type="button" class="btn btn-default js-io-btn" data-io="3">
                     <span>3</span>
                 </button>
-                <textarea class="form-control" id="input-textarea" rows="3" placeholder="Question Input 1"></textarea>
-                <input type="text" id="output-input" class="form-control" placeholder="Expected Output 1"></fieldset>
+                <textarea class="form-control js-io-input" id="input-textarea" rows="3" placeholder="Question Input 1"></textarea>
+                <input type="text" id="output-input" class="form-control js-io-output" placeholder="Expected Output 1"></fieldset>
         </div>
     </div>
 

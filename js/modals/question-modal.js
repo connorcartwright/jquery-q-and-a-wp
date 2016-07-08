@@ -118,16 +118,16 @@ $(function() {
 
    function ioButtonClick($button) {
       if (!$button.hasClass('active')) {
-         var $activeButton = $('.modal .io.active');
-         var $ioTextarea = $('.modal .input-output textarea');
-         var $ioOutput = $('.modal .input-output input');
+         var $activeButton = $('.modal .js-io-active');
+         var $ioTextarea = $('.modal .js-io-input');
+         var $ioOutput = $('.modal .js-io-output');
 
          $activeButton
              .data('input', $ioTextarea.val())
              .data('output', $ioOutput.val())
-             .removeClass('active')
+             .removeClass('js-io-active')
              .find('span')
-             .text($('.modal .io.active').data('io'));
+             .text($activeButton.data('io'));
 
          $ioTextarea
              .val($button.data('input'))
@@ -137,7 +137,7 @@ $(function() {
              .attr('placeholder', 'Expected Output ' + $button.data('io'));
 
          $button
-             .addClass('active')
+             .addClass('js-io-active')
              .find('span')
              .text('IO ' + $button.data('io'));
 
@@ -149,21 +149,22 @@ $(function() {
       var $qa = $('#q-and-a-plugin');
 
       $qa
-         .on('click', '.modal .remove-io', function() {
-            var $io = $('.modal .io');
+         .on('click', '.modal .js-remove-io', function() {
+            var $io = $('.modal .js-io-btn');
 
             if ($io.length > 3) {
                $io.last().remove();
             }
          })
 
-         .on('click', '.modal .add-io', function() {
-            var $io = $('.modal .io');
+         .on('click', '.modal .js-add-io', function() {
+            var $io = $('.modal .js-io-btn');
             var ioLength = $io.length;
 
             if (ioLength < 8) {
                var count = ioLength + 1;
-               var newIo = '<button type="button" class="btn btn-default io" data-io="' + count + '"><span>' + count + '</span></button>';
+               var newIo = '<button type="button" class="btn btn-default js-io-btn" data-io="' + count + '">' +
+                   '<span>' + count + '</span></button>';
 
                $io
                   .last()
@@ -171,7 +172,7 @@ $(function() {
             }
          })
 
-         .on('click', '.modal .io', function() {
+         .on('click', '.modal .js-io-btn', function() {
             ioButtonClick($(this));
          })
 
