@@ -54,7 +54,7 @@ $(function() {
              .clone()
              .children();
 
-         $option.find('.input-group.input').prepend(input);
+         $option.find('.js-option').prepend(input);
 
          $options = $options.add($option);
       }
@@ -63,7 +63,7 @@ $(function() {
    }
 
    function createMultipleChoiceArea() {
-      $('.question-type-area').attr('class', 'question-type-area multiple-choice');
+      $('.js-question-type-area').attr('class', 'js-question-type-area multiple-choice');
 
       var $optionControl = $('.qa-templates .js-modal-question-mc .js-mc-add-remove')
           .clone()
@@ -107,7 +107,7 @@ $(function() {
       var $templates = $('.qa-templates');
       var $editor = $('<div id="editor" class="code-editor mc-code">// Enter your code here</div>');
 
-      $('.question-type-area').attr('class', 'question-type-area coding');
+      $('.js-question-type-area').attr('class', 'js-question-type-area coding');
 
       var $io = $templates.find('.js-modal-question-code .js-io')
           .clone()
@@ -204,7 +204,7 @@ $(function() {
            .children();
 
       var $typeSelect = $questionForm.find('#q-type-select');
-      var $questionTypeArea = $questionForm.find('.question-type-area');
+      var $questionTypeArea = $questionForm.find('.js-question-type-area');
 
       $questionTypeArea.html(questionTypeChange($typeSelect.find('option:selected').text()));
 
@@ -213,7 +213,7 @@ $(function() {
 
          if (type === 'Multiple Choice') {
             $questionTypeArea.html(questionTypeChange(type));
-         } else if (!$('.question-type-area.coding').length) {
+         } else if (!$('.js-question-type-area.coding').length) {
             $questionTypeArea.html(questionTypeChange(type));
             var editor = ace.edit('editor');
 
