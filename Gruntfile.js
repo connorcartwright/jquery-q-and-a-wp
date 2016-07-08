@@ -14,6 +14,13 @@ module.exports = function(grunt) {
         pkg: grunt.file.readJSON('package.json'),
         config: config,
 
+        browserify: {
+            'main.js': ['js/**/*.js'],
+            options: {
+                banner: '/*! <%= pkg.name %>.js <%= pkg.version %> | Connor Cartwright (@ConnorCartwright)*/',
+            }
+        },
+
         concat: {
             options: {
                 // define a string to put between each file in the concatenated output
@@ -72,7 +79,7 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.registerTask('default', ['concurrent', 'concat', 'uglify']);
-    grunt.registerTask('dev', ['concurrent', 'concat', 'uglify', 'watch']);
+    grunt.registerTask('default', ['concurrent', 'browserify', 'uglify']);
+    grunt.registerTask('dev', ['concurrent', 'browserify', 'uglify', 'watch']);
 
 };

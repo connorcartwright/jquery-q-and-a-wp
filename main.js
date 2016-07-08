@@ -1,3 +1,154 @@
+/*! jquery-q-and-a.js 1.0.0 | Connor Cartwright (@ConnorCartwright)*/
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+$(function() {
+   'use strict';
+
+   function questionEmbedButtonClick(pageId, pageTitle, previewLink) {
+      var $modal = $('.modal');
+      var data = {
+         action: 'embedQuestion',
+         pageId: pageId
+      };
+
+      $.ajax({
+            type: 'post',
+            url: wpAjax.ajaxUrl,
+            data: data
+         })
+          .done(function(data) {
+            console.log(data);
+            console.log('success - get edit page');
+         })
+          .fail(function() {
+            console.log('error - get edit page');
+         })
+          .always(function(data) {
+            console.log('always - get edit page');
+            $modal
+                .data({
+                  'p-id': pageId,
+                  'p-title': pageTitle
+               })
+                .addClass('page embed')
+                .find('.modal-header>h1')
+                .text(pageTitle + ': <iframe src="http://www.example.com"></iframe>')
+                .end()
+                .find('.modal-body')
+                .html(data)
+                .end()
+                .find('.modal-footer .close-modal')
+                .after('<button class="btn btn-primary preview"><a href="' + previewLink + '" rel="noopener" ' +
+                    'target="_blank">Preview</a></button>')
+                .end()
+                .find('.modal-footer .btn-success')
+                .addClass('save')
+                .text('Save')
+                .end()
+                .fadeIn(600);
+
+            $('body').css('overflow', 'hidden');
+            require('./modal-resize')();
+         });
+   }
+
+   function savePage() {
+      var $modal = $('.modal');
+      var pageId = $modal.data('p-id');
+      var pageTitle = $modal.data('p-title');
+      var pageContent = $modal.find('textarea.wp-editor-area').val();
+
+      var data = {
+         action: 'updatePage',
+         pageId: pageId,
+         pageContent: pageContent
+      };
+
+      $.ajax({
+            type: 'post',
+            dataType: 'json',
+            url: wpAjax.ajaxUrl,
+            data: data
+         })
+          .done(function(data) {
+            console.log('success - update page');
+            console.log(data);
+         })
+          .fail(function() {
+            console.log('error - update page');
+         })
+          .always(function(data) {
+            console.log('always - update page');
+            console.log(data);
+            var $message = $('<div class="modal-message-overlay"><div class="modal-message-content">' +
+                '<h2>The ' + pageTitle + ' page has been updated successfully!</h2></div></div>');
+
+            $modal.find('.modal-content').append($message);
+
+            $message
+                .hide()
+                .fadeIn(600)
+                .delay(2200)
+                .fadeOut(800, function() {
+                  $message.remove();
+               });
+         });
+   }
+
+   $('#q-and-a-plugin').on('click', '.q-embed>button', function() {
+      var row = $(this).closest('.questions');
+      var previewLink = row.prev().find('.qa-page-preview a').attr('href');
+
+      questionEmbedButtonClick(row.data('p-id'), row.data('p-title'), previewLink);
+   });
+
+   $('#q-and-a-plugin').on('click', '.modal .save', function() {
+      savePage();
+   });
+});
+
+},{"./modal-resize":3}],2:[function(require,module,exports){
+function closeModal() {
+   'use strict';
+
+   if (!getSelection().toString()) {
+      var $modal = $('.modal');
+
+      $modal.fadeOut(600, function() {
+         if ($modal.hasClass('page')) {
+            $modal
+                .find('.preview')
+                .remove();
+         }
+
+         $modal
+             .attr('class', 'modal')
+             .find('.modal-footer .btn-success')
+             .attr('class', 'btn btn-success');
+      });
+      $('body').css('overflow', 'auto');
+   }
+}
+
+module.exports = closeModal;
+
+},{}],3:[function(require,module,exports){
+function resizeModalBody() {
+   'use strict';
+
+   var modalHeight = $('.modal .modal-content').height();
+   var modalHeaderHeight = $('.modal .modal-header').outerHeight(true);
+   var modalFooterHeight = $('.modal .modal-footer').outerHeight(true);
+
+   $('.modal .modal-body').height(modalHeight - (modalHeaderHeight + modalFooterHeight));
+}
+
+module.exports = resizeModalBody;
+
+},{}],4:[function(require,module,exports){
+
+
+
+},{}],5:[function(require,module,exports){
 $(function() {
    'use strict';
 
@@ -373,3 +524,136 @@ $(function() {
       validateQuestionForm();
    });
 });
+
+},{"./modal-resize":3}],6:[function(require,module,exports){
+$(function() {
+   'use strict';
+
+   $('#q-and-a-plugin').on('click', '.modal-close, .modal-overlay, .close-modal', function() {
+      require('./modals/modal-close')();
+   });
+
+   $(window).on('resize', function() {
+      if ($('.modal:visible').length) {
+         require('./modals/modal-resize')();
+      }
+   });
+
+   function createPageTable() {
+      var $pageTable = $('<div class="qa-tbl"></div>');
+      var tableHeader = '<div class="qa-tbl-row qa-tbl-hdr qa-stripe"><div class="qa-page-id qa-center"><span>Page ID</span></div>' +
+          '<div class="qa-page-title"><span>Page Title</span></div><div class="qa-page-q-count qa-center"><span>Question Count</span>' +
+          '</div><div class="qa-page-preview qa-center"><span>Preview</span></div></div>';
+
+      $pageTable.append(tableHeader);
+
+      for(var i = 0; i < pages.length; i++) {
+         var page = pages[i];
+         var $row = $('<div class="qa-tbl-row qa-stripe page" data-p-id="' + page[0] + '" data-p-title="' + page[1] + '"></div>');
+
+         $row
+             .append('<div class="qa-page-id qa-center"><span>' + page[0] + '</span></div>')
+             .append('<div class="qa-page-title"><span>' + page[1] + '</span></div>')
+             .append('<div class="qa-page-q-count qa-center"><span> 0 </span></div>')
+             .append('<div class="qa-page-preview qa-center"><button type="button" class="btn btn-success page-preview">' +
+                 '<span class="glyphicon glyphicon-eye-open"></span><a href="' + page[2] + '" target="_blank" rel="noopener">' +
+                 '</a></button></div>');
+
+         $pageTable.append($row);
+      }
+
+      return $pageTable;
+   }
+
+   function createModal() {
+      return $('<div class="modal"><div class="modal-overlay"></div><div class="modal-content"><div class="modal-close">' +
+          '<span class="glyphicon glyphicon-remove"></span></div><div class="modal-header"><h1></h1></div><div class="modal-body"></div>' +
+          '<div class="modal-footer"><div class="modal-footer-buttons"><button class="btn btn-default close-modal">Close</button>' +
+          '<button class="btn btn-success">Save</button></div></div></div></div>');
+   }
+
+   function createQuestionRow() {
+      var $question = $('<div class="qa-tbl-row question"></div>');
+
+      var questionName = '<div class="q-name"><span>How to use $(#my-element).after</span></div>';
+      var embedButton = '<div class="q-embed qa-center"><button type="button" class="btn btn-default">' +
+          '<span class="glyphicon glyphicon-link"></span></button></td>';
+      var editButton = '<div class="q-edit qa-center"><button type="button" class="btn btn-primary">' +
+          '<span class="glyphicon glyphicon-pencil"></span></button></div>';
+      var previewButton = '<div class="q-preview qa-center"><button type="button" class="btn btn-success">' +
+          '<span class="glyphicon glyphicon-eye-open"></span></button><div/>';
+      var deleteButton = '<div  class="q-delete qa-center"><button type="button" class="btn btn-danger">' +
+          '<span class="glyphicon glyphicon-remove"></span></button></div>';
+
+      $question
+          .append(questionName)
+          .append(embedButton)
+          .append(editButton)
+          .append(previewButton)
+          .append(deleteButton);
+
+      return $question;
+   }
+
+   function pageRowClick($row, pageId, pageTitle) {
+      // If the questions for this page are open
+      if ($row.next().hasClass('questions')) {
+         $('.questions, .blank-row').slideUp(400, function() {
+            $row
+                .next()
+                .remove();
+         });
+      } else {
+         $('.questions, .blank-row').remove();
+
+         var $questions = $('<div class="questions" data-p-id="' + pageId + '" data-p-title="' + pageTitle + '"></div></div>');
+         var $questionTable = $('<div class="qst-table"></div>');
+
+         $questionTable.append('<div class="qa-tbl-row qa-tbl-hdr"><div class="q-name"><span>Question Name</span></div>' +
+             '<div class="q-embed qa-center"><span>Embed</span></div><div class="q-edit qa-center"><span>Edit</span></div>' +
+             '<div class="q-preview qa-center"><span>Preview</span></div><div class="q-delete qa-center"><span>Delete</span></div></div>');
+
+         for(var i = 0; i < 5; i++) {
+            $questionTable.append(createQuestionRow());
+         }
+
+         var addButton = '<div class="qa-tbl-row question"><div class="q-add"><button type="button" class="btn btn-success">' +
+             '<span class="glyphicon glyphicon-plus"></span></button></div>';
+
+         $questionTable.append(addButton);
+
+         var $blankSpace = $('<div class="qa-tbl-row blank-row"></div>');
+
+         $row.after($questions);
+         $questions.append($questionTable).after($blankSpace);
+         $blankSpace.height($questions.height());
+         $questions.add($blankSpace).hide().slideDown(600);
+      }
+   }
+
+   function setup() {
+      var $pluginBody = $('<div class="plugin-body"></div>');
+
+      $pluginBody.append('<h1 class="plugin-header">Learning Center Pages</h1>');
+      $pluginBody.append(createPageTable());
+      $('#q-and-a-plugin').append($pluginBody);
+      $('#q-and-a-plugin').append(createModal());
+
+      // Stop click of the preview opening/closing a row
+      $('.page-preview').click(function(e) {
+         e.stopPropagation();
+      });
+
+      $('#q-and-a-plugin').on('click', '.qa-tbl-row.page', function() {
+         pageRowClick($(this), $(this).data('p-id'), $(this).data('p-title'));
+      });
+   }
+
+   setup();
+
+   // $('#q-and-a-plugin').on('click', '.q-delete>button', function() {
+   //     questionDeleteButtonClick(); // question_id
+   // });
+});
+
+},{"./modals/modal-close":2,"./modals/modal-resize":3}]},{},[1,2,3,4,5,6]);

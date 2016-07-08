@@ -1,6 +1,16 @@
 $(function() {
    'use strict';
 
+   $('#q-and-a-plugin').on('click', '.modal-close, .modal-overlay, .close-modal', function() {
+      require('./modals/modal-close')();
+   });
+
+   $(window).on('resize', function() {
+      if ($('.modal:visible').length) {
+         require('./modals/modal-resize')();
+      }
+   });
+
    function createPageTable() {
       var $pageTable = $('<div class="qa-tbl"></div>');
       var tableHeader = '<div class="qa-tbl-row qa-tbl-hdr qa-stripe"><div class="qa-page-id qa-center"><span>Page ID</span></div>' +
