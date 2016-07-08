@@ -83,10 +83,7 @@ $(function() {
             $questionTable.append(createQuestionRow());
          }
 
-         var addButton = '<div class="qa-tbl-row question"><div class="q-add"><button type="button" class="btn btn-success">' +
-             '<span class="glyphicon glyphicon-plus"></span></button></div>';
-
-         $questionTable.append(addButton);
+         $questionTable.append($templates.find('.js-question-add').clone().children());
 
          var $blankSpace = $('<div class="qa-tbl-row blank-row"></div>');
 
