@@ -2,13 +2,13 @@ $(function() {
    'use strict';
 
    function hintButtonClick($button) {
-      if (!$button.hasClass('active')) {
-         var $activeButton = $('.modal .hint.active');
-         var $hintsTextarea = $('.modal .hints textarea');
+      if (!$button.hasClass('js-active')) {
+         var $activeButton = $('.modal .js-hint.js-hint-active');
+         var $hintsTextarea = $('.modal .js-hints-textarea');
 
          $activeButton
-             .data('hint-text', $('.modal fieldset.hints textarea').val())
-             .removeClass('active')
+             .data('hint-text', $hintsTextarea.val())
+             .removeClass('js-hint-active')
              .find('span')
              .text($activeButton.data('hint'));
 
@@ -17,7 +17,7 @@ $(function() {
             .attr('placeholder', 'Hint ' + $button.data('hint'));
 
          $button
-             .addClass('active')
+             .addClass('js-hint-active')
              .find('span')
              .text('Hint ' + $button.data('hint'));
 
@@ -31,11 +31,11 @@ $(function() {
           .clone()
           .children();
 
-      $('.modal').on('keyup', '.hints-textarea', function() {
+      $('.modal').on('keyup', '.js-hints-textarea', function() {
          $('.hint.active').data('hint-text', $(this).val());
       });
 
-      $('.modal').on('click', '.hint', function() {
+      $('.modal').on('click', '.js-hint', function() {
          hintButtonClick($(this));
       });
 
