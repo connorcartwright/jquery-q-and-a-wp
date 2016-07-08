@@ -50,7 +50,7 @@ $(function() {
          var input = '<input type="text" class="form-control wrong" id="q-mc-option-' + i + '" placeholder="Option ' +
              (i + 1 + $('.multiple-choice>.mc-text-option').length) + ' Text">';
 
-         var $option = $templates.find('.js-modal-question-mc .js-mc-option')
+         var $option = $templates.find('.js-modal-question-mc .js-mc-options')
              .clone()
              .children();
 
@@ -88,13 +88,13 @@ $(function() {
       var $qa = $('#q-and-a-plugin');
 
       $qa
-         .on('click', '.modal .mc-add-option', function() {
-            $('.modal fieldset.mc-text-option').last().after(createMultipleChoiceOptions(1));
+         .on('click', '.modal .js-mc-add-option', function() {
+            $('.modal .js-mc-text-option').last().after(createMultipleChoiceOptions(1));
          })
 
-         .on('click', '.modal .mc-remove-option', function() {
-            if ($('.modal .mc-text-option').length > 2) {
-               $('.modal .mc-text-option').last().remove();
+         .on('click', '.modal .js-mc-remove-option', function() {
+            if ($('.modal .js-mc-text-option').length > 2) {
+               $('.modal .js-mc-text-option').last().remove();
             }
          })
 
@@ -176,11 +176,11 @@ $(function() {
             ioButtonClick($(this));
          })
 
-         .on('keyup', '.modal #input-textarea', function() {
+         .on('keyup', '.modal .js-io-input', function() {
             $('.io.active').data('input', $(this).val());
          })
 
-         .on('keyup', '.modal #output-input', function() {
+         .on('keyup', '.modal .js-io-output', function() {
             $('.io.active').data('output', $(this).val());
          });
    }
@@ -235,12 +235,12 @@ $(function() {
           .data('p-id', pageId)
           .addClass('question')
           .find('.modal-header h1')
-          .text('Add Question')
-          .end()
+            .text('Add Question')
+            .end()
           .find('.modal-footer .btn-success')
-          .addClass('create-question')
-          .removeClass('edit-question')
-          .text('Create');
+            .addClass('js-create-question')
+            .removeClass('js-edit-question')
+            .text('Create');
 
       var $modalBody = $modal.find('.modal-body');
 
@@ -266,11 +266,11 @@ $(function() {
       var $qa = $('#q-and-a-plugin');
 
       $qa
-         .on('click', '.q-add>button', function() {
+         .on('click', '.js-q-add>button', function() {
             addQuestionButtonClick($(this).closest('.questions').data('p-id'));
          })
 
-         .on('click', '.q-edit>button', function() {
+         .on('click', '.js-q-edit>button', function() {
             editQuestionButtonClick($(this).closest('.questions').data('p-id'));
          });
 
@@ -374,7 +374,7 @@ $(function() {
       validateHints();
    }
 
-   $('#q-and-a-plugin').on('click', ' .modal .create-question', function() {
+   $('#q-and-a-plugin').on('click', ' .modal .js-create-question', function() {
       validateQuestionForm();
    });
 });
