@@ -1,17 +1,13 @@
 $(function() {
    'use strict';
 
-   function createPageTable() {
-      var $pageTable = $('<div class="qa-tbl"></div>');
+   function createPageRows() {
+      var $rows = $('');
       var $templates = $('.qa-templates');
-      var tableHeader = $templates.find('.js-page-hdr')
-          .clone()
-          .children();
-
-      $pageTable.append(tableHeader);
 
       for(var i = 0; i < pages.length; i++) {
          var page = pages[i];
+
          var $row = $templates.find('.js-page-row')
              .clone()
              .children();
@@ -22,20 +18,33 @@ $(function() {
                'p-title': page[1]
             })
              .find('.qa-page-id>span')
-               .text(page[0])
+             .text(page[0])
              .end()
              .find('.qa-page-title>span')
-               .text(page[1])
+             .text(page[1])
              .end()
              .find('.qa-page-q-count')
-               .text('0')
+             .text('0')
              .end()
              .find('.qa-page-preview>a')
-               .attr('href', page[2])
+             .attr('href', page[2])
              .end();
 
-         $pageTable.append($row);
+         $rows = $rows.add($row);
       }
+
+      return $rows;
+   }
+
+   function createPageTable() {
+      var $pageTable = $('<div class="qa-tbl"></div>');
+      var $templates = $('.qa-templates');
+      var tableHeader = $templates.find('.js-page-hdr')
+          .clone()
+          .children();
+
+      $pageTable.append(tableHeader);
+      $pageTable.append(createPageRows());
 
       return $pageTable;
    }
