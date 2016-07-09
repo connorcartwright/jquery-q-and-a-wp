@@ -1,0 +1,28 @@
+.questions {
+  position: absolute;
+  width: 100%;
+
+  .qst-table {
+    border-top: 1px solid $steel;
+    display: table;
+    margin: 5px 2%;
+    width: 96%;
+
+    >.qa-tbl-row {
+
+      .q-name,
+      .q-add {
+        padding-left: 10px;
+      }
+
+      .q-embed,
+      .q-edit,
+      .q-preview,
+      .q-delete {
+        width: 64px;
+      }
+    }
+
+  }
+
+}

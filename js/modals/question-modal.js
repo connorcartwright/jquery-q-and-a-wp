@@ -77,10 +77,10 @@ $(function() {
 
       if (input.hasClass('wrong')) {
          input.removeClass('wrong').addClass('correct');
-         button.addClass('btn-success').removeClass('btn-default');
+         button.find('.btn').addClass('btn-success').removeClass('btn-default');
       } else {
          input.removeClass('correct').addClass('wrong');
-         button.removeClass('btn-success').addClass('btn-default');
+         button.find('.btn').removeClass('btn-success').addClass('btn-default');
       }
    }
 
@@ -102,7 +102,7 @@ $(function() {
 
    function createCodeArea() {
       $('.question-type-area').attr('class', 'question-type-area coding');
-      var $editor = $('<div id="editor" class="code-editor mc-code">// Enter your code here</div>');
+      var $editor = $('<div id="qa-code-editor" class="code-editor mc-code">// Enter your code here</div>');
       var $io = $('<fieldset class="form-group input-output"> <label>Input / Output </label></fieldset>');
       var $removeIo = $('<button type="button" class="btn btn-default remove-io"><span class="glyphicon glyphicon-minus"></span></button>');
       var $addIo = $('<button type="button" class="btn btn-default add-io"><span class="glyphicon glyphicon-plus"></span></button>');
@@ -208,7 +208,7 @@ $(function() {
             $questionTypeArea.html(questionTypeChange(type));
          } else if (!$('.question-type-area.coding').length) {
             $questionTypeArea.html(questionTypeChange(type));
-            var editor = ace.edit('editor');
+            var editor = ace.edit('qa-code-editor');
 
             editor.setTheme('ace/theme/monokai');
             editor.getSession().setMode('ace/mode/javascript');
@@ -299,7 +299,7 @@ $(function() {
       // Var $questionCode;
       var passed = true;
 
-      // $questionCode = ace.edit('editor').getValue(); deal with later, length?
+      // $questionCode = ace.edit('qa-code-editor').getValue(); deal with later, length?
 
       $('.io').each(function() {
          if (!$(this).data('input') || !$(this).data('output')) {

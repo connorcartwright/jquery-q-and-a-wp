@@ -1,0 +1,145 @@
+.modal {
+  display: none;
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100000;
+
+  .modal-overlay {
+    background: rgba( 0, 0, 0, .9 );
+    height: 100%;
+    position: absolute;
+    width: 100%;
+  }
+
+  &.page>.modal-content {
+    height: auto;
+    max-height: 90%;
+    width: 80%;
+  }
+
+  &.question>.modal-content {
+    height: 800px;
+    width: 660px;
+  }
+
+  .modal-content {
+    background-color: rgba( 255, 255, 255, .95 );
+    border-radius: 7px;
+    bottom: 0;
+    box-shadow: 0 0 10px $shadow;
+    left: 0;
+    margin: auto;
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    >.modal-close {
+      cursor: pointer;
+      height: 20px;
+      position: absolute;
+      right: 4px;
+      top: 4px;
+      width: 20px;
+
+      >.glyphicon {
+        font-size: 20px;
+      }
+
+    }
+
+    .modal-header {
+      display: inline-block;
+      height: auto;
+      left: 0;
+      margin: 14px 36px 14px 14px;
+      max-height: 68px;
+      overflow-y: scroll;
+      position: relative;
+      top: 0;
+
+      >h1 {
+        display: inline-block;
+        font-size: 24px;
+        margin: 0;
+      }
+
+    }
+
+    .modal-body {
+      display: inline-block;
+      height: auto;
+      overflow-y: scroll;
+      position: relative;
+      width: 100%;
+
+      .wp-editor-area {
+        resize: vertical;
+      }
+
+      .wp-editor-wrap,
+      .wp-editor-container,
+      .wp-editor-container
+      .wp-editor-area {
+        height: 100%;
+      }
+
+    }
+
+    .modal-footer {
+      bottom: 0;
+      display: table;
+      height: 60px;
+      position: absolute;
+      text-align: right;
+      width: 100%;
+
+      >.modal-footer-buttons {
+        display: table-cell;
+        padding-right: 20px;
+        vertical-align: middle;
+
+        >.btn {
+          border-radius: 4px;
+          height: 36px;
+          margin-left: 10px;
+          width: 100px;
+        }
+
+      }
+
+    }
+
+    >.modal-message-overlay {
+      background: rgba( 222, 222, 222, .8 );
+      border-radius: 7px;
+      display: table;
+      height: 100%;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      z-index: 1;
+
+      .modal-message-content {
+        display: table-cell;
+        text-align: center;
+        vertical-align: middle;
+      }
+
+    }
+
+  }
+
+  .error {
+    box-shadow: 0 0 10px 0 rgba( 196, 19, 19, 1 );
+  }
+
+  .error-text {
+    color: $crimson;
+    font-size: 14px;
+  }
+
+}
