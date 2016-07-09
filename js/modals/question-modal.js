@@ -2,74 +2,77 @@ $(function() {
    'use strict';
 
    function hintButtonClick($button) {
-      if (!$button.hasClass('active')) {
-         console.log('hint click, not active');
-         console.log('data hint: ' + $button.data('hint'));
+      if (!$button.hasClass('js-active')) {
+         var $activeButton = $('.modal .js-hint.js-hint-active');
+         var $hintsTextarea = $('.modal .js-hints-textarea');
 
-         $('fieldset.hints .hint.active').data('hint-text', $('fieldset.hints textarea').val());
-         $('fieldset.hints textarea').val($button.data('hint-text'));
-         $('fieldset.hints textarea').attr('placeholder', 'Hint ' + $button.data('hint'));
-         $('.hint.active>span').text($('.hint.active').data('hint'));
-         $('.hint.active').removeClass('active');
+         $activeButton
+             .data('hint-text', $hintsTextarea.val())
+             .removeClass('js-hint-active')
+             .find('span')
+             .text($activeButton.data('hint'));
+
+         $hintsTextarea
+            .val($button.data('hint-text'))
+            .attr('placeholder', 'Hint ' + $button.data('hint'));
 
          $button
-             .addClass('active')
+             .addClass('js-hint-active')
              .find('span')
              .text('Hint ' + $button.data('hint'));
 
-         $('fieldset.hints textarea').focus();
+         $hintsTextarea.focus();
       }
    }
 
    function createHints() {
-      var $hints = $('<fieldset class="form-group hints"> <label>Hints </label></fieldset>');
-      var hintButton1 = '<button type="button" class="btn btn-default hint hint-1 active" data-hint="1"><span>Hint 1</span></button>';
-      var hintButton2 = '<button type="button" class="btn btn-default hint hint-2" data-hint="2"><span>2</span></button>';
-      var hintButton3 = '<button type="button" class="btn btn-default hint hint-3" data-hint="3"><span>3</span></button>';
-      var $hintTextarea = $('<textarea class="form-control" id="q-statement-input" rows="3" placeholder="Hint 1"></textarea>');
+      var $templates = $('.qa-templates');
+      var hints = $templates.find('.js-modal-question .js-hints')
+          .clone()
+          .children();
 
-      $hints
-          .append(hintButton1)
-          .append(hintButton2)
-          .append(hintButton3)
-          .append($hintTextarea);
-
-      $hintTextarea.on('keyup', function() {
+      $('.modal').on('keyup', '.js-hints-textarea', function() {
          $('.hint.active').data('hint-text', $(this).val());
       });
 
-      $('.modal').on('click', '.hint', function() {
+      $('.modal').on('click', '.js-hint', function() {
          hintButtonClick($(this));
       });
 
-      return $hints;
+      return hints;
    }
 
    function createMultipleChoiceOptions(n) {
-      var $r = $('');
+      var $options = $('');
+      var $templates = $('.qa-templates');
+
+      var numOptions = $('.modal .mc-text-option').length;
 
       for(var i = 0; i < n; i++) {
+         numOptions++;
          var input = '<input type="text" class="form-control wrong" id="q-mc-option-' + i + '" placeholder="Option ' +
-             (i + 1 + $('.mc-text-option').length) + ' Text">';
+             numOptions + ' Text">';
 
-         var option = '<fieldset class="form-group mc-text-option"><div class="input-group input">' + input +
-             '<div class="input-group-addon correct-answer"><button type="button" class="btn btn-default mc-correct-answer">' +
-             '<span class="glyphicon glyphicon-ok"></span></button></div></div></div></fieldset>';
+         var $option = $templates.find('.js-modal-question-mc .js-mc-options')
+             .clone()
+             .children();
 
-         $r = $r.add(option);
+         $option.find('.js-option').prepend(input);
+
+         $options = $options.add($option);
       }
 
-      return $r;
+      return $options;
    }
 
    function createMultipleChoiceArea() {
-      $('.question-type-area').attr('class', 'question-type-area multiple-choice');
+      $('.js-question-type-area').attr('class', 'js-question-type-area multiple-choice');
 
-      var $addRemoveOptions = $('<fieldset class="form-group mc-option-change">' +
-          '<button type="button" class="btn btn-default mc-remove-option"><span class="glyphicon glyphicon-minus"></span></button>' +
-          '<button type="button" class="btn btn-default mc-add-option"><span class="glyphicon glyphicon-plus"></span></button></fieldset>');
+      var $optionControl = $('.qa-templates .js-modal-question-mc .js-mc-add-remove')
+          .clone()
+          .children();
 
-      return $addRemoveOptions.add(createMultipleChoiceOptions(4));
+      return $optionControl.add(createMultipleChoiceOptions(4));
    }
 
    function correctButtonClick(button) {
@@ -85,96 +88,104 @@ $(function() {
    }
 
    function bindMultipleChoiceEvents() {
-      $('#q-and-a-plugin').on('click', '.mc-add-option', function() {
-         $('fieldset.mc-text-option').last().after(createMultipleChoiceOptions(1));
-      });
+      var $qaPlugin = $('#q-and-a-plugin');
 
-      $('#q-and-a-plugin').on('click', '.mc-remove-option', function() {
-         if ($('.mc-text-option').length > 2) {
-            $('.mc-text-option').last().remove();
-         }
-      });
+      $qaPlugin
+         .on('click', '.modal .js-mc-add-option', function() {
+            $('.modal .js-mc-text-option').last().after(createMultipleChoiceOptions(1));
+         })
 
-      $('#q-and-a-plugin').on('click', '.correct-answer', function() {
-         correctButtonClick($(this));
-      });
+         .on('click', '.modal .js-mc-remove-option', function() {
+            if ($('.modal .js-mc-text-option').length > 2) {
+               $('.modal .js-mc-text-option').last().remove();
+            }
+         })
+
+         .on('click', '.correct-answer', function() {
+            correctButtonClick($(this));
+         });
    }
 
    function createCodeArea() {
-      $('.question-type-area').attr('class', 'question-type-area coding');
-      var $editor = $('<div id="qa-code-editor" class="code-editor mc-code">// Enter your code here</div>');
-      var $io = $('<fieldset class="form-group input-output"> <label>Input / Output </label></fieldset>');
-      var $removeIo = $('<button type="button" class="btn btn-default remove-io"><span class="glyphicon glyphicon-minus"></span></button>');
-      var $addIo = $('<button type="button" class="btn btn-default add-io"><span class="glyphicon glyphicon-plus"></span></button>');
-      var io1 = '<button type="button" class="btn btn-default io active" data-io="1"><span>IO 1</span></button>';
-      var io2 = '<button type="button" class="btn btn-default io" data-io="2"><span>2</span></button>';
-      var io3 = '<button type="button" class="btn btn-default io" data-io="3"><span>3</span></button>';
-      var $inputTextarea = $('<textarea class="form-control" id="input-textarea" rows="3" placeholder="Question Input 1"></textarea>');
-      var $outputInput = $('<input type="text" id="output-input" class="form-control" placeholder="Expected Output 1">');
+      var $templates = $('.qa-templates');
+      var $editor = $('<div id="editor" class="code-editor mc-code">// Enter your code here</div>');
 
-      $io
-          .append($removeIo)
-          .append($addIo)
-          .append(io1)
-          .append(io2)
-          .append(io3)
-          .append($inputTextarea)
-          .append($outputInput);
+      $('.js-question-type-area').attr('class', 'js-question-type-area coding');
+
+      var $io = $templates.find('.js-modal-question-code .js-io')
+          .clone()
+          .children();
 
       return $editor.add($io);
    }
 
-   function ioButtonClick(button) {
-      if (!button.hasClass('active')) {
-         $('fieldset.input-output .io.active').data('input', $('fieldset.input-output textarea').val());
-         $('fieldset.input-output .io.active').data('output', $('fieldset.input-output input').val());
-         $('fieldset.input-output textarea').val(button.data('input'));
-         $('fieldset.input-output input').val(button.data('output'));
-         $('fieldset.input-output textarea').attr('placeholder', 'Question Input ' + button.data('io'));
-         $('fieldset.input-output input').attr('placeholder', 'Expected Output ' + button.data('io'));
-         $('.io.active>span').text($('.io.active').data('io'));
-         $('.io.active').removeClass('active');
+   function inputOutputButtonClick($button) {
+      if (!$button.hasClass('active')) {
+         var $activeButton = $('.modal .js-io-active');
+         var $inputOutputTextarea = $('.modal .js-io-input');
+         var $output = $('.modal .js-io-output');
 
-         button
-             .addClass('active')
+         $activeButton
+             .data('input', $inputOutputTextarea.val())
+             .data('output', $output.val())
+             .removeClass('js-io-active')
              .find('span')
-             .text('IO ' + button.data('io'));
+             .text($activeButton.data('io'));
 
-         $('fieldset.input-output textarea').focus();
+         $inputOutputTextarea
+             .val($button.data('input'))
+             .attr('placeholder', 'Question Input ' + $button.data('io'));
+         $output
+             .val($button.data('output'))
+             .attr('placeholder', 'Expected Output ' + $button.data('io'));
+
+         $button
+             .addClass('js-io-active')
+             .find('span')
+             .text('IO ' + $button.data('io'));
+
+         $inputOutputTextarea.focus();
       }
    }
 
    function bindCodeAreaEvents() {
-      $('.modal').on('click', '.remove-io', function() {
-         if ($('.io').length > 3) {
-            $('.io').last().remove();
-         }
-      });
+      var $qaPlugin = $('#q-and-a-plugin');
 
-      $('.modal').on('click', '.add-io', function() {
-         var ioLength = $('.io').length;
+      $qaPlugin
+         .on('click', '.modal .js-remove-io', function() {
+            var $io = $('.modal .js-io-btn');
 
-         if (ioLength < 8) {
-            var ioCount = ioLength + 1;
-            var newIo = '<button type="button" class="btn btn-default io" data-io="' + ioCount + '"><span>' + ioCount + '</span></button>';
+            if ($io.length > 3) {
+               $io.last().remove();
+            }
+         })
 
-            $('.io')
-                .last()
-                .after(newIo);
-         }
-      });
+         .on('click', '.modal .js-add-io', function() {
+            var $inputOutputButtons = $('.modal .js-io-btn');
+            var ioLength = $inputOutputButtons.length;
 
-      $('.modal').on('click', '.io', function() {
-         ioButtonClick($(this));
-      });
+            if (ioLength < 8) {
+               var count = ioLength + 1;
+               var newIo = '<button type="button" class="btn btn-default js-io-btn" data-io="' + count + '">' +
+                   '<span>' + count + '</span></button>';
 
-      $('.modal').on('keyup', '#input-textarea', function() {
-         $('.io.active').data('input', $(this).val());
-      });
+               $inputOutputButtons
+                  .last()
+                  .after(newIo);
+            }
+         })
 
-      $('.modal').on('keyup', '#output-input', function() {
-         $('.io.active').data('output', $(this).val());
-      });
+         .on('click', '.modal .js-io-btn', function() {
+            inputOutputButtonClick($(this));
+         })
+
+         .on('keyup', '.modal .js-io-input', function() {
+            $('.io.active').data('input', $(this).val());
+         })
+
+         .on('keyup', '.modal .js-io-output', function() {
+            $('.io.active').data('output', $(this).val());
+         });
    }
 
    function questionTypeChange(type) {
@@ -189,15 +200,15 @@ $(function() {
    }
 
    function createQuestionForm() {
-      var $questionForm = $('<form></form>');
-      var questionName = '<fieldset class="form-group"> <label for="q-name-input">Question Name </label>' +
-          '<input type="text" id="q-name-input" class="form-control" placeholder="Question Name"></fieldset>';
-      var $questionType = $('<fieldset class="form-group"> <label for="q-type-select">Question Type </label></fieldset>');
-      var questionStatement = '<fieldset class="form-group"> <label for="q-statement-input">Question Statement</label>' +
-          '<textarea class="form-control" id="q-statement-input" rows="3" placeholder="Question Statement"></textarea></fieldset>';
-      var $typeSelect = $('<select class="form-control" id="q-type-select"><option>Multiple Choice</option>' +
-          '<option>Bug Fix</option><option>Missing Code</option><option>Complete Code</option></select>');
-      var $questionTypeArea = $('<div class="question-type-area multiple-choice"></div>');
+      var $templates = $('.qa-templates');
+
+      var $questionForm = $templates
+          .find('.js-modal-question .js-form')
+           .clone()
+           .children();
+
+      var $typeSelect = $questionForm.find('#q-type-select');
+      var $questionTypeArea = $questionForm.find('.js-question-type-area');
 
       $questionTypeArea.html(questionTypeChange($typeSelect.find('option:selected').text()));
 
@@ -206,7 +217,7 @@ $(function() {
 
          if (type === 'Multiple Choice') {
             $questionTypeArea.html(questionTypeChange(type));
-         } else if (!$('.question-type-area.coding').length) {
+         } else if (!$('.js-question-type-area.coding').length) {
             $questionTypeArea.html(questionTypeChange(type));
             var editor = ace.edit('qa-code-editor');
 
@@ -215,13 +226,7 @@ $(function() {
          }
       });
 
-      $questionType.append($typeSelect);
-      $questionForm
-          .append(questionName)
-          .append($questionType)
-          .append(questionStatement)
-          .append($questionTypeArea)
-          .append(createHints());
+      $questionForm.append(createHints());
 
       return $questionForm;
    }
@@ -233,16 +238,17 @@ $(function() {
           .data('p-id', pageId)
           .addClass('question')
           .find('.modal-header h1')
-          .text('Add Question')
-          .end()
+            .text('Add Question')
+            .end()
           .find('.modal-footer .btn-success')
-          .addClass('create-question')
-          .removeClass('edit-question')
-          .text('Create');
+            .addClass('js-create-question')
+            .removeClass('js-edit-question')
+            .text('Create');
 
       var $modalBody = $modal.find('.modal-body');
 
       $modalBody
+          .empty()
           .html(createQuestionForm());
 
       $modal
@@ -261,13 +267,16 @@ $(function() {
    }
 
    function setupModal() {
-      $('#q-and-a-plugin').on('click', '.q-add>button', function() {
-         addQuestionButtonClick($(this).closest('.questions').data('p-id'));
-      });
+      var $qaPlugin = $('#q-and-a-plugin');
 
-      $('#q-and-a-plugin').on('click', '.q-edit>button', function() {
-         editQuestionButtonClick($(this).closest('.questions').data('p-id'));
-      });
+      $qaPlugin
+         .on('click', '.js-q-add>button', function() {
+            addQuestionButtonClick($(this).closest('.questions').data('p-id'));
+         })
+
+         .on('click', '.js-q-edit>button', function() {
+            editQuestionButtonClick($(this).closest('.questions').data('p-id'));
+         });
 
       // $('#q-and-a-plugin').on('click', '.q-preview>button', function() {
       //     var row = $(this).closest('.questions');
@@ -281,12 +290,12 @@ $(function() {
    setupModal();
 
    function validateMultipleChoice() {
-      if (!$('.mc-text-option .form-control.wrong').length) {
-         $('.mc-option-change').after('<span class="error-text">There must be at least one wrong answer!</span>');
+      if (!$('.modal .mc-text-option .form-control.wrong').length) {
+         $('.modal .mc-option-change').after('<span class="error-text">There must be at least one <em>wrong</em> answer!</span>');
 
          return false;
-      } else if ($('.mc-text-option .form-control.wrong').length === $('.mc-text-option').length) {
-         $('.mc-option-change').after('<span class="error-text">There must be at least one correct answer!</span>');
+      } else if ($('.modal .mc-text-option .form-control.wrong').length === $('.modal .mc-text-option').length) {
+         $('.modal .mc-option-change').after('<span class="error-text">There must be at least one <em>correct</em> answer!</span>');
 
          return false;
       } else {
@@ -317,7 +326,7 @@ $(function() {
    function validateHints() {
       var passed = true;
 
-      $('.hint').each(function() {
+      $('.modal .hint').each(function() {
          if ($(this).data('hint-text')) {
             if ($(this).data('hint-text').length < 20) {
                $(this).addClass('error');
@@ -344,21 +353,21 @@ $(function() {
 
       var passed = true;
 
-      var $questionName = $('#q-name-input');
+      var $questionName = $('.modal #q-name-input');
 
       if ($questionName.val().length < 10) {
          $questionName.addClass('error');
          passed = false;
       }
 
-      var $questionStatement = $('#q-statement-input');
+      var $questionStatement = $('.modal #q-statement-input');
 
       if ($questionStatement.val().length < 50) {
          $questionStatement.addClass('error');
          passed = false;
       }
 
-      var $questionType = $('#q-type-select').find('option:selected').text();
+      var $questionType = $('.modal #q-type-select').find('option:selected').text();
 
       if ($questionType === 'Multiple Choice') {
          passed = validateMultipleChoice() ? passed : false;
@@ -369,7 +378,7 @@ $(function() {
       validateHints();
    }
 
-   $('#q-and-a-plugin').on('click', ' .modal .create-question', function() {
+   $('#q-and-a-plugin').on('click', ' .modal .js-create-question', function() {
       validateQuestionForm();
    });
 });

@@ -1,0 +1,203 @@
+<div class="qa-templates" style="display: none">
+
+    <div class="js-page-hdr">
+        <div class="qa-tbl-row qa-tbl-hdr">
+            <div class="qa-page-id qa-center">
+                <span>Page ID</span>
+            </div>
+            <div class="qa-page-title">
+                <span>Page Title</span>
+            </div>
+            <div class="qa-page-q-count qa-center">
+                <span>Question Count</span>
+            </div>
+            <div class="qa-page-preview qa-center">
+                <span>Preview</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="js-page-row">
+        <div class="qa-tbl-row page js-qa-page-row">
+            <div class="qa-page-id qa-center">
+                <span></span>
+            </div>
+            <div class="qa-page-title">
+                <span></span>
+            </div>
+            <div class="qa-page-q-count qa-center">
+                <span></span>
+            </div>
+            <div class="qa-page-preview qa-center">
+                <button type="button" class="btn btn-success page-preview">
+                    <span class="glyphicon glyphicon-eye-open"></span>
+                    <a href="#link_to_page" target="_blank" rel="noopener"></a>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="js-question-hdr">
+        <div class="qa-tbl-row qa-tbl-hdr">
+            <div class="q-name">
+                <span>Question Name</span>
+            </div>
+            <div class="q-embed qa-center">
+                <span>Embed</span>
+            </div>
+            <div class="q-edit js-q-edit qa-center">
+                <span>Edit</span>
+            </div>
+            <div class="q-preview js-q-preview qa-center">
+                <span>Preview</span>
+            </div>
+            <div class="q-delete js-q-delete qa-center">
+                <span>Delete</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="js-question-row">
+        <div class="qa-tbl-row question">
+            <div class="q-name">
+                <span>How to use $(#my-element).after</span>
+            </div>
+            <div class="q-embed js-q-embed qa-center">
+                <button type="button" class="btn btn-default">
+                    <span class="glyphicon glyphicon-link"></span>
+                </button>
+            </div>
+            <div class="q-edit qa-center">
+                <button type="button" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                </button>
+            </div>
+            <div class="q-preview qa-center">
+                <button type="button" class="btn btn-success">
+                    <span class="glyphicon glyphicon-eye-open"></span>
+                </button>
+            </div>
+            <div class="q-delete qa-center">
+                <button type="button" class="btn btn-danger">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="js-question-add">
+        <div class="qa-tbl-row question">
+            <div class="q-add js-q-add">
+                <button type="button" class="btn btn-success">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="js-modal">
+        <div class="jsmodal">
+            <div class="modal-overlay"></div>
+            <div class="modal-content">
+                <div class="modal-close">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </div>
+                <div class="modal-header">
+                    <h1></h1>
+                </div>
+                <div class="modal-body"></div>
+                <div class="modal-footer">
+                    <div class="modal-footer-buttons">
+                        <button class="btn btn-default close-modal">Close</button>
+                        <button class="btn btn-success">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="js-modal-question">
+        <div class="js-form">
+            <form>
+                <fieldset class="form-group">
+                    <label for="q-name-input">Question Name</label>
+                    <input type="text" id="q-name-input" class="form-control" placeholder="Question Name">
+                </fieldset>
+                <fieldset class="form-group">
+                    <label for="q-type-select">Question Type</label>
+                    <select class="form-control js-question-type-select" id="q-type-select">
+                        <option>Multiple Choice</option>
+                        <option>Bug Fix</option>
+                        <option>Missing Code</option>
+                        <option>Complete Code</option>
+                    </select>
+                </fieldset>
+                <fieldset class="form-group">
+                    <label for="q-statement-input">Question Statement</label>
+                    <textarea class="form-control" id="q-statement-input" rows="3" placeholder="Question Statement"></textarea>
+                </fieldset>
+                <div class="js-question-type-area multiple-choice"></div>
+            </form>
+        </div>
+
+        <div class="js-hints">
+            <fieldset class="form-group hints"> <label>Hints </label>
+                <button type="button" class="btn btn-default hint js-hint hint-1 js-hint-active" data-hint="1"><span>Hint 1</span></button>
+                <button type="button" class="btn btn-default hint js-hint hint-2" data-hint="2"><span>2</span></button>
+                <button type="button" class="btn btn-default hint js-hint hint-3" data-hint="3"><span>3</span></button>
+                <textarea class="form-control js-hints-textarea" rows="3" placeholder="Hint 1"></textarea>
+            </fieldset>
+        </div>
+    </div>
+
+    <div class="js-modal-question-mc">
+        <div class="js-mc-add-remove">
+            <fieldset class="form-group mc-option-change">
+                <button type="button" class="btn btn-default mc-remove-option js-mc-remove-option">
+                    <span class="glyphicon glyphicon-minus"></span>
+                </button>
+                <button type="button" class="btn btn-default mc-add-option js-mc-add-option">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </button>
+            </fieldset>
+        </div>
+
+        <div class="js-mc-options">
+            <fieldset class="form-group mc-text-option js-mc-text-option">
+                <div class="input-group js-option">
+                    <div class="input-group-addon correct-answer">
+                        <button type="button" class="btn btn-default mc-correct-answer">
+                            <span class="glyphicon glyphicon-ok"></span>
+                        </button>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+
+    <div class="js-modal-question-code">
+        <div class="js-io">
+            <fieldset class="form-group input-output">
+                <label>Input / Output </label>
+                <button type="button" class="btn btn-default js-remove-io">
+                    <span class="glyphicon glyphicon-minus"></span>
+                </button>
+                <button type="button" class="btn btn-default js-add-io">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </button>
+                <button type="button" class="btn btn-default js-io-btn js-io-active" data-io="1">
+                    <span>IO 1</span>
+                </button>
+                <button type="button" class="btn btn-default js-io-btn " data-io="2">
+                    <span>2</span>
+                </button>
+                <button type="button" class="btn btn-default js-io-btn" data-io="3">
+                    <span>3</span>
+                </button>
+                <textarea class="form-control js-io-input" id="input-textarea" rows="3" placeholder="Question Input 1"></textarea>
+                <input type="text" id="output-input" class="form-control js-io-output" placeholder="Expected Output 1"></fieldset>
+        </div>
+    </div>
+
+
+</div>
