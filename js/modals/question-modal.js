@@ -88,9 +88,9 @@ $(function() {
    }
 
    function bindMultipleChoiceEvents() {
-      var $qa = $('#q-and-a-plugin');
+      var $qaPlugin = $('#q-and-a-plugin');
 
-      $qa
+      $qaPlugin
          .on('click', '.modal .js-mc-add-option', function() {
             $('.modal .js-mc-text-option').last().after(createMultipleChoiceOptions(1));
          })
@@ -119,23 +119,23 @@ $(function() {
       return $editor.add($io);
    }
 
-   function ioButtonClick($button) {
+   function inputOutputButtonClick($button) {
       if (!$button.hasClass('active')) {
          var $activeButton = $('.modal .js-io-active');
-         var $ioTextarea = $('.modal .js-io-input');
-         var $ioOutput = $('.modal .js-io-output');
+         var $inputOutputTextarea = $('.modal .js-io-input');
+         var $output = $('.modal .js-io-output');
 
          $activeButton
-             .data('input', $ioTextarea.val())
-             .data('output', $ioOutput.val())
+             .data('input', $inputOutputTextarea.val())
+             .data('output', $output.val())
              .removeClass('js-io-active')
              .find('span')
              .text($activeButton.data('io'));
 
-         $ioTextarea
+         $inputOutputTextarea
              .val($button.data('input'))
              .attr('placeholder', 'Question Input ' + $button.data('io'));
-         $ioOutput
+         $output
              .val($button.data('output'))
              .attr('placeholder', 'Expected Output ' + $button.data('io'));
 
@@ -144,14 +144,14 @@ $(function() {
              .find('span')
              .text('IO ' + $button.data('io'));
 
-         $ioTextarea.focus();
+         $inputOutputTextarea.focus();
       }
    }
 
    function bindCodeAreaEvents() {
-      var $qa = $('#q-and-a-plugin');
+      var $qaPlugin = $('#q-and-a-plugin');
 
-      $qa
+      $qaPlugin
          .on('click', '.modal .js-remove-io', function() {
             var $io = $('.modal .js-io-btn');
 
@@ -161,22 +161,22 @@ $(function() {
          })
 
          .on('click', '.modal .js-add-io', function() {
-            var $io = $('.modal .js-io-btn');
-            var ioLength = $io.length;
+            var $inputOutputButtons = $('.modal .js-io-btn');
+            var ioLength = $inputOutputButtons.length;
 
             if (ioLength < 8) {
                var count = ioLength + 1;
                var newIo = '<button type="button" class="btn btn-default js-io-btn" data-io="' + count + '">' +
                    '<span>' + count + '</span></button>';
 
-               $io
+               $inputOutputButtons
                   .last()
                   .after(newIo);
             }
          })
 
          .on('click', '.modal .js-io-btn', function() {
-            ioButtonClick($(this));
+            inputOutputButtonClick($(this));
          })
 
          .on('keyup', '.modal .js-io-input', function() {
@@ -267,9 +267,9 @@ $(function() {
    }
 
    function setupModal() {
-      var $qa = $('#q-and-a-plugin');
+      var $qaPlugin = $('#q-and-a-plugin');
 
-      $qa
+      $qaPlugin
          .on('click', '.js-q-add>button', function() {
             addQuestionButtonClick($(this).closest('.questions').data('p-id'));
          })
