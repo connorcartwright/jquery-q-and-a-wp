@@ -46,9 +46,12 @@ $(function() {
       var $options = $('');
       var $templates = $('.qa-templates');
 
+      var numOptions = $('.modal .mc-text-option').length;
+
       for(var i = 0; i < n; i++) {
+         numOptions++;
          var input = '<input type="text" class="form-control wrong" id="q-mc-option-' + i + '" placeholder="Option ' +
-             (i + 1 + $('.multiple-choice>.mc-text-option').length) + ' Text">';
+             numOptions + ' Text">';
 
          var $option = $templates.find('.js-modal-question-mc .js-mc-options')
              .clone()
