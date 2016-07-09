@@ -44,7 +44,7 @@ function enqueue_scripts($pages) {
 
 function init_options_page(){
     ?>
-    <div class="wrap" id="q-and-a-plugin">
+    <div class="wrap q-and-a-plugin" id="q-and-a-plugin">
             <?php
                 $pages = array();
                 $page_ids=get_all_page_ids();

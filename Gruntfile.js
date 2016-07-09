@@ -3,7 +3,9 @@ module.exports = function(grunt) {
     "use strict";
 
     require('time-grunt')(grunt);
-    require('jit-grunt')(grunt);
+    require('jit-grunt')(grunt, {
+        scsslint: 'grunt-scss-lint',
+    });
 
     var config = {
         src: 'js',
@@ -39,6 +41,24 @@ module.exports = function(grunt) {
             }
         },
 
+        sass: {
+            dist: {
+                files: {
+                    'css/style.css' : 'css/style.scss'
+                }
+            }
+        },
+
+        scsslint: {
+            allFiles: [
+                'css/**/*.scss',
+            ],
+            options: {
+                config: '.scss-lint.yml',
+                colorizeOutput: true
+            },
+        },
+
         jscs: {
             options: {
                 config: '.jscsrc',
@@ -63,16 +83,21 @@ module.exports = function(grunt) {
         watch: {
             js: {
                 files: ['js/**/*.js'],
-                tasks: ['concurrent', 'concat', 'uglify']
+                tasks: ['jshint', 'jscs', 'concat']
+            },
+            css: {
+                files: ['css/**/*.scss'],
+                tasks: ['scsslint', 'sass']
             }
         },
 
         concurrent: {
-            lint: ['jshint', 'jscs']
+            lint: ['jshint', 'jscs', 'scsslint'],
+            combine: ['concat', 'sass']
         }
     });
 
-    grunt.registerTask('default', ['concurrent', 'concat', 'uglify']);
-    grunt.registerTask('dev', ['concurrent', 'concat', 'uglify', 'watch']);
+    grunt.registerTask('default', ['concurrent']);
+    grunt.registerTask('dev', ['concurrent', 'watch']);
 
 };
