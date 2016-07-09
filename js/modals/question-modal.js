@@ -248,6 +248,7 @@ $(function() {
       var $modalBody = $modal.find('.modal-body');
 
       $modalBody
+          .empty()
           .html(createQuestionForm());
 
       $modal
