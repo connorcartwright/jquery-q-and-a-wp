@@ -12,27 +12,6 @@
   user-select: none;
   vertical-align: middle;
 
-  a {
-    height: 100%;
-    width: 100%;
-  }
-
-  a,
-  a:hover,
-  a:active,
-  a:focus {
-    color: $white;
-    text-decoration: underline;
-  }
-
-  &.page-preview>a {
-    height: 100%;
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: 100%;
-}
-
   &.btn-default {
     background-color: $white;
     border-color: $alto-dark;
