@@ -35,8 +35,8 @@ $(function() {
                 .html(data)
                 .end()
                 .find('.modal-footer .close-modal')
-                .after('<button class="btn btn-primary preview"><a href="' + previewLink + '" rel="noopener" ' +
-                    'target="_blank">Preview</a></button>')
+                .after('<a class="link btn btn-primary preview" href="' + previewLink + '" rel="noopener" ' +
+                    'target="_blank">Preview</a>')
                 .end()
                 .find('.modal-footer .btn-success')
                   .addClass('js-save-page')

@@ -29,10 +29,9 @@
                 <span></span>
             </div>
             <div class="qa-page-preview qa-center">
-                <button type="button" class="btn btn-success page-preview">
+                <a href="#link_to_page" class="btn btn-success page-preview link" target="_blank" rel="noopener">
                     <span class="glyphicon glyphicon-eye-open"></span>
-                    <a href="#link_to_page" target="_blank" rel="noopener"></a>
-                </button>
+                </a>
             </div>
         </div>
     </div>
@@ -118,7 +117,7 @@
 
     <div class="js-modal-question">
         <div class="js-form">
-            <form>
+            <form class="question-form js-question form">
                 <fieldset class="form-group">
                     <label for="q-name-input">Question Name</label>
                     <input type="text" id="q-name-input" class="form-control" placeholder="Question Name">
@@ -142,9 +141,9 @@
 
         <div class="js-hints">
             <fieldset class="form-group hints"> <label>Hints </label>
-                <button type="button" class="btn btn-default hint js-hint hint-1 js-hint-active" data-hint="1"><span>Hint 1</span></button>
-                <button type="button" class="btn btn-default hint js-hint hint-2" data-hint="2"><span>2</span></button>
-                <button type="button" class="btn btn-default hint js-hint hint-3" data-hint="3"><span>3</span></button>
+                <button type="button" class="btn btn-default hint js-hint hint-1 js-hint-active active" data-hint="1"><span>Hint 1</span></button><button
+                        type="button" class="btn btn-default hint js-hint hint-2" data-hint="2"><span>2</span></button><button
+                        type="button" class="btn btn-default hint js-hint hint-3" data-hint="3"><span>3</span></button>
                 <textarea class="form-control js-hints-textarea" rows="3" placeholder="Hint 1"></textarea>
             </fieldset>
         </div>
@@ -155,8 +154,8 @@
             <fieldset class="form-group mc-option-change">
                 <button type="button" class="btn btn-default mc-remove-option js-mc-remove-option">
                     <span class="glyphicon glyphicon-minus"></span>
-                </button>
-                <button type="button" class="btn btn-default mc-add-option js-mc-add-option">
+                </button><button
+                    type="button" class="btn btn-default mc-add-option js-mc-add-option">
                     <span class="glyphicon glyphicon-plus"></span>
                 </button>
             </fieldset>
@@ -179,25 +178,23 @@
         <div class="js-io">
             <fieldset class="form-group input-output">
                 <label>Input / Output </label>
-                <button type="button" class="btn btn-default js-remove-io">
+                <button type="button" class="btn btn-default js-remove-input-output">
                     <span class="glyphicon glyphicon-minus"></span>
-                </button>
-                <button type="button" class="btn btn-default js-add-io">
+                </button><button
+                    type="button" class="btn btn-default js-add-input-output">
                     <span class="glyphicon glyphicon-plus"></span>
-                </button>
-                <button type="button" class="btn btn-default js-io-btn js-io-active" data-io="1">
+                </button><button
+                    type="button" class="btn btn-default input-output-button js-input-output-button js-input-output-active active" data-io="1">
                     <span>IO 1</span>
-                </button>
-                <button type="button" class="btn btn-default js-io-btn " data-io="2">
+                </button><button
+                    type="button" class="btn btn-default input-output-button js-input-output-button " data-io="2">
                     <span>2</span>
-                </button>
-                <button type="button" class="btn btn-default js-io-btn" data-io="3">
+                </button><button
+                    type="button" class="btn btn-default input-output-button js-input-output-button" data-io="3">
                     <span>3</span>
                 </button>
                 <textarea class="form-control js-io-input" id="input-textarea" rows="3" placeholder="Question Input 1"></textarea>
                 <input type="text" id="output-input" class="form-control js-io-output" placeholder="Expected Output 1"></fieldset>
         </div>
     </div>
-
-
 </div>

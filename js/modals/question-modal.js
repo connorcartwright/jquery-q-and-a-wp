@@ -3,12 +3,12 @@ $(function() {
 
    function hintButtonClick($button) {
       if (!$button.hasClass('js-active')) {
-         var $activeButton = $('.modal .js-hint.js-hint-active');
+         var $activeButton = $('.modal .js-hint-active');
          var $hintsTextarea = $('.modal .js-hints-textarea');
 
          $activeButton
              .data('hint-text', $hintsTextarea.val())
-             .removeClass('js-hint-active')
+             .removeClass('js-hint-active active')
              .find('span')
              .text($activeButton.data('hint'));
 
@@ -17,7 +17,7 @@ $(function() {
             .attr('placeholder', 'Hint ' + $button.data('hint'));
 
          $button
-             .addClass('js-hint-active')
+             .addClass('js-hint-active active')
              .find('span')
              .text('Hint ' + $button.data('hint'));
 
@@ -66,7 +66,7 @@ $(function() {
    }
 
    function createMultipleChoiceArea() {
-      $('.js-question-type-area').attr('class', 'js-question-type-area multiple-choice');
+      $('.modal .js-question-type-area').attr('class', 'js-question-type-area multiple-choice');
 
       var $optionControl = $('.qa-templates .js-modal-question-mc .js-mc-add-remove')
           .clone()
@@ -108,9 +108,8 @@ $(function() {
 
    function createCodeArea() {
       var $templates = $('.qa-templates');
-      var $editor = $('<div id="editor" class="code-editor mc-code">// Enter your code here</div>');
-
-      $('.js-question-type-area').attr('class', 'js-question-type-area coding');
+      var $editor = $('<div id="qa-code-editor" class="code-editor mc-code">// Enter your code here</div>');
+      $('.modal .js-question-type-area').attr('class', 'js-question-type-area coding');
 
       var $io = $templates.find('.js-modal-question-code .js-io')
           .clone()
@@ -121,14 +120,14 @@ $(function() {
 
    function inputOutputButtonClick($button) {
       if (!$button.hasClass('active')) {
-         var $activeButton = $('.modal .js-io-active');
+         var $activeButton = $('.modal .js-input-output-active');
          var $inputOutputTextarea = $('.modal .js-io-input');
          var $output = $('.modal .js-io-output');
 
          $activeButton
              .data('input', $inputOutputTextarea.val())
              .data('output', $output.val())
-             .removeClass('js-io-active')
+             .removeClass('js-input-output-active active')
              .find('span')
              .text($activeButton.data('io'));
 
@@ -140,7 +139,7 @@ $(function() {
              .attr('placeholder', 'Expected Output ' + $button.data('io'));
 
          $button
-             .addClass('js-io-active')
+             .addClass('js-input-output-active active')
              .find('span')
              .text('IO ' + $button.data('io'));
 
@@ -152,39 +151,39 @@ $(function() {
       var $qaPlugin = $('#q-and-a-plugin');
 
       $qaPlugin
-         .on('click', '.modal .js-remove-io', function() {
-            var $io = $('.modal .js-io-btn');
+         .on('click', '.modal .js-remove-input-output', function() {
+            var $inputOutputButtons = $('.modal .js-input-output-button');
 
-            if ($io.length > 3) {
-               $io.last().remove();
+            if ($inputOutputButtons.length > 3) {
+               $inputOutputButtons.last().remove();
             }
          })
 
-         .on('click', '.modal .js-add-io', function() {
-            var $inputOutputButtons = $('.modal .js-io-btn');
-            var ioLength = $inputOutputButtons.length;
+         .on('click', '.modal .js-add-input-output', function() {
+            var $inputOutputButtons = $('.modal .js-input-output-button');
+            var inputOutputButtonCount = $inputOutputButtons.length;
 
-            if (ioLength < 8) {
-               var count = ioLength + 1;
-               var newIo = '<button type="button" class="btn btn-default js-io-btn" data-io="' + count + '">' +
-                   '<span>' + count + '</span></button>';
+            if (inputOutputButtonCount < 8) {
+               var newInputOutputNum = inputOutputButtonCount + 1;
+               var newInputOutput = '<button type="button" class="btn btn-default input-output-button  js-input-output-button" ' +
+                   'data-io="' + newInputOutputNum + '"><span>' + newInputOutputNum + '</span></button>';
 
                $inputOutputButtons
                   .last()
-                  .after(newIo);
+                  .after(newInputOutput);
             }
          })
 
-         .on('click', '.modal .js-io-btn', function() {
+         .on('click', '.modal .js-input-output-button', function() {
             inputOutputButtonClick($(this));
          })
 
          .on('keyup', '.modal .js-io-input', function() {
-            $('.io.active').data('input', $(this).val());
+            $('.js-input-output-active').data('input', $(this).val());
          })
 
          .on('keyup', '.modal .js-io-output', function() {
-            $('.io.active').data('output', $(this).val());
+            $('.js-input-output-active').data('output', $(this).val());
          });
    }
 
@@ -217,7 +216,7 @@ $(function() {
 
          if (type === 'Multiple Choice') {
             $questionTypeArea.html(questionTypeChange(type));
-         } else if (!$('.js-question-type-area.coding').length) {
+         } else if (!$('.modal .js-question-type-area.coding').length) {
             $questionTypeArea.html(questionTypeChange(type));
             var editor = ace.edit('qa-code-editor');
 
@@ -310,7 +309,7 @@ $(function() {
 
       // $questionCode = ace.edit('qa-code-editor').getValue(); deal with later, length?
 
-      $('.io').each(function() {
+      $('.modal .input-output-button').each(function() {
          if (!$(this).data('input') || !$(this).data('output')) {
             $(this).addClass('error');
 

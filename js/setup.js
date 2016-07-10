@@ -1,36 +1,40 @@
 $(function() {
    'use strict';
 
+   function createPageRow(i) {
+      var $templates = $('.qa-templates');
+      var page = pages[i];
+
+      var $row = $templates.find('.js-page-row')
+          .clone()
+          .children();
+
+      $row
+          .data({
+            'p-id': page[0],
+            'p-title': page[1]
+         })
+          .find('.qa-page-id>span')
+          .text(page[0])
+          .end()
+          .find('.qa-page-title>span')
+          .text(page[1])
+          .end()
+          .find('.qa-page-q-count')
+          .text('0')
+          .end()
+          .find('.qa-page-preview>a')
+          .attr('href', page[2])
+          .end();
+
+      return $row;
+   }
+
    function createPageRows() {
       var $rows = $('');
-      var $templates = $('.qa-templates');
 
       for(var i = 0; i < pages.length; i++) {
-         var page = pages[i];
-
-         var $row = $templates.find('.js-page-row')
-             .clone()
-             .children();
-
-         $row
-             .data({
-               'p-id': page[0],
-               'p-title': page[1]
-            })
-             .find('.qa-page-id>span')
-             .text(page[0])
-             .end()
-             .find('.qa-page-title>span')
-             .text(page[1])
-             .end()
-             .find('.qa-page-q-count')
-             .text('0')
-             .end()
-             .find('.qa-page-preview>a')
-             .attr('href', page[2])
-             .end();
-
-         $rows = $rows.add($row);
+         $rows = $rows.add(createPageRow(i));
       }
 
       return $rows;
