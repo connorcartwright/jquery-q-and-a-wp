@@ -108,7 +108,7 @@ $(function() {
 
    function createCodeArea() {
       var $templates = $('.qa-templates');
-      var $editor = $('<div id="editor" class="code-editor mc-code">// Enter your code here</div>');
+      var $editor = $('<div id="qa-code-editor" class="code-editor mc-code">// Enter your code here</div>');
 
       $('.js-question-type-area').attr('class', 'js-question-type-area coding');
 
