@@ -1,58 +1,73 @@
 $(function() {
    'use strict';
 
-   function createPageTable() {
-      var $pageTable = $('<div class="qa-tbl"></div>');
-      var tableHeader = '<div class="qa-tbl-row qa-tbl-hdr"><div class="qa-page-id qa-center"><span>Page ID</span></div>' +
-          '<div class="qa-page-title"><span>Page Title</span></div><div class="qa-page-q-count qa-center"><span>Question Count</span>' +
-          '</div><div class="qa-page-preview qa-center"><span>Preview</span></div></div>';
+   function createPageRow(i) {
+      var $templates = $('.qa-templates');
+      var page = pages[i];
 
-      $pageTable.append(tableHeader);
+      var $row = $templates.find('.js-page-row')
+          .clone()
+          .children();
+
+      $row
+          .data({
+            'p-id': page[0],
+            'p-title': page[1]
+         })
+          .find('.qa-page-id>span')
+          .text(page[0])
+          .end()
+          .find('.qa-page-title>span')
+          .text(page[1])
+          .end()
+          .find('.qa-page-q-count')
+          .text('0')
+          .end()
+          .find('.qa-page-preview>a')
+          .attr('href', page[2])
+          .end();
+
+      return $row;
+   }
+
+   function createPageRows() {
+      var $rows = $('');
 
       for(var i = 0; i < pages.length; i++) {
-         var page = pages[i];
-         var $row = $('<div class="qa-tbl-row page" data-p-id="' + page[0] + '" data-p-title="' + page[1] + '"></div>');
-
-         $row
-             .append('<div class="qa-page-id qa-center"><span>' + page[0] + '</span></div>')
-             .append('<div class="qa-page-title"><span>' + page[1] + '</span></div>')
-             .append('<div class="qa-page-q-count qa-center"><span> 0 </span></div>')
-             .append('<div class="qa-page-preview qa-center"><button type="button" class="btn btn-success page-preview">' +
-                 '<span class="glyphicon glyphicon-eye-open"></span><a href="' + page[2] + '" target="_blank" rel="noopener">' +
-                 '</a></button></div>');
-
-         $pageTable.append($row);
+         $rows = $rows.add(createPageRow(i));
       }
+
+      return $rows;
+   }
+
+   function createPageTable() {
+      var $pageTable = $('<div class="qa-tbl"></div>');
+      var $templates = $('.qa-templates');
+      var tableHeader = $templates.find('.js-page-hdr')
+          .clone()
+          .children();
+
+      $pageTable.append(tableHeader);
+      $pageTable.append(createPageRows());
 
       return $pageTable;
    }
 
    function createModal() {
-      return $('<div class="modal"><div class="modal-overlay"></div><div class="modal-content"><div class="modal-close">' +
-          '<span class="glyphicon glyphicon-remove"></span></div><div class="modal-header"><h1></h1></div><div class="modal-body"></div>' +
-          '<div class="modal-footer"><div class="modal-footer-buttons"><button class="btn btn-default close-modal">Close</button>' +
-          '<button class="btn btn-success">Save</button></div></div></div></div>');
+      var $modal = $('.qa-templates .js-modal')
+          .clone()
+          .children();
+
+      $modal.attr('class', 'modal');
+
+      return $modal;
    }
 
    function createQuestionRow() {
-      var $question = $('<div class="qa-tbl-row question"></div>');
-
-      var questionName = '<div class="q-name"><span>How to use $(#my-element).after</span></div>';
-      var embedButton = '<div class="q-embed qa-center"><button type="button" class="btn btn-default">' +
-          '<span class="glyphicon glyphicon-link"></span></button></td>';
-      var editButton = '<div class="q-edit qa-center"><button type="button" class="btn btn-primary">' +
-          '<span class="glyphicon glyphicon-pencil"></span></button></div>';
-      var previewButton = '<div class="q-preview qa-center"><button type="button" class="btn btn-success">' +
-          '<span class="glyphicon glyphicon-eye-open"></span></button><div/>';
-      var deleteButton = '<div  class="q-delete qa-center"><button type="button" class="btn btn-danger">' +
-          '<span class="glyphicon glyphicon-remove"></span></button></div>';
-
-      $question
-          .append(questionName)
-          .append(embedButton)
-          .append(editButton)
-          .append(previewButton)
-          .append(deleteButton);
+      var $templates = $('.qa-templates');
+      var $question = $templates.find('.js-question-row')
+          .clone()
+          .children();
 
       return $question;
    }
@@ -67,22 +82,21 @@ $(function() {
          });
       } else {
          $('.questions, .blank-row').remove();
-
          var $questions = $('<div class="questions" data-p-id="' + pageId + '" data-p-title="' + pageTitle + '"></div></div>');
          var $questionTable = $('<div class="qst-table"></div>');
+         var $templates = $('.qa-templates');
 
-         $questionTable.append('<div class="qa-tbl-row qa-tbl-hdr"><div class="q-name"><span>Question Name</span></div>' +
-             '<div class="q-embed qa-center"><span>Embed</span></div><div class="q-edit qa-center"><span>Edit</span></div>' +
-             '<div class="q-preview qa-center"><span>Preview</span></div><div class="q-delete qa-center"><span>Delete</span></div></div>');
+         var tableHeader = $templates.find('.js-question-hdr')
+             .clone()
+             .children();
+
+         $questionTable.append(tableHeader);
 
          for(var i = 0; i < 5; i++) {
             $questionTable.append(createQuestionRow());
          }
 
-         var addButton = '<div class="qa-tbl-row question"><div class="q-add"><button type="button" class="btn btn-success">' +
-             '<span class="glyphicon glyphicon-plus"></span></button></div>';
-
-         $questionTable.append(addButton);
+         $questionTable.append($templates.find('.js-question-add').clone().children());
 
          var $blankSpace = $('<div class="qa-tbl-row blank-row"></div>');
 
@@ -106,7 +120,7 @@ $(function() {
          e.stopPropagation();
       });
 
-      $('#q-and-a-plugin').on('click', '.qa-tbl-row.page', function() {
+      $('#q-and-a-plugin').on('click', '.js-qa-page-row', function() {
          pageRowClick($(this), $(this).data('p-id'), $(this).data('p-title'));
       });
    }

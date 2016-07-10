@@ -53,6 +53,7 @@ function init_options_page(){
                     array_push( $pages, array($id, get_the_title($id), get_page_link($id) ) );
                 }
                 enqueue_scripts($pages);
+                readfile( 'templates.html' , __FILE__ );
             ?>
 
     </div>
