@@ -128,7 +128,7 @@ $(function() {
          $activeButton
              .data('input', $inputOutputTextarea.val())
              .data('output', $output.val())
-             .removeClass('js-io-active')
+             .removeClass('js-io-active active')
              .find('span')
              .text($activeButton.data('io'));
 
@@ -140,7 +140,7 @@ $(function() {
              .attr('placeholder', 'Expected Output ' + $button.data('io'));
 
          $button
-             .addClass('js-io-active')
+             .addClass('js-io-active active')
              .find('span')
              .text('IO ' + $button.data('io'));
 
