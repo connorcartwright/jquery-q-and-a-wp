@@ -3,12 +3,12 @@ $(function() {
 
    function hintButtonClick($button) {
       if (!$button.hasClass('js-active')) {
-         var $activeButton = $('.modal .js-hint.js-hint-active');
+         var $activeButton = $('.modal .js-hint-active');
          var $hintsTextarea = $('.modal .js-hints-textarea');
 
          $activeButton
              .data('hint-text', $hintsTextarea.val())
-             .removeClass('js-hint-active')
+             .removeClass('js-hint-active active')
              .find('span')
              .text($activeButton.data('hint'));
 
@@ -17,7 +17,7 @@ $(function() {
             .attr('placeholder', 'Hint ' + $button.data('hint'));
 
          $button
-             .addClass('js-hint-active')
+             .addClass('js-hint-active active')
              .find('span')
              .text('Hint ' + $button.data('hint'));
 
