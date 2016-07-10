@@ -66,7 +66,7 @@ $(function() {
    }
 
    function createMultipleChoiceArea() {
-      $('.js-question-type-area').attr('class', 'js-question-type-area multiple-choice');
+      $('.modal .js-question-type-area').attr('class', 'js-question-type-area multiple-choice');
 
       var $optionControl = $('.qa-templates .js-modal-question-mc .js-mc-add-remove')
           .clone()
@@ -110,7 +110,7 @@ $(function() {
       var $templates = $('.qa-templates');
       var $editor = $('<div id="qa-code-editor" class="code-editor mc-code">// Enter your code here</div>');
 
-      $('.js-question-type-area').attr('class', 'js-question-type-area coding');
+      $('.modal .js-question-type-area').attr('class', 'js-question-type-area coding');
 
       var $io = $templates.find('.js-modal-question-code .js-io')
           .clone()
@@ -217,7 +217,7 @@ $(function() {
 
          if (type === 'Multiple Choice') {
             $questionTypeArea.html(questionTypeChange(type));
-         } else if (!$('.js-question-type-area.coding').length) {
+         } else if (!$('.modal .js-question-type-area.coding').length) {
             $questionTypeArea.html(questionTypeChange(type));
             var editor = ace.edit('qa-code-editor');
 
