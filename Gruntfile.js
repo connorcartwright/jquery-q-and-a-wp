@@ -54,14 +54,14 @@ module.exports = function(grunt) {
                 'css/**/*.scss',
             ],
             options: {
-                config: '.scss-lint.yml',
+                config: './config/.scss-lint.yml',
                 colorizeOutput: true
             },
         },
 
         jscs: {
             options: {
-                config: '.jscsrc',
+                config: './config/.jscsrc',
                 fix: true
             },
             src: [
@@ -71,7 +71,7 @@ module.exports = function(grunt) {
 
         jshint: {
             options: {
-                jshintrc: '.jshintrc',
+                jshintrc: './config/.jshintrc',
                 reporter: require('jshint-stylish'),
             },
             src: [
