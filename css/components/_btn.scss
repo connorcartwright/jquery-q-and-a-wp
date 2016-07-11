@@ -1,0 +1,56 @@
+
+.btn {
+  border: 1px solid transparent;
+  border-radius: .25em;
+  color: $white;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 400;
+  padding: 1px;
+  position: relative;
+  text-align: center;
+  user-select: none;
+  vertical-align: middle;
+
+  &.btn-default {
+    background-color: $white;
+    border-color: $alto-dark;
+    color: $shadow;
+  }
+
+  &.btn-default:hover {
+    background-color: $mercury;
+    border-color: $steel;
+  }
+
+  &.btn-primary {
+    background-color: $cobalt;
+    border-color: $cobalt;
+  }
+
+  &.btn-primary:hover {
+    background-color: $azure;
+    border-color: $azure;
+  }
+
+  &.btn-success {
+    background-color: $fern;
+    border-color: $fern;
+  }
+
+  &.btn-success:hover {
+    background-color: $apple;
+    border-color: $apple;
+  }
+
+  &.btn-danger {
+    background-color: $clay;
+    border-color: $clay;
+  }
+
+  &.btn-danger:hover {
+    background-color: $poppy;
+    border-color: $poppy;
+  }
+
+}

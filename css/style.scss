@@ -1,0 +1,13 @@
+@charset 'utf-8';
+// import settings first
+@import 'settings/colors';
+@import 'settings/sizings';
+// then import components
+@import 'components/btn';
+@import 'components/form-questions';
+@import 'components/link';
+@import 'components/plugin-header';
+@import 'components/modal';
+@import 'components/table/page-table';
+@import 'components/table/question-table';
+@import 'components/wp-override';

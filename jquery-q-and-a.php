@@ -44,7 +44,7 @@ function enqueue_scripts($pages) {
 
 function init_options_page(){
     ?>
-    <div class="wrap" id="q-and-a-plugin">
+    <div class="wrap q-and-a-plugin" id="q-and-a-plugin">
             <?php
                 $pages = array();
                 $page_ids=get_all_page_ids();
@@ -53,6 +53,7 @@ function init_options_page(){
                     array_push( $pages, array($id, get_the_title($id), get_page_link($id) ) );
                 }
                 enqueue_scripts($pages);
+                readfile( 'templates.html' , __FILE__ );
             ?>
 
     </div>

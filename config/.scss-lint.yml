@@ -1,0 +1,67 @@
+linters:
+
+  BangFormat:
+    style: space_after_bang
+
+  BorderZero:
+    convention: zero
+
+  Comment:
+    style: silent
+
+  ElsePlacement:
+    style: same_line
+
+  EmptyLineBetweenBlocks:
+    ignore_single_line_blocks: false
+
+  FinalNewline:
+    present: true
+
+  HexLength:
+    style: short
+
+  HexNotation:
+    style: lowercase
+
+  Indentation:
+    character: space
+    width: 2
+
+  LeadingZero:
+    style: exclude_zero
+
+  MergeableSelector:
+    force_nesting: true
+
+  NestingDepth:
+    max_depth: 8
+
+  SelectorDepth:
+      enabled: true
+      max_depth: 8
+
+  SingleLinePerProperty:
+    allow_single_lne_rule_sets: true
+
+  SpaceAfterComma:
+    style: one_space
+
+  SpaceAfterPropertyColon:
+    style: one_space
+
+  SpaceAfterVariableColon:
+    style: one_space
+
+  SpaceAroundOperator:
+    style: one_space
+
+  SpaceBeforeBrace:
+    style: space
+
+  SpaceBetweenParens:
+    spaces: 1
+
+  StringQuotes:
+    style: single_quotes
+    

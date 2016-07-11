@@ -1,0 +1,60 @@
+$row-height: 32px;
+
+.qa-tbl {
+  color: $shadow;
+  display: table;
+  position: relative;
+  width: 100%;
+
+  .qa-center {
+    text-align: center;
+  }
+
+  .btn {
+    height: $sqr-btn-small;
+    width: $sqr-btn-small;
+  }
+
+  .qa-tbl-hdr {
+    cursor: default;
+
+    >div {
+      font-weight: bold;
+    }
+
+  }
+
+  .qa-tbl-row {
+    background-color: $mercury;
+    cursor: pointer;
+    display: table-row;
+    height: $row-height;
+
+    >div {
+      display: table-cell;
+      vertical-align: middle;
+    }
+
+    &:nth-of-type( odd ) {
+      background-color: $alto;
+    }
+
+    .qa-page-id {
+      width: 70px;
+    }
+
+    .qa-page-q-count {
+      width: 120px;
+    }
+
+    .qa-page-preview {
+      width: 74px;
+    }
+
+    &:hover:not( .qa-tbl-hdr ) {
+      background-color: $alto-dark;
+    }
+
+  }
+
+}

@@ -3,7 +3,9 @@ module.exports = function(grunt) {
     "use strict";
 
     require('time-grunt')(grunt);
-    require('jit-grunt')(grunt);
+    require('jit-grunt')(grunt, {
+        scsslint: 'grunt-scss-lint',
+    });
 
     var config = {
         src: 'js',
@@ -46,9 +48,27 @@ module.exports = function(grunt) {
             }
         },
 
+        sass: {
+            dist: {
+                files: {
+                    'css/style.css' : 'css/style.scss'
+                }
+            }
+        },
+
+        scsslint: {
+            allFiles: [
+                'css/**/*.scss',
+            ],
+            options: {
+                config: './config/.scss-lint.yml',
+                colorizeOutput: true
+            },
+        },
+
         jscs: {
             options: {
-                config: '.jscsrc',
+                config: './config/.jscsrc',
                 fix: true
             },
             src: [
@@ -58,7 +78,7 @@ module.exports = function(grunt) {
 
         jshint: {
             options: {
-                jshintrc: '.jshintrc',
+                jshintrc: './config/.jshintrc',
                 reporter: require('jshint-stylish'),
             },
             src: [
@@ -70,16 +90,21 @@ module.exports = function(grunt) {
         watch: {
             js: {
                 files: ['js/**/*.js'],
-                tasks: ['concurrent', 'concat', 'uglify']
+                tasks: ['jshint', 'jscs', 'concat']
+            },
+            css: {
+                files: ['css/**/*.scss'],
+                tasks: ['scsslint', 'sass']
             }
         },
 
         concurrent: {
-            lint: ['jshint', 'jscs']
+            lint: ['jshint', 'jscs', 'scsslint'],
+            combine: ['browserify', 'sass']
         }
     });
 
-    grunt.registerTask('default', ['concurrent', 'browserify', 'uglify']);
-    grunt.registerTask('dev', ['concurrent', 'browserify', 'uglify', 'watch']);
+    grunt.registerTask('default', ['concurrent']);
+    grunt.registerTask('dev', ['concurrent', 'watch']);
 
 };

@@ -35,11 +35,11 @@ $(function() {
                 .html(data)
                 .end()
                 .find('.modal-footer .close-modal')
-                .after('<button class="btn btn-primary preview"><a href="' + previewLink + '" rel="noopener" ' +
-                    'target="_blank">Preview</a></button>')
+                .after('<a class="link btn btn-primary preview" href="' + previewLink + '" rel="noopener" ' +
+                    'target="_blank">Preview</a>')
                 .end()
                 .find('.modal-footer .btn-success')
-                .addClass('save')
+                  .addClass('js-save-page')
                 .text('Save')
                 .end()
                 .fadeIn(600);
@@ -92,14 +92,14 @@ $(function() {
          });
    }
 
-   $('#q-and-a-plugin').on('click', '.q-embed>button', function() {
+   $('#q-and-a-plugin').on('click', '.js-q-embed>button', function() {
       var row = $(this).closest('.questions');
       var previewLink = row.prev().find('.qa-page-preview a').attr('href');
 
       questionEmbedButtonClick(row.data('p-id'), row.data('p-title'), previewLink);
    });
 
-   $('#q-and-a-plugin').on('click', '.modal .save', function() {
+   $('#q-and-a-plugin').on('click', '.modal .js-save-page', function() {
       savePage();
    });
 });
