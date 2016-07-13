@@ -4,3 +4,4 @@ jquery-q-and-a.min.js
 *.css
 *.map
 .sass-cache
+main.js
