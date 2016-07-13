@@ -23,19 +23,6 @@ module.exports = function(grunt) {
             }
         },
 
-        concat: {
-            options: {
-                // define a string to put between each file in the concatenated output
-                separator: '\n'
-            },
-            dist: {
-                // the files to concatenate
-                src: ['js/**/*.js'],
-                // the location of the resulting JS file
-                dest: '<%= pkg.name %>.js'
-            }
-        },
-
         uglify: {
             options: {
                 // the banner is inserted at the top of the output
@@ -90,7 +77,7 @@ module.exports = function(grunt) {
         watch: {
             js: {
                 files: ['js/**/*.js'],
-                tasks: ['jshint', 'jscs', 'concat']
+                tasks: ['jshint', 'jscs', 'browserify']
             },
             css: {
                 files: ['css/**/*.scss'],
