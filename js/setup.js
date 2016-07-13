@@ -112,22 +112,22 @@ $(function() {
 
       $pluginBody.append('<h1 class="plugin-header">Learning Center Pages</h1>');
       $pluginBody.append(createPageTable());
-      $('#q-and-a-plugin').append($pluginBody);
-      $('#q-and-a-plugin').append(createModal());
+      $('.q-and-a-plugin').append($pluginBody);
+      $('.q-and-a-plugin').append(createModal());
 
       // Stop click of the preview opening/closing a row
       $('.page-preview').click(function(e) {
          e.stopPropagation();
       });
 
-      $('#q-and-a-plugin').on('click', '.js-qa-page-row', function() {
+      $('.q-and-a-plugin').on('click', '.js-qa-page-row', function() {
          pageRowClick($(this), $(this).data('p-id'), $(this).data('p-title'));
       });
    }
 
    setup();
 
-   // $('#q-and-a-plugin').on('click', '.q-delete>button', function() {
+   // $('.q-and-a-plugin').on('click', '.q-delete>button', function() {
    //     questionDeleteButtonClick(); // question_id
    // });
 });

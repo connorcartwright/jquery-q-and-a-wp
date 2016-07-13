@@ -88,7 +88,7 @@ $(function() {
    }
 
    function bindMultipleChoiceEvents() {
-      var $qaPlugin = $('#q-and-a-plugin');
+      var $qaPlugin = $('.q-and-a-plugin');
 
       $qaPlugin
          .on('click', '.modal .js-mc-add-option', function() {
@@ -109,6 +109,7 @@ $(function() {
    function createCodeArea() {
       var $templates = $('.qa-templates');
       var $editor = $('<div id="qa-code-editor" class="code-editor mc-code">// Enter your code here</div>');
+
       $('.modal .js-question-type-area').attr('class', 'js-question-type-area coding');
 
       var $io = $templates.find('.js-modal-question-code .js-io')
@@ -148,7 +149,7 @@ $(function() {
    }
 
    function bindCodeAreaEvents() {
-      var $qaPlugin = $('#q-and-a-plugin');
+      var $qaPlugin = $('.q-and-a-plugin');
 
       $qaPlugin
          .on('click', '.modal .js-remove-input-output', function() {
@@ -266,7 +267,7 @@ $(function() {
    }
 
    function setupModal() {
-      var $qaPlugin = $('#q-and-a-plugin');
+      var $qaPlugin = $('.q-and-a-plugin');
 
       $qaPlugin
          .on('click', '.js-q-add>button', function() {
@@ -277,7 +278,7 @@ $(function() {
             editQuestionButtonClick($(this).closest('.questions').data('p-id'));
          });
 
-      // $('#q-and-a-plugin').on('click', '.q-preview>button', function() {
+      // $('.q-and-a-plugin').on('click', '.q-preview>button', function() {
       //     var row = $(this).closest('.questions');
       //     questionPreviewButtonClick(row.data('p-id'), row.data('p-title'));
       // });
@@ -377,7 +378,7 @@ $(function() {
       validateHints();
    }
 
-   $('#q-and-a-plugin').on('click', ' .modal .js-create-question', function() {
+   $('.q-and-a-plugin').on('click', ' .modal .js-create-question', function() {
       validateQuestionForm();
    });
 });
