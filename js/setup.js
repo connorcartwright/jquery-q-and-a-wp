@@ -1,6 +1,8 @@
 $(function() {
    'use strict';
 
+   require('./modals/modals')();
+
    function createPageRow(i) {
       var $templates = $('.qa-templates');
       var page = pages[i];
