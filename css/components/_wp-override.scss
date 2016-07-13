@@ -6,12 +6,25 @@
 
 }
 
-.wp-editor-wrap {
-  margin: 0 1%;
-  width: 98%;
-}
+.q-and-a-plugin {
 
-.wp-editor-tools {
-  display: none;
-  padding: 0;
+  .wp-editor-wrap {
+    margin: 0 1%;
+    width: 98%;
+
+    >.wp-editor-container {
+
+      >.wp-editor-area {
+        color: $shadow;
+      }
+
+    }
+
+  }
+
+  .wp-editor-tools {
+    display: none;
+    padding: 0;
+  }
+
 }
