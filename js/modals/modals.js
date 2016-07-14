@@ -5,8 +5,8 @@ function openEmbedModal(pageID, pageTitle, pageLink) {
    require('./embed-modal/open')(pageID, pageTitle, pageLink);
 }
 
-function saveEmbedModal() {
-   require('./embed-modal/save')();
+function savePage() {
+   require('./embed-modal/events/save-page')();
 }
 
 function openAddQuestionModal(pageID) {
@@ -28,7 +28,7 @@ function setupModals() {
    })
 
    .on('click', '.modal .js-save-page', function() {
-      saveEmbedModal();
+      savePage();
    })
 
    .on('click', '.js-q-add>button', function() {
