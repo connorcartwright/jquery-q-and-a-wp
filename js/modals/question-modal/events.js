@@ -58,11 +58,6 @@ function bindCodeAreaEvents() {
        .on('keyup', '.modal .js-io-output', function() {
          require('./events/input-output/save-output')($(this).val());
       });
-
-   // $('.q-and-a-plugin').on('click', '.q-preview>button', function() {
-   //     var row = $(this).closest('.questions')
-   //     questionPreviewButtonClick(row.data('p-id'), row.data('p-title'))
-   // })
 }
 
 function bindEvents() {

@@ -50,15 +50,14 @@ function setupModals() {
       openEditQuestionModal()(pageID, questionID);
    })
 
+   // $('.q-and-a-plugin').on('click', '.q-preview>button', function() {
+   //     var row = $(this).closest('.questions')
+   //     questionPreviewButtonClick(row.data('p-id'), row.data('p-title'))
+   // })
+
    .on('click', '.js-modal-close', function() {
       require('./modal-close')();
    });
-
-   // Function setupModal() {
-   //
-   //     BindMultipleChoiceEvents()
-   //     bindCodeAreaEvents()
-   // }
 }
 
 module.exports = setupModals;
