@@ -14,6 +14,17 @@ function bindHintEvents() {
       });
 }
 
+function bindTypeChangeEvents() {
+   'use strict';
+
+   var $qaPlugin = $('.q-and-a-plugin');
+
+   $qaPlugin
+       .on('change', '.modal .js-question-type-select', function() {
+         require('./events/type-change/change')($(this).find('option:selected').text());
+      });
+}
+
 function bindMultipleChoiceEvents() {
    'use strict';
 
@@ -66,6 +77,7 @@ function bindEvents() {
    bindMultipleChoiceEvents();
    bindCodeAreaEvents();
    bindHintEvents();
+   bindTypeChangeEvents();
 }
 
 module.exports = bindEvents;
