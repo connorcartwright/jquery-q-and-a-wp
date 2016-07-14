@@ -2,8 +2,6 @@
 function createMultipleChoiceOption() {
    'use strict';
 
-   console.log('in create mc option');
-
    var $templates = $('.qa-templates');
    var newOption = $('.modal .mc-text-option').length + 1;
 
