@@ -1,43 +1,11 @@
 $(function() {
    'use strict';
 
-   function hintButtonClick($button) {
-      if (!$button.hasClass('js-active')) {
-         var $activeButton = $('.modal .js-hint-active');
-         var $hintsTextarea = $('.modal .js-hints-textarea');
-
-         $activeButton
-             .data('hint-text', $hintsTextarea.val())
-             .removeClass('js-hint-active active')
-             .find('span')
-             .text($activeButton.data('hint'));
-
-         $hintsTextarea
-             .val($button.data('hint-text'))
-             .attr('placeholder', 'Hint ' + $button.data('hint'));
-
-         $button
-             .addClass('js-hint-active active')
-             .find('span')
-             .text('Hint ' + $button.data('hint'));
-
-         $hintsTextarea.focus();
-      }
-   }
-
    function createHints() {
       var $templates = $('.qa-templates');
       var hints = $templates.find('.js-modal-question .js-hints')
           .clone()
           .children();
-
-      $('.modal').on('keyup', '.js-hints-textarea', function() {
-         $('.hint.active').data('hint-text', $(this).val());
-      });
-
-      $('.modal').on('click', '.js-hint', function() {
-         hintButtonClick($(this));
-      });
 
       return hints;
    }

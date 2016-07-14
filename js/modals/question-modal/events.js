@@ -1,4 +1,19 @@
 
+function bindHintEvents() {
+   'use strict';
+
+   var $qaPlugin = $('.q-and-a-plugin');
+
+   $qaPlugin
+       .on('click', '.modal .js-hint', function() {
+         require('./events/hints/button-click')($(this));
+      })
+
+       .on('keyup', '.modal .js-hints-textarea', function() {
+         require('./events/hints/save-hint');
+      });
+}
+
 function bindMultipleChoiceEvents() {
    'use strict';
 
@@ -55,6 +70,7 @@ function bindEvents() {
 
    bindMultipleChoiceEvents();
    bindCodeAreaEvents();
+   bindHintEvents();
 }
 
 module.exports = bindEvents;
