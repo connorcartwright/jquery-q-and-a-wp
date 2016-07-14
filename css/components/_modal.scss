@@ -121,8 +121,13 @@
       left: 0;
       position: absolute;
       top: 0;
+      visibility: hidden;
       width: 100%;
       z-index: 1;
+
+      &.active {
+        visibility: visible;
+      }
 
       .modal-message-content {
         display: table-cell;
