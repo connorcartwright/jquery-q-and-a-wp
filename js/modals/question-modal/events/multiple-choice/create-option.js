@@ -14,9 +14,6 @@ function createMultipleChoiceOption(n) {
 
    $option.find('.js-option').prepend(input);
 
-   console.log('single create option:');
-   console.log($option);
-
    return $option;
 }
 

@@ -1,8 +1,6 @@
 
 'use strict';
 
-console.log('modals/modals');
-
 function openEmbedModal(pageID, pageTitle, pageLink) {
    require('./embed-modal/open')(pageID, pageTitle, pageLink);
 }
@@ -12,7 +10,6 @@ function saveEmbedModal() {
 }
 
 function openAddQuestionModal(pageID) {
-   console.log('open add question modal');
    require('./question-modal/open-add-question')(pageID);
 }
 
@@ -21,8 +18,6 @@ function openEditQuestionModal(pageID) {
 }
 
 function setupModals() {
-   console.log('setupModals');
-
    var $qaPlugin = $('.q-and-a-plugin');
 
    $qaPlugin.on('click', '.js-q-embed>button', function() {
@@ -37,7 +32,6 @@ function setupModals() {
    })
 
    .on('click', '.js-q-add>button', function() {
-      console.log('q add button click');
       var pageID = $(this).closest('.questions').data('p-id');
 
       openAddQuestionModal(pageID);
