@@ -18,7 +18,7 @@ $(function() {
           .children();
 
       for(var i = 0; i < 4; i++) {
-         $optionControl = $optionControl.add(require('./events/multiple-choice/create-option')());
+         $optionControl = $optionControl.add(require('./events/multiple-choice/create-option')(i));
       }
 
       return $optionControl;
