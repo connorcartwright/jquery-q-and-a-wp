@@ -3,14 +3,15 @@ function bindHintEvents() {
    'use strict';
 
    var $qaPlugin = $('.q-and-a-plugin');
+   var $hintEvents = require('./events/hints');
 
    $qaPlugin
        .on('click', '.modal .js-hint', function() {
-         require('./events/hints/button-click')($(this));
+         $hintEvents.buttonClick($(this));
       })
 
        .on('keyup', '.modal .js-hints-textarea', function() {
-         require('./events/hints/save-hint');
+         $hintEvents.saveHint($(this).val());
       });
 }
 
@@ -18,10 +19,11 @@ function bindTypeChangeEvents() {
    'use strict';
 
    var $qaPlugin = $('.q-and-a-plugin');
+   var $typeChangeEvents = require('./events/type-change');
 
    $qaPlugin
        .on('change', '.modal .js-question-type-select', function() {
-         require('./events/type-change/change')($(this).find('option:selected').text());
+         $typeChangeEvents.questionTypeChange($(this).find('option:selected').text());
       });
 }
 
@@ -29,18 +31,19 @@ function bindMultipleChoiceEvents() {
    'use strict';
 
    var $qaPlugin = $('.q-and-a-plugin');
+   var $multipleChoiceEvents = require('./events/multiple-choice');
 
    $qaPlugin
        .on('click', '.modal .js-mc-add-option', function() {
-         require('./events/multiple-choice/add-option')();
+         $multipleChoiceEvents.addOption();
       })
 
        .on('click', '.modal .js-mc-remove-option', function() {
-         require('./events/multiple-choice/remove-option')();
+         $multipleChoiceEvents.removeOption();
       })
 
        .on('click', '.correct-answer', function() {
-         require('./events/multiple-choice/make-option-correct')($(this));
+         $multipleChoiceEvents.makeOptionCorrect($(this));
       });
 }
 
@@ -48,26 +51,27 @@ function bindCodeAreaEvents() {
    'use strict';
 
    var $qaPlugin = $('.q-and-a-plugin');
+   var $ioEvents = require('./events/input-output');
 
    $qaPlugin
        .on('click', '.modal .js-add-input-output', function() {
-         require('./events/input-output/add-pair')();
+         $ioEvents.addInputOutputPair();
       })
 
        .on('click', '.modal .js-remove-input-output', function() {
-         require('./events/input-output/remove-pair')();
+         $ioEvents.removeInputOutputPair();
       })
 
        .on('click', '.modal .js-input-output-button', function() {
-         require('./events/input-output/button-click')($(this));
+         $ioEvents.buttonClick($(this));
       })
 
        .on('keyup', '.modal .js-io-input', function() {
-         require('./events/input-output/save-input')($(this).val());
+         $ioEvents.saveInput($(this).val());
       })
 
        .on('keyup', '.modal .js-io-output', function() {
-         require('./events/input-output/save-output')($(this).val());
+         $ioEvents.saveOutput($(this).val());
       });
 }
 
