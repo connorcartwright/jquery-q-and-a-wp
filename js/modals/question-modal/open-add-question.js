@@ -21,10 +21,6 @@ $(function() {
          $optionControl = $optionControl.add(require('./events/multiple-choice/create-option')());
       }
 
-      console.log('____ OPTION CONTROL ____');
-
-      console.log($optionControl);
-
       return $optionControl;
    }
 
