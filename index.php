@@ -49,9 +49,11 @@ function main() {
             $urlToken = $_GET["access-token"];
 
             if (validateAccessToken($plugin, $urlToken)) {
+                echo 'valid access token in url!';
                 // redirect to homepage
             }
             else {
+                echo 'invalid access token in url!';
                 // redirect to login
             }
         }
@@ -64,9 +66,11 @@ function main() {
     }
     else {
         if  (validateAccessToken($plugin, $token)) {
+            echo 'valid access token in database!';
             // redirect to homepage
         }
         else {
+            echo 'invalid access token in database!';
             // redirect to login
         }
 
@@ -103,5 +107,5 @@ function validateAccessToken($plugin, $token) {
 }
 
 function redirectToHomepage() {
-    
+
 }
