@@ -10,6 +10,7 @@
 
 namespace QA;
 
+require_once('Github.php');
 
 class Plugin
 {
