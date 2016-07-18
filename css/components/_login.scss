@@ -32,6 +32,10 @@
       position: absolute;
       right: 0;
       top: -36px;
+
+      &.active {
+        display: inline-block;
+      }
     }
 
     >.login-button {

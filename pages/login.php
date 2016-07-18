@@ -7,6 +7,7 @@
  */
 
 define('BASE_URL', 'http://vagrant.learn.jquery.com/wp-admin/admin.php?page=jquery-q-and-a');
+session_start();
 
 $whitelist = array(
     '127.0.0.1',
@@ -57,7 +58,7 @@ if (isset($_GET['code'])) {
 
 <div class="login">
     <div class="login-box">
-        <div class="error">
+        <div class="error <?php if ($_SESSION['token'] === 'bad') { echo 'active'; } ?>">
             Your access token has expired.
         </div>
         <div class="login-button">

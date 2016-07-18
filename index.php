@@ -9,6 +9,7 @@ Author URI: http://www.jquery.org
 */
 
 define('BASE_URL', 'http://vagrant.learn.jquery.com/jquery-wp-content/plugins/jquery-q-and-a-wp/');
+session_start();
 
 add_action('admin_menu', 'add_option_page');
 
@@ -50,7 +51,7 @@ function init_options_page(){
 
 function main() {
     global $wpdb;
-    $plugin = new \QA\Plugin($wpdb, $wpdb->prefix . 'qaUsers6', 3);
+    $plugin = new \QA\Plugin($wpdb, $wpdb->prefix . 'qaUsers6', 4);
     $plugin->createUserTable();
     $plugin->addCurrentUser();
     $token = $plugin->getAccessToken()->access_token;
@@ -75,6 +76,7 @@ function main() {
             redirectToHomepage();
         }
         else {
+            $_SESSION['token'] = 'bad';
             redirectToLogin();
         }
 
