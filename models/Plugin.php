@@ -57,7 +57,7 @@ class Plugin
         return $this->wpDatabase->get_row($sanitizedQuery);
     }
 
-    function validateAcccessToken($token) {
+    function validateAccessToken($token) {
         $github = new \QA\GitHub($token);
         return $github->isValidToken();
     }
