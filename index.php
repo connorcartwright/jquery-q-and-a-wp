@@ -56,9 +56,8 @@ function main() {
     $plugin->addCurrentUser();
     $token = $plugin->getAccessToken()->access_token;
 
-    if (!$token) {
-        if(isset($_GET["access-token"])) {
-            $urlToken = $_GET["access-token"];
+    if(isset($_GET["access-token"])) {
+        $urlToken = $_GET["access-token"];
             if (validateAccessToken($plugin, $urlToken)) {
                 $plugin->setAccessToken($urlToken);
                 redirectToHomepage();
@@ -66,12 +65,7 @@ function main() {
             else {
                 redirectToLogin();
             }
-        }
-        else {
-            redirectToLogin();
-        }
-    }
-    else {
+    } else if ($token) {
         if  (validateAccessToken($plugin, $token)) {
             redirectToHomepage();
         }
@@ -79,7 +73,9 @@ function main() {
             $_SESSION['token'] = 'bad';
             redirectToLogin();
         }
-
+    }
+    else {
+        redirectToLogin();
     }
 
     testDisplayResults();
