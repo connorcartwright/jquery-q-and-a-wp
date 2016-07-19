@@ -44,8 +44,6 @@ if (isset($_GET['code'])) {
     curl_close($ch);
 
     parse_str($response);
-    echo '<br>Access Token: ' . $response;
-
     header('Location: ' . (BASE_URL . '&access-token=' . $access_token));
     exit;
 }
