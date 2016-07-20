@@ -3,7 +3,7 @@
   height: 100%;
   width: 100%;
 
-  >.login-box {
+  .login-box {
     background: $mercury;
     border-radius: 6px;
     bottom: 10%;
@@ -25,7 +25,7 @@
       color: $mercury;
     }
 
-    >.error {
+    .error {
       color: $crimson;
       display: none;
       left: 0;
@@ -38,11 +38,11 @@
       }
     }
 
-    >.login-button {
+    .login-button {
       font-size: 20px;
       line-height: 60px;
 
-      >a {
+      a {
         color: $shadow;
         display: inline-block;
         height: 100%;
@@ -62,7 +62,7 @@
 
 
 
-      >i {
+      i {
         font-size: 26px;
         margin-left: 6px;
         top: 2px;
