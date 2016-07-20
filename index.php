@@ -15,12 +15,9 @@ add_action('admin_menu', 'add_option_page');
 
 require_once('models/Plugin.php');
 
-//phpinfo();
-register_activation_hook( __FILE__, 'test' );
-
 function add_option_page(){
     enqueue_styles();
-    add_menu_page( 'jQuery Question and Answer', 'jQuery Q & A', 'manage_options', 'jquery-q-and-a', 'init_options_page');
+    add_menu_page( 'jQuery Question and Answer', 'jQuery Q & A', 'manage_options', 'jquery-q-and-a', 'main');
 }
 
 function enqueue_styles() {
@@ -43,10 +40,6 @@ function enqueue_scripts($pages) {
 
     wp_register_script( 'ace', 'https://cdn.jsdelivr.net/ace/1.2.3/min/ace.js' );
     wp_enqueue_script( 'ace' );
-}
-
-function init_options_page(){
-    main();
 }
 
 function main() {
