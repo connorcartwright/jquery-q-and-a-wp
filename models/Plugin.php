@@ -36,7 +36,6 @@ class Plugin
         $this->currentUserID = $currentUserID;
     }
 
-    // works
     function addCurrentUser() {
         $this->wpDatabase->insert(
             $this->tableName,
@@ -44,7 +43,6 @@ class Plugin
         );
     }
 
-    // works
     function createUserTable() {
         $createTableQuery = sprintf(self::CREATE_TABLE_QUERY, $this->tableName, $this->wpDatabase->get_charset_collate());
         $sanitizedQuery = $this->wpDatabase->prepare($createTableQuery, array());
@@ -52,7 +50,6 @@ class Plugin
         return $this->wpDatabase->query($sanitizedQuery);
     }
 
-    // works
     function getAccessToken() {
         $getAccessTokenQuery = sprintf(self::GET_ACCESS_TOKEN_QUERY, $this->tableName, $this->currentUserID);
         $sanitizedQuery = $this->wpDatabase->prepare($getAccessTokenQuery, array());
@@ -65,7 +62,6 @@ class Plugin
         return $github->isValidToken();
     }
 
-    // works
     function setAccessToken($token) {
         return $this->wpDatabase->update(
             $this->tableName,
