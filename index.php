@@ -44,11 +44,13 @@ function enqueue_scripts($pages) {
 
 function main() {
     global $wpdb;
-    $plugin = new \QA\Plugin($wpdb, $wpdb->prefix . 'qaUsers6', 4);
+    $config = parse_ini_file('config/qa-config.ini');
+    $plugin = new \QA\Plugin($wpdb, $config, $wpdb->prefix . 'qaUsers', get_current_user_id());
     $plugin->createUserTable();
     $plugin->addCurrentUser();
     $token = $plugin->getAccessToken()->access_token;
 
+    $_SESSION['token'] = 'good';
     if(isset($_GET["access-token"])) {
         $urlToken = $_GET["access-token"];
             if (validateAccessToken($plugin, $urlToken)) {
@@ -76,7 +78,7 @@ function main() {
 
 function testDisplayResults() {
     global $wpdb;
-    $tableName = $wpdb->prefix . 'qaUsers6';
+    $tableName = $wpdb->prefix . 'qaUsers';
 
     $results = $wpdb->get_results(
         "SELECT * FROM {$tableName}"
@@ -125,9 +127,6 @@ function embedQuestion() {
 
 function updatePage() {
     $post_id = intval( $_POST['pageId'] );
-
-    echo $post_id;
-
     $updated_post = array(
         'ID'           =>  $post_id,
         'post_title'   => get_the_title($post_id),

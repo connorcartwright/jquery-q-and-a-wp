@@ -6,6 +6,8 @@
  * Time: 02:12
  */
 
+$config = parse_ini_file('../config/qa-config.ini');
+
 define('BASE_URL', 'http://vagrant.learn.jquery.com/wp-admin/admin.php?page=jquery-q-and-a');
 session_start();
 

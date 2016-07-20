@@ -17,6 +17,7 @@ class Plugin
     private $tableName;
     private $wpDatabase;
     private $currentUserID;
+    private $config;
 
     const CREATE_TABLE_QUERY = 'CREATE TABLE IF NOT EXISTS %s (
 		user_id mediumint(9) NOT NULL,
@@ -28,8 +29,9 @@ class Plugin
 
     const ADD_CURRENT_USER = 'INSERT INTO %s (%s)';
 
-    function __construct($wpDatabase, $tableName, $currentUserID) {
+    function __construct($wpDatabase, $config, $tableName, $currentUserID) {
         $this->wpDatabase = $wpDatabase;
+        $this->config = $config;
         $this->tableName = $tableName;
         $this->currentUserID = $currentUserID;
     }
@@ -59,7 +61,7 @@ class Plugin
     }
 
     function validateAccessToken($token) {
-        $github = new \QA\GitHub($token);
+        $github = new \QA\GitHub($token, $this->config);
         return $github->isValidToken();
     }
 

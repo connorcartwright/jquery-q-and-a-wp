@@ -10,23 +10,23 @@ namespace QA;
 
 class GitHub
 {
-    private $accessToken;
+    private $client_id;
+    private $client_secret;
 
-    const CLIENT_ID = '3abdc7f847c577e30725';
-    const CLIENT_SECRET = 'acbf9ec1fc6064e9d968c34e66ce2e144904e96d';
-
-    function __construct($accessToken)
+    function __construct($accessToken, $config)
     {
         $this->accessToken = $accessToken;
+        $this->client_id = $config['client_id'];
+        $this->client_secret = $config['client_secret'];
     }
 
     function isValidToken() {
-        $url = 'https://api.github.com/applications/' . self::CLIENT_ID  .
+        $url = 'https://api.github.com/applications/' . $this->client_id  .
             '/tokens/' . $this->accessToken;
 
         $ch = curl_init($url);
 
-        curl_setopt($ch, CURLOPT_USERPWD, self::CLIENT_ID . ':' . self::CLIENT_SECRET);
+        curl_setopt($ch, CURLOPT_USERPWD, $this->client_id . ':' . $this->client_secret);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_HTTPHEADER,
             array (
@@ -34,13 +34,19 @@ class GitHub
             )
         );
 
-        $result= curl_exec($ch);
+        $result = curl_exec($ch);
 
-        // if the token wasn't valid
-        if (strpos($result, '"message":"Not Found"')) {
-            return false;
-        } else {
-            return true;
+        if (!curl_errno($ch)) {
+            switch ($http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE)) {
+                case 200:  # OK
+                    if (strpos($result, '"message":"Not Found"')) {
+                        return false;
+                    } else {
+                        return true;
+                    }
+                default:
+                    return false;
+            }
         }
     }
 }
