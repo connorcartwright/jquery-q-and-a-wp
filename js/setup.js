@@ -1,6 +1,8 @@
 $(function() {
    'use strict';
 
+   jQuery.ajaxSettings.traditional = true;
+
    require('./modals/modals')();
 
    function createPageRow(i) {
