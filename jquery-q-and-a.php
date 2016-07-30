@@ -9,7 +9,6 @@ Author URI: http://www.jquery.org
 */
 
 add_action('admin_menu', 'add_option_page');
-add_action( 'admin_enqueue_scripts', 'my_enqueue' );
 add_action( 'wp_ajax_embedQuestion', 'embedQuestion' );
 // add_action( 'wp_ajax_preview_question', 'preview_question' );
 add_action( 'wp_ajax_updatePage', 'updatePage' );
