@@ -9,12 +9,12 @@ function savePage() {
    require('./embed-modal/events/save-page')();
 }
 
-function openAddQuestionModal(pageID) {
-   require('./question-modal/open-add-question')(pageID);
+function openQuestionModal(pageID, questionData) {
+   require('./question-modal/open-question')(pageID, questionData);
 }
 
-function openEditQuestionModal(pageID) {
-   require('./question-modal/open-edit-question')(pageID);
+function updateTypeArea(questionType, questionAnswers) {
+   require('./question-modal/edit-question-type')(questionType, questionAnswers);
 }
 
 function setupModals() {
@@ -26,22 +26,31 @@ function setupModals() {
 
       openEmbedModal(row.data('p-id'), row.data('p-title'), pageLink);
    })
-
    .on('click', '.modal .js-save-page', function() {
       savePage();
    })
-
    .on('click', '.js-q-add>button', function() {
       var pageID = $(this).closest('.questions').data('p-id');
 
-      openAddQuestionModal(pageID);
+      openQuestionModal(pageID);
    })
-
    .on('click', '.js-q-edit>button', function() {
+      var $questionRow = $(this).closest('.qa-tbl-row.question');
       var pageID = $(this).closest('.questions').data('p-id');
-      var questionID = '-1';
 
-      openEditQuestionModal()(pageID, questionID);
+      var questionData = {
+         questionID: $questionRow.data('q-id'),
+         questionName: $questionRow.data('q-name'),
+         questionType: $questionRow.data('q-type'),
+         questionStatement: $questionRow.data('q-statement'),
+         questionHint1: $questionRow.data('q-hint1'),
+         questionHint2: $questionRow.data('q-hint2'),
+         questionHint3: $questionRow.data('q-hint3'),
+         questionAnswers: $questionRow.data('q-answers')
+      };
+
+      openQuestionModal(pageID, questionData);
+      updateTypeArea($questionRow.data('q-type'), $questionRow.data('q-answers'));
    })
 
    // $('.q-and-a-plugin').on('click', '.q-preview>button', function() {

@@ -75,6 +75,20 @@ function bindCodeAreaEvents() {
       });
 }
 
+function bindCreateQuestion() {
+   'use strict';
+
+   $('.q-and-a-plugin').on('click', ' .modal .js-create-question', function() {
+      if (require('./validate')()) {
+         require('./events/create-question')(function(data) {
+            console.log(data);
+
+            // Function to update dom based on the result
+         });
+      }
+   });
+}
+
 function bindEvents() {
    'use strict';
 
@@ -82,6 +96,7 @@ function bindEvents() {
    bindCodeAreaEvents();
    bindHintEvents();
    bindTypeChangeEvents();
+   bindCreateQuestion();
 }
 
 module.exports = bindEvents;

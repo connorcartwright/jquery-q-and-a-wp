@@ -10,18 +10,26 @@ function validateMultipleChoice() {
 
       return false;
    } else {
-      // Loop through each of the fields, each
-      return true;
+      var passed = true;
+
+      $('.modal .js-option').each(function() {
+         if ($(this).find('input').val().length < 1) {
+            $(this).addClass('error');
+
+            if (passed) {
+               passed = false;
+            }
+         }
+      });
+
+      return passed;
    }
 }
 
 function validateCodeArea() {
-   // Var $questionCode;
    var passed = true;
 
-   // $questionCode = ace.edit('qa-code-editor').getValue(); deal with later, length?
-
-   $('.modal .input-output-button').each(function() {
+   $('.modal .js-input-output-button').each(function() {
       if (!$(this).data('input') || !$(this).data('output')) {
          $(this).addClass('error');
 
@@ -30,6 +38,12 @@ function validateCodeArea() {
          }
       }
    });
+
+   // Var questionCode = ace.edit('qa-code-editor').getValue();
+   // no validation on question code due to possibility of short questions
+   // and complete code will have no length limitation
+
+   // validate input output
 
    return passed;
 }
@@ -58,26 +72,42 @@ function validateHints() {
    return passed;
 }
 
-function validateQuestionForm() {
-   $('.modal *').removeClass('error');
-   $('.modal .error-text').remove();
-
-   var passed = true;
-
+function validateQuestionName() {
    var $questionName = $('.modal #q-name-input');
 
    if ($questionName.val().length < 10) {
       $questionName.addClass('error');
-      passed = false;
-   }
 
+      return false;
+   } else {
+      return true;
+   }
+}
+
+function validateQuestionStatement() {
    var $questionStatement = $('.modal #q-statement-input');
 
    if ($questionStatement.val().length < 50) {
       $questionStatement.addClass('error');
-      passed = false;
-   }
 
+      return false;
+   } else {
+      return true;
+   }
+}
+
+function validateSharedFields() {
+   var passed = true;
+
+   passed = validateQuestionName() ? passed : false;
+   passed = validateQuestionStatement() ? passed : false;
+   passed = validateHints() ? passed : false;
+
+   return passed;
+}
+
+function validateQuestionTypeArea() {
+   var passed = true;
    var $questionType = $('.modal #q-type-select').find('option:selected').text();
 
    if ($questionType === 'Multiple Choice') {
@@ -86,10 +116,19 @@ function validateQuestionForm() {
       passed = validateCodeArea() ? passed : false;
    }
 
-   validateHints();
+   return passed;
 }
 
-$('.q-and-a-plugin').on('click', ' .modal .js-create-question', function() {
-   validateQuestionForm();
-});
+function validateQuestionForm() {
+   $('.modal *').removeClass('error');
+   $('.modal .error-text').remove();
 
+   var passed = true;
+
+   passed = validateSharedFields() ? passed : false;
+   passed = validateQuestionTypeArea() ? passed : false;
+
+   return passed;
+}
+
+module.exports = validateQuestionForm;
