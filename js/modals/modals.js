@@ -1,21 +1,10 @@
-
 'use strict';
 
-function openEmbedModal(pageID, pageTitle, pageLink) {
-   require('./embed-modal/open')(pageID, pageTitle, pageLink);
-}
-
-function savePage() {
-   require('./embed-modal/events/save-page')();
-}
-
-function openQuestionModal(pageID, questionData) {
-   require('./question-modal/open-question')(pageID, questionData);
-}
-
-function updateTypeArea(questionType, questionAnswers) {
-   require('./question-modal/edit-question-type')(questionType, questionAnswers);
-}
+var savePage = require('./embed-modal/events/save-page');
+var openEmbedModal = require('./embed-modal/open');
+var openQuestionModal = require('./question-modal/open-question');
+var updateTypeArea = require('./question-modal/edit-question-type');
+var closeModal = require('./modal-close');
 
 function setupModals() {
    var $qaPlugin = $('.q-and-a-plugin');
@@ -26,9 +15,7 @@ function setupModals() {
 
       openEmbedModal(row.data('p-id'), row.data('p-title'), pageLink);
    })
-   .on('click', '.modal .js-save-page', function() {
-      savePage();
-   })
+   .on('click', '.modal .js-save-page', savePage)
    .on('click', '.js-q-add>button', function() {
       var pageID = $(this).closest('.questions').data('p-id');
 
@@ -58,10 +45,7 @@ function setupModals() {
    //     questionPreviewButtonClick(row.data('p-id'), row.data('p-title'))
    // })
 
-   .on('click', '.js-modal-close', function() {
-      require('./modal-close')();
-   });
+   .on('click', '.js-modal-close', closeModal);
 }
 
 module.exports = setupModals;
-
