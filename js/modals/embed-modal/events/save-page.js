@@ -1,7 +1,6 @@
+'use strict';
 
 function savePage() {
-   'use strict';
-
    var $modal = $('.modal');
    var $message = $modal.find('.modal-message-overlay');
    var pageId = $modal.data('p-id');

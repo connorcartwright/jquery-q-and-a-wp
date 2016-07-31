@@ -1,7 +1,9 @@
+'use strict';
+
+var modalResize = require('../modal').resizeModalBody;
+var getPage = require('./events/get-page');
 
 function openEmbedModal(pageID, pageTitle, previewLink) {
-   'use strict';
-
    var $modal = $('.modal');
 
    $modal
@@ -31,8 +33,8 @@ function openEmbedModal(pageID, pageTitle, previewLink) {
        .find('h2')
        .text('Loading Page...');
 
-   require('../modal-resize')();
-   require('./events/get-page')(pageID);
+   modalResize();
+   getPage(pageID);
 }
 
 module.exports = openEmbedModal;

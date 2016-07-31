@@ -1,9 +1,14 @@
+'use strict';
+
+var $hintEvents = require('./events/hints');
+var $typeChangeEvents = require('./events/type-change');
+var $multipleChoiceEvents = require('./events/multiple-choice');
+var $ioEvents = require('./events/input-output');
+var validate = require('./validate');
+var createQuestion = require('./events/create-question');
 
 function bindHintEvents() {
-   'use strict';
-
    var $qaPlugin = $('.q-and-a-plugin');
-   var $hintEvents = require('./events/hints');
 
    $qaPlugin
        .on('click', '.modal .js-hint', function() {
@@ -16,10 +21,7 @@ function bindHintEvents() {
 }
 
 function bindTypeChangeEvents() {
-   'use strict';
-
    var $qaPlugin = $('.q-and-a-plugin');
-   var $typeChangeEvents = require('./events/type-change');
 
    $qaPlugin
        .on('change', '.modal .js-question-type-select', function() {
@@ -28,10 +30,7 @@ function bindTypeChangeEvents() {
 }
 
 function bindMultipleChoiceEvents() {
-   'use strict';
-
    var $qaPlugin = $('.q-and-a-plugin');
-   var $multipleChoiceEvents = require('./events/multiple-choice');
 
    $qaPlugin
        .on('click', '.modal .js-mc-add-option', function() {
@@ -48,10 +47,7 @@ function bindMultipleChoiceEvents() {
 }
 
 function bindCodeAreaEvents() {
-   'use strict';
-
    var $qaPlugin = $('.q-and-a-plugin');
-   var $ioEvents = require('./events/input-output');
 
    $qaPlugin
        .on('click', '.modal .js-add-input-output', function() {
@@ -75,23 +71,21 @@ function bindCodeAreaEvents() {
       });
 }
 
+function manageData(data) {
+   console.log(data);
+
+   // Function to update dom based on the result
+}
+
 function bindCreateQuestion() {
-   'use strict';
-
    $('.q-and-a-plugin').on('click', ' .modal .js-create-question', function() {
-      if (require('./validate')()) {
-         require('./events/create-question')(function(data) {
-            console.log(data);
-
-            // Function to update dom based on the result
-         });
+      if (validate()) {
+         createQuestion(manageData);
       }
    });
 }
 
 function bindEvents() {
-   'use strict';
-
    bindMultipleChoiceEvents();
    bindCodeAreaEvents();
    bindHintEvents();

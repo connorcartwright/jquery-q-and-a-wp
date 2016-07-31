@@ -1,6 +1,8 @@
-function getPage(pageID) {
-   'use strict';
+'use strict';
 
+var closeModal = require('../../modal').closeModal;
+
+function getPage(pageID) {
    var $modal = $('.modal');
    var $message = $modal.find('.modal-message-overlay');
 
@@ -44,7 +46,7 @@ function getPage(pageID) {
                $(this)
                    .find('h2')
                    .removeClass('error-text');
-               require('../../modal-close')();
+               closeModal();
             });
       });
 }

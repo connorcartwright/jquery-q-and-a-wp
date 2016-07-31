@@ -4,7 +4,7 @@ var savePage = require('./embed-modal/events/save-page');
 var openEmbedModal = require('./embed-modal/open');
 var openQuestionModal = require('./question-modal/open-question');
 var updateTypeArea = require('./question-modal/edit-question-type');
-var closeModal = require('./modal-close');
+var closeModal = require('./modal').closeModal;
 
 function setupModals() {
    var $qaPlugin = $('.q-and-a-plugin');

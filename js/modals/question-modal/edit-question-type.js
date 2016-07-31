@@ -1,9 +1,11 @@
+'use strict';
+
+var $multipleChoiceEvents = require('./events/multiple-choice');
+var $typeChangeEvents = require('./events/type-change');
+var $inputOutputEvents = require('./events/input-output');
 
 function fillMultipleChoiceOptions(options, $questionForm) {
-   'use strict';
-
    var numAnswers = options.length;
-   var $multipleChoiceEvents = require('./events/multiple-choice');
    var $createOption = $multipleChoiceEvents.createOption;
    var $makeCorrect = $multipleChoiceEvents.makeOptionCorrect;
 
@@ -32,9 +34,6 @@ function fillMultipleChoiceOptions(options, $questionForm) {
 }
 
 function fillCodingOptions(options, $questionForm) {
-   'use strict';
-
-   var $inputOutputEvents = require('./events/input-output');
    var $addInputOutput = $inputOutputEvents.addInputOutputPair;
 
    var numAnswers = options.length;
@@ -65,15 +64,12 @@ function fillCodingOptions(options, $questionForm) {
 }
 
 function typeChange(questionType, questionAnswers) {
-   'use strict';
-
    var $questionForm = $('.modal .js-question.form');
 
    if (questionType === 'Multiple Choice') {
       fillMultipleChoiceOptions(questionAnswers, $questionForm);
    } else {
       $('.modal .js-question-type-select').val(questionType).attr('selected', true);
-      var $typeChangeEvents = require('./events/type-change');
 
       $typeChangeEvents.questionTypeChange(questionType);
 
@@ -84,4 +80,3 @@ function typeChange(questionType, questionAnswers) {
 }
 
 module.exports = typeChange;
-

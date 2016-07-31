@@ -1,6 +1,6 @@
-function closeModal() {
-   'use strict';
+'use strict';
 
+function closeModal() {
    if (!getSelection().toString()) {
       var $modal = $('.modal');
 
@@ -20,4 +20,15 @@ function closeModal() {
    }
 }
 
-module.exports = closeModal;
+function resizeModalBody() {
+   var modalHeight = $('.modal .modal-content').height();
+   var modalHeaderHeight = $('.modal .modal-header').outerHeight(true);
+   var modalFooterHeight = $('.modal .modal-footer').outerHeight(true);
+
+   $('.modal .modal-body').height(modalHeight - (modalHeaderHeight + modalFooterHeight));
+}
+
+module.exports = {
+   closeModal: closeModal,
+   resizeModalBody: resizeModalBody
+};

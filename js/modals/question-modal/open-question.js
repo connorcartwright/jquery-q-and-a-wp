@@ -1,7 +1,10 @@
+var resizeModalBody = require('../modal').resizeModalBody;
+var events = require('./events.js');
+
 $(function() {
    'use strict';
 
-   require('./events.js')();
+   events();
 
    function createHints(hint1, hint2, hint3) {
       var $templates = $('.qa-templates');
@@ -78,7 +81,7 @@ $(function() {
 
       $modal.fadeIn(600);
       $('body').css('overflow', 'hidden');
-      require('../modal-resize')();
+      resizeModalBody();
    }
 
    module.exports = openQuestionModal;
