@@ -63,10 +63,10 @@ class Plugin
         return $github->isValidToken();
     }
 
-    function setAccessToken($token) {
+    function setAccessToken($access_token) {
         return $this->wpDatabase->update(
             $this->tableName,
-            array('access_token' => $token),
+            array('access_token' => $access_token),
             array('user_id' => $this->currentUserID)
         );
     }
