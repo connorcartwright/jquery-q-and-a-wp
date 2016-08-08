@@ -9,7 +9,6 @@ Author URI: http://www.jquery.org
 */
 
 define('BASE_URL', 'http://vagrant.learn.jquery.com/jquery-wp-content/plugins/jquery-q-and-a-wp/');
-session_start();
 
 add_action('admin_menu', 'add_option_page');
 
@@ -67,6 +66,7 @@ function main() {
         else {
             $_SESSION['token'] = 'bad';
             redirectToLogin();
+            redirectToLogin('?error=TOKEN');
         }
     }
     else {
@@ -88,8 +88,8 @@ function testDisplayResults() {
     var_dump($results);
 }
 
-function redirectToLogin() {
-    wp_redirect(BASE_URL . 'pages/login.php');
+function redirectToLogin($params) {
+    wp_redirect(BASE_URL . 'pages/login.php' . $params);
 }
 
 function validateAccessToken($plugin, $token) {
