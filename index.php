@@ -11,6 +11,8 @@ Author URI: http://www.jquery.org
 define('BASE_URL', 'http://vagrant.learn.jquery.com/jquery-wp-content/plugins/jquery-q-and-a-wp/');
 
 add_action('admin_menu', 'add_option_page');
+add_action( 'wp_ajax_embedQuestion', 'embedQuestion' );
+add_action( 'wp_ajax_updatePage', 'updatePage' );
 
 require_once('models/Plugin.php');
 
@@ -31,7 +33,7 @@ function enqueue_scripts($pages) {
     wp_register_script( 'jQuery', 'https://code.jquery.com/jquery-2.2.4.min.js' );
     wp_enqueue_script( 'jQuery' );
 
-    wp_register_script( 'q&a', plugins_url('jquery-q-and-a.js',__FILE__));
+    wp_register_script( 'q&a', plugins_url('main.js',__FILE__));
     wp_enqueue_script( 'q&a' );
 
     wp_localize_script( 'q&a', 'wpAjax', array( 'ajaxUrl' => admin_url( 'admin-ajax.php' ) ) ); // add wp ajax object into script

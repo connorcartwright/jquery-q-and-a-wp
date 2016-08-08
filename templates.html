@@ -44,13 +44,13 @@
             <div class="q-embed qa-center">
                 <span>Embed</span>
             </div>
-            <div class="q-edit js-q-edit qa-center">
+            <div class="q-edit qa-center">
                 <span>Edit</span>
             </div>
-            <div class="q-preview js-q-preview qa-center">
+            <div class="q-preview qa-center">
                 <span>Preview</span>
             </div>
-            <div class="q-delete js-q-delete qa-center">
+            <div class="q-delete qa-center">
                 <span>Delete</span>
             </div>
         </div>
@@ -59,24 +59,24 @@
     <div class="js-question-row">
         <div class="qa-tbl-row question">
             <div class="q-name">
-                <span>How to use $(#my-element).after</span>
+                <span>Placeholder</span>
             </div>
             <div class="q-embed js-q-embed qa-center">
                 <button type="button" class="btn btn-default">
                     <span class="glyphicon glyphicon-link"></span>
                 </button>
             </div>
-            <div class="q-edit qa-center">
+            <div class="q-edit js-q-edit qa-center">
                 <button type="button" class="btn btn-primary">
                     <span class="glyphicon glyphicon-pencil"></span>
                 </button>
             </div>
-            <div class="q-preview qa-center">
+            <div class="q-preview js-q-preview qa-center">
                 <button type="button" class="btn btn-success">
                     <span class="glyphicon glyphicon-eye-open"></span>
                 </button>
             </div>
-            <div class="q-delete qa-center">
+            <div class="q-delete js-q-delete qa-center">
                 <button type="button" class="btn btn-danger">
                     <span class="glyphicon glyphicon-remove"></span>
                 </button>
@@ -96,9 +96,9 @@
 
     <div class="js-modal">
         <div class="jsmodal">
-            <div class="modal-overlay"></div>
+            <div class="modal-overlay js-modal-close"></div>
             <div class="modal-content">
-                <div class="modal-close">
+                <div class="modal-close js-modal-close">
                     <span class="glyphicon glyphicon-remove"></span>
                 </div>
                 <div class="modal-header">
@@ -107,10 +107,14 @@
                 <div class="modal-body"></div>
                 <div class="modal-footer">
                     <div class="modal-footer-buttons">
-                        <button class="btn btn-default close-modal">Close</button>
+                        <button class="btn btn-default close-modal js-modal-close">Close</button>
                         <button class="btn btn-success">Save</button>
                     </div>
                 </div>
+                <div class="modal-message-overlay">
+                    <div class="modal-message-content">
+                        <h2></h2>
+                    </div></div>
             </div>
         </div>
     </div>
@@ -120,7 +124,7 @@
             <form class="question-form js-question form">
                 <fieldset class="form-group">
                     <label for="q-name-input">Question Name</label>
-                    <input type="text" id="q-name-input" class="form-control" placeholder="Question Name">
+                    <input type="text" id="q-name-input" class="form-control js-question-name-input" placeholder="Question Name">
                 </fieldset>
                 <fieldset class="form-group">
                     <label for="q-type-select">Question Type</label>
@@ -133,17 +137,62 @@
                 </fieldset>
                 <fieldset class="form-group">
                     <label for="q-statement-input">Question Statement</label>
-                    <textarea class="form-control" id="q-statement-input" rows="3" placeholder="Question Statement"></textarea>
+                    <textarea class="form-control js-question-statement-input" id="q-statement-input" rows="3" placeholder="Question Statement"></textarea>
                 </fieldset>
-                <div class="js-question-type-area multiple-choice"></div>
+                <div class="js-question-type-area multiple-choice">
+                    <fieldset class="form-group mc-option-change">
+                        <button type="button" class="btn btn-default mc-remove-option js-mc-remove-option">
+                            <span class="glyphicon glyphicon-minus"></span>
+                        </button>
+                        <button type="button" class="btn btn-default mc-add-option js-mc-add-option">
+                            <span class="glyphicon glyphicon-plus"></span>
+                        </button>
+                    </fieldset>
+                    <fieldset class="form-group mc-text-option js-mc-text-option js-mc-text-option-1">
+                        <div class="input-group js-option"><input type="text" class="form-control wrong" placeholder="Option 1 Text">
+                            <div class="input-group-addon correct-answer">
+                                <button type="button" class="btn btn-default mc-correct-answer">
+                                    <span class="glyphicon glyphicon-ok"></span>
+                                </button>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset class="form-group mc-text-option js-mc-text-option js-mc-text-option-2">
+                        <div class="input-group js-option"><input type="text" class="form-control wrong" placeholder="Option 2 Text">
+                            <div class="input-group-addon correct-answer">
+                                <button type="button" class="btn btn-default mc-correct-answer">
+                                    <span class="glyphicon glyphicon-ok"></span>
+                                </button>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset class="form-group mc-text-option js-mc-text-option js-mc-text-option-3">
+                        <div class="input-group js-option"><input type="text" class="form-control wrong" placeholder="Option 3 Text">
+                            <div class="input-group-addon correct-answer">
+                                <button type="button" class="btn btn-default mc-correct-answer">
+                                    <span class="glyphicon glyphicon-ok"></span>
+                                </button>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset class="form-group mc-text-option js-mc-text-option js-mc-text-option-4">
+                        <div class="input-group js-option"><input type="text" class="form-control wrong" placeholder="Option 4 Text">
+                            <div class="input-group-addon correct-answer">
+                                <button type="button" class="btn btn-default mc-correct-answer">
+                                    <span class="glyphicon glyphicon-ok"></span>
+                                </button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
             </form>
         </div>
 
         <div class="js-hints">
             <fieldset class="form-group hints"> <label>Hints </label>
-                <button type="button" class="btn btn-default hint js-hint hint-1 js-hint-active active" data-hint="1"><span>Hint 1</span></button><button
-                        type="button" class="btn btn-default hint js-hint hint-2" data-hint="2"><span>2</span></button><button
-                        type="button" class="btn btn-default hint js-hint hint-3" data-hint="3"><span>3</span></button>
+                <button type="button" class="btn btn-default hint js-hint js-hint-1 js-hint-active active" data-hint="1"><span>Hint 1</span></button><button
+                        type="button" class="btn btn-default hint js-hint js-hint-2" data-hint="2"><span>2</span></button><button
+                        type="button" class="btn btn-default hint js-hint js-hint-3" data-hint="3"><span>3</span></button>
                 <textarea class="form-control js-hints-textarea" rows="3" placeholder="Hint 1"></textarea>
             </fieldset>
         </div>

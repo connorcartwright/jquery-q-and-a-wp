@@ -1,103 +1,96 @@
 module.exports = function(grunt) {
+   'use strict';
 
-    "use strict";
+   require('time-grunt')(grunt);
+   require('jit-grunt')(grunt, {
+      scsslint: 'grunt-scss-lint'
+   });
 
-    require('time-grunt')(grunt);
-    require('jit-grunt')(grunt, {
-        scsslint: 'grunt-scss-lint',
-    });
+   var config = {
+      src: 'js',
+      dist: 'dist'
+   };
 
-    var config = {
-        src: 'js',
-        dist: 'dist'
-    };
+   grunt.initConfig({
+      pkg: grunt.file.readJSON('package.json'),
+      config: config,
 
-    grunt.initConfig({
-        pkg: grunt.file.readJSON('package.json'),
-        config: config,
+      browserify: {
+         'main.js': ['js/**/*.js'],
+         options: {
+            banner: '/*! <%= pkg.name %>.js <%= pkg.version %> | Connor Cartwright (@ConnorCartwright)*/'
+         }
+      },
 
-        concat: {
-            options: {
-                // define a string to put between each file in the concatenated output
-                separator: '\n'
-            },
-            dist: {
-                // the files to concatenate
-                src: ['js/**/*.js'],
-                // the location of the resulting JS file
-                dest: '<%= pkg.name %>.js'
+      uglify: {
+         options: {
+            // The banner is inserted at the top of the output
+            banner: '/*! <%= pkg.name %> <%= grunt.template.today("dd-mm-yyyy") %> */\n'
+         },
+         dist: {
+            files: {
+               '<%= pkg.name %>.min.js': ['<%= concat.dist.dest %>']
             }
-        },
+         }
+      },
 
-        uglify: {
-            options: {
-                // the banner is inserted at the top of the output
-                banner: '/*! <%= pkg.name %> <%= grunt.template.today("dd-mm-yyyy") %> */\n'
-            },
-            dist: {
-                files: {
-                    '<%= pkg.name %>.min.js': ['<%= concat.dist.dest %>']
-                }
+      sass: {
+         dist: {
+            files: {
+               'css/style.css': 'css/style.scss'
             }
-        },
+         }
+      },
 
-        sass: {
-            dist: {
-                files: {
-                    'css/style.css' : 'css/style.scss'
-                }
-            }
-        },
+      scsslint: {
+         allFiles: [
+             'css/**/*.scss'
+         ],
+         options: {
+            config: './config/.scss-lint.yml',
+            colorizeOutput: true
+         }
+      },
 
-        scsslint: {
-            allFiles: [
-                'css/**/*.scss',
-            ],
-            options: {
-                config: './config/.scss-lint.yml',
-                colorizeOutput: true
-            },
-        },
+      jscs: {
+         options: {
+            config: './config/.jscsrc',
+            fix: true
+         },
+         src: [
+             '<%= config.src %>/**/*.js',
+             'Gruntfile.js'
+         ]
+      },
 
-        jscs: {
-            options: {
-                config: './config/.jscsrc',
-                fix: true
-            },
-            src: [
-                '<%= config.src %>/**/*.js'
-            ]
-        },
+      jshint: {
+         options: {
+            jshintrc: './config/.jshintrc',
+            reporter: require('jshint-stylish')
+         },
+         src: [
+             '<%= config.src %>/**/*.js',
+             'Gruntfile.js'
+         ]
+      },
 
-        jshint: {
-            options: {
-                jshintrc: './config/.jshintrc',
-                reporter: require('jshint-stylish'),
-            },
-            src: [
-                '<%= config.src %>/**/*.js',
-                'Gruntfile.js'
-            ]
-        },
+      watch: {
+         js: {
+            files: ['js/**/*.js'],
+            tasks: ['jshint', 'jscs', 'browserify']
+         },
+         css: {
+            files: ['css/**/*.scss'],
+            tasks: ['scsslint', 'sass']
+         }
+      },
 
-        watch: {
-            js: {
-                files: ['js/**/*.js'],
-                tasks: ['jshint', 'jscs', 'concat']
-            },
-            css: {
-                files: ['css/**/*.scss'],
-                tasks: ['scsslint', 'sass']
-            }
-        },
+      concurrent: {
+         lint: ['jshint', 'jscs', 'scsslint'],
+         combine: ['browserify', 'sass']
+      }
+   });
 
-        concurrent: {
-            lint: ['jshint', 'jscs', 'scsslint'],
-            combine: ['concat', 'sass']
-        }
-    });
-
-    grunt.registerTask('default', ['concurrent']);
-    grunt.registerTask('dev', ['concurrent', 'watch']);
-
+   grunt.registerTask('default', ['concurrent']);
+   grunt.registerTask('dev', ['concurrent', 'watch']);
 };

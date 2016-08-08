@@ -121,8 +121,13 @@
       left: 0;
       position: absolute;
       top: 0;
+      visibility: hidden;
       width: 100%;
       z-index: 1;
+
+      &.active {
+        visibility: visible;
+      }
 
       .modal-message-content {
         display: table-cell;
@@ -134,13 +139,13 @@
 
   }
 
-  .error {
+  .error,
+  .error:focus {
     box-shadow: 0 0 10px 0 rgba( 196, 19, 19, 1 );
   }
 
   .error-text {
     color: $crimson;
-    font-size: 14px;
   }
 
 }

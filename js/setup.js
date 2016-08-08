@@ -1,133 +1,244 @@
-$(function() {
-   'use strict';
+'use strict';
 
-   function createPageRow(i) {
-      var $templates = $('.qa-templates');
-      var page = pages[i];
+jQuery.ajaxSettings.traditional = true;
 
-      var $row = $templates.find('.js-page-row')
-          .clone()
-          .children();
+require('./modals/modals')();
 
+function addPageToDatabase(page) {
+   var data = {
+      action: 'addPage',
+      id: page[0],
+      title: page[1]
+   };
+
+   $.ajax({
+      url: 'http://localhost:8080',
+      method: 'POST',
+      data: data,
+      dataType: 'json',
+      crossDomain: true
+   });
+}
+
+function getQuestionCount(pageID, callback) {
+   var data = {
+      action: 'getQuestionCount',
+      id: pageID
+   };
+
+   $.ajax({
+      url: 'http://localhost:8080',
+      method: 'POST',
+      data: data,
+      dataType: 'json',
+      crossDomain: true
+   })
+    .done(function() {
+      console.log('done/success');
+   })
+    .fail(function() {
+      console.log('fail/error');
+   })
+    .always(function(data) {
+      console.log('always');
+
+      return callback(data.pageCount);
+   });
+}
+
+function addPagesToDatabase() {
+   for(var i = 0; i < pages.length; i++) {
+      addPageToDatabase(pages[i]);
+   }
+}
+
+addPagesToDatabase();
+
+function createPageRow(i) {
+   var $templates = $('.qa-templates');
+   var page = pages[i];
+
+   var $row = $templates.find('.js-page-row')
+       .clone()
+       .children();
+
+   $row
+       .data({
+         'p-id': page[0],
+         'p-title': page[1]
+      })
+       .find('.qa-page-id>span')
+       .text(page[0])
+       .end()
+       .find('.qa-page-title>span')
+       .text(page[1])
+       .end()
+       .find('.qa-page-preview>a')
+       .attr('href', page[2])
+       .end();
+
+   getQuestionCount(page[0], function(data) {
       $row
-          .data({
-            'p-id': page[0],
-            'p-title': page[1]
-         })
-          .find('.qa-page-id>span')
-          .text(page[0])
-          .end()
-          .find('.qa-page-title>span')
-          .text(page[1])
-          .end()
           .find('.qa-page-q-count')
-          .text('0')
-          .end()
-          .find('.qa-page-preview>a')
-          .attr('href', page[2])
-          .end();
+          .text(data);
+   });
 
-      return $row;
+   return $row;
+}
+
+function createPageRows() {
+   var $rows = $('');
+
+   for(var i = 0; i < pages.length; i++) {
+      $rows = $rows.add(createPageRow(i));
    }
 
-   function createPageRows() {
-      var $rows = $('');
+   return $rows;
+}
 
-      for(var i = 0; i < pages.length; i++) {
-         $rows = $rows.add(createPageRow(i));
-      }
+function createPageTable() {
+   var $pageTable = $('<div class="qa-tbl"></div>');
+   var $templates = $('.qa-templates');
+   var tableHeader = $templates.find('.js-page-hdr')
+       .clone()
+       .children();
 
-      return $rows;
-   }
+   $pageTable.append(tableHeader);
+   $pageTable.append(createPageRows());
 
-   function createPageTable() {
-      var $pageTable = $('<div class="qa-tbl"></div>');
-      var $templates = $('.qa-templates');
-      var tableHeader = $templates.find('.js-page-hdr')
-          .clone()
-          .children();
+   return $pageTable;
+}
 
-      $pageTable.append(tableHeader);
-      $pageTable.append(createPageRows());
+function createModal() {
+   var $modal = $('.qa-templates .js-modal')
+       .clone()
+       .children();
 
-      return $pageTable;
-   }
+   $modal.attr('class', 'modal');
 
-   function createModal() {
-      var $modal = $('.qa-templates .js-modal')
-          .clone()
-          .children();
+   return $modal;
+}
 
-      $modal.attr('class', 'modal');
+function createQuestionRow(questionRow) {
+   var $templates = $('.qa-templates');
+   var $question = $templates.find('.js-question-row')
+       .clone()
+       .children();
 
-      return $modal;
-   }
+   $question
+       .data({
+         'q-id': questionRow.QuestionID,
+         'q-name': questionRow.QuestionName,
+         'q-type': questionRow.QuestionType,
+         'q-statement': questionRow.QuestionStatement,
+         'q-hint1': questionRow.Hint1,
+         'q-hint2': questionRow.Hint2,
+         'q-hint3': questionRow.Hint3,
+         'q-answers': questionRow.Answers
+      })
+       .find('.q-name')
+       .text(questionRow.QuestionName);
 
-   function createQuestionRow() {
-      var $templates = $('.qa-templates');
-      var $question = $templates.find('.js-question-row')
-          .clone()
-          .children();
+   return $question;
+}
 
-      return $question;
-   }
+function getQuestionsForPage(pageID, callback) {
+   var data = {
+      action: 'getQuestionsForPage',
+      id: pageID
+   };
 
-   function pageRowClick($row, pageId, pageTitle) {
-      // If the questions for this page are open
-      if ($row.next().hasClass('questions')) {
-         $('.questions, .blank-row').slideUp(400, function() {
-            $row
-                .next()
-                .remove();
-         });
-      } else {
-         $('.questions, .blank-row').remove();
-         var $questions = $('<div class="questions" data-p-id="' + pageId + '" data-p-title="' + pageTitle + '"></div></div>');
-         var $questionTable = $('<div class="qst-table"></div>');
-         var $templates = $('.qa-templates');
+   $.ajax({
+         url: 'http://localhost:8080',
+         method: 'POST',
+         data: data,
+         dataType: 'json',
+         crossDomain: true
+      })
+       .done(function() {
+         console.log('done/success');
+      })
+       .fail(function() {
+         console.log('fail/error');
+      })
+       .always(function(data) {
+         console.log('always');
 
-         var tableHeader = $templates.find('.js-question-hdr')
-             .clone()
-             .children();
+         return callback(data.questions);
+      });
+}
 
-         $questionTable.append(tableHeader);
+function createQuestionRows(pageID, pageTitle, $row, callback) {
+   var $questionTable = $('<div class="qst-table"></div>');
+   var $templates = $('.qa-templates');
 
-         for(var i = 0; i < 5; i++) {
-            $questionTable.append(createQuestionRow());
+   var tableHeader = $templates.find('.js-question-hdr')
+       .clone()
+       .children();
+
+   $questionTable.append(tableHeader);
+
+   if ($row.find('.qa-page-q-count').text() !== '0') {
+      getQuestionsForPage(pageID, function(data) {
+         for(var i = 0; i < data.length; i++) {
+            $questionTable.append(createQuestionRow(data[i]));
          }
 
-         $questionTable.append($templates.find('.js-question-add').clone().children());
-
-         var $blankSpace = $('<div class="qa-tbl-row blank-row"></div>');
-
-         $row.after($questions);
-         $questions.append($questionTable).after($blankSpace);
-         $blankSpace.height($questions.height());
-         $questions.add($blankSpace).hide().slideDown(600);
-      }
-   }
-
-   function setup() {
-      var $pluginBody = $('<div class="plugin-body"></div>');
-
-      $pluginBody.append('<h1 class="plugin-header">Learning Center Pages</h1>');
-      $pluginBody.append(createPageTable());
-      $('#q-and-a-plugin').append($pluginBody);
-      $('#q-and-a-plugin').append(createModal());
-
-      // Stop click of the preview opening/closing a row
-      $('.page-preview').click(function(e) {
-         e.stopPropagation();
+         callback(pageID, pageTitle, $questionTable, $row);
       });
-
-      $('#q-and-a-plugin').on('click', '.js-qa-page-row', function() {
-         pageRowClick($(this), $(this).data('p-id'), $(this).data('p-title'));
-      });
+   } else {
+      callback(pageID, pageTitle, $questionTable, $row);
    }
+}
 
-   setup();
+function finishQuestionTable(pageID, pageTitle, $questionTable, $row) {
+   var $templates = $('.qa-templates');
+   var $questions = $('<div class="questions" data-p-id="' + pageID + '" data-p-title="' + pageTitle + '"></div></div>');
 
-   // $('#q-and-a-plugin').on('click', '.q-delete>button', function() {
-   //     questionDeleteButtonClick(); // question_id
-   // });
-});
+   $questionTable.append($templates.find('.js-question-add').clone().children());
+
+   var $blankSpace = $('<div class="qa-tbl-row blank-row"></div>');
+
+   $row.after($questions);
+   $questions.append($questionTable).after($blankSpace);
+   $blankSpace.height($questions.height());
+   $questions.add($blankSpace).hide().slideDown(600);
+}
+
+function pageRowClick($row, pageID, pageTitle) {
+   // If the questions for this page are open
+   if ($row.next().hasClass('questions')) {
+      $('.questions, .blank-row').slideUp(400, function() {
+         $row
+             .next()
+             .remove();
+      });
+   } else {
+      $('.questions, .blank-row').remove();
+      createQuestionRows(pageID, pageTitle, $row, finishQuestionTable);
+   }
+}
+
+function setup() {
+   var $pluginBody = $('<div class="plugin-body"></div>');
+
+   $pluginBody.append('<h1 class="plugin-header">Learning Center Pages</h1>');
+   $pluginBody.append(createPageTable());
+   $('.q-and-a-plugin').append($pluginBody);
+   $('.q-and-a-plugin').append(createModal());
+
+   // Stop click of the preview opening/closing a row
+   $('.page-preview').click(function(e) {
+      e.stopPropagation();
+   });
+
+   $('.q-and-a-plugin').on('click', '.js-qa-page-row', function() {
+      pageRowClick($(this), $(this).data('p-id'), $(this).data('p-title'));
+   });
+}
+
+module.exports = setup();
+
+// $('.q-and-a-plugin').on('click', '.q-delete>button', function() {
+//     questionDeleteButtonClick(); // question_id
+// });
