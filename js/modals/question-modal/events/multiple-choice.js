@@ -24,7 +24,12 @@ function addMultipleChoiceOption() {
    var optionsCount = $options.length;
 
    if (optionsCount < 8) {
+      $('.js-mc-remove-option').removeClass('btn-disabled');
       $options.last().after(createMultipleChoiceOption());
+
+      if (optionsCount === 7) {
+         $('.js-mc-add-option').addClass('btn-disabled');
+      }
    }
 }
 
@@ -48,7 +53,12 @@ function removeMultipleChoiceOption() {
    var $multipleChoiceOptions = $('.modal .js-mc-text-option');
 
    if ($multipleChoiceOptions.length > 2) {
+      $('.js-mc-add-option').removeClass('btn-disabled');
       $multipleChoiceOptions.last().remove();
+
+      if ($multipleChoiceOptions.length === 3) {
+         $('.js-mc-remove-option').addClass('btn-disabled');
+      }
    }
 }
 

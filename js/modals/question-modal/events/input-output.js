@@ -5,6 +5,7 @@ function addInputOutputPair() {
    var inputOutputButtonCount = $inputOutputButtons.length;
 
    if (inputOutputButtonCount < 8) {
+      $('.js-remove-input-output').removeClass('btn-disabled');
       var newInputOutputNum = inputOutputButtonCount + 1;
       var newInputOutput = '<button type="button" class="btn btn-default input-output-button  js-input-output-button" ' +
           'data-io="' + newInputOutputNum + '"><span>' + newInputOutputNum + '</span></button>';
@@ -12,6 +13,10 @@ function addInputOutputPair() {
       $inputOutputButtons
           .last()
           .after(newInputOutput);
+
+      if (inputOutputButtonCount === 7) {
+         $('.js-add-input-output').addClass('btn-disabled');
+      }
    }
 }
 
@@ -52,7 +57,12 @@ function removeInputOutputPair() {
    var $inputOutputButtons = $('.modal .js-input-output-button');
 
    if ($inputOutputButtons.length > 3) {
+      $('.js-add-input-output').removeClass('btn-disabled');
       $inputOutputButtons.last().remove();
+
+      if ($inputOutputButtons.length === 4) {
+         $('.js-remove-input-output').addClass('btn-disabled');
+      }
    }
 }
 

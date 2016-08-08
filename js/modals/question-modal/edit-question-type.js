@@ -4,6 +4,14 @@ var $multipleChoiceEvents = require('./events/multiple-choice');
 var $typeChangeEvents = require('./events/type-change');
 var $inputOutputEvents = require('./events/input-output');
 
+function checkMultipleChoiceButtons(numAnswers) {
+   if (numAnswers === 2) {
+      $('.js-mc-remove-option').addClass('btn-disabled');
+   } else if (numAnswers === 8) {
+      $('.js-mc-add-option').addClass('btn-disabled');
+   }
+}
+
 function fillMultipleChoiceOptions(options, $questionForm) {
    var numAnswers = options.length;
    var $createOption = $multipleChoiceEvents.createOption;
@@ -14,6 +22,8 @@ function fillMultipleChoiceOptions(options, $questionForm) {
          $questionForm.find('.js-mc-text-option').last().remove();
       }
    }
+
+   checkMultipleChoiceButtons(numAnswers);
 
    for(var j = 0; j < numAnswers; j++) {
       var $option;
@@ -29,26 +39,40 @@ function fillMultipleChoiceOptions(options, $questionForm) {
 
       if (options[j].Correct) {
          $makeCorrect($option.find('button'));
+         $option
+             .find('.mc-correct-answer')
+             .addClass('btn-success')
+             .removeClass('btn-default');
       }
+   }
+}
+
+function checkInputOutputButtons(numPairs) {
+   console.log('numpairs: ' + numPairs);
+
+   if (numPairs === 3) {
+      $('.js-remove-input-output').addClass('btn-disabled');
+   } else if (numPairs === 8) {
+      $('.js-add-input-output').addClass('btn-disabled');
    }
 }
 
 function fillCodingOptions(options, $questionForm) {
    var $addInputOutput = $inputOutputEvents.addInputOutputPair;
 
-   var numAnswers = options.length;
+   var numPairs = options.length;
 
-   if (numAnswers > 3) {
-      for(var i = 3; i < numAnswers; i++) {
+   if (numPairs > 3) {
+      for(var i = 3; i < numPairs; i++) {
          $addInputOutput();
       }
    }
 
-   for(var j = 0; j < numAnswers; j++) {
+   checkInputOutputButtons(numPairs);
+
+   for(var j = 0; j < numPairs; j++) {
       var input = options[j].Input;
       var output = options[j].Output;
-
-      // $("ul[data-slide='" + current +"']");
 
       var inputOutputButton = $questionForm.find('.js-input-output-button[data-io="' + (j + 1) + '"]');
 

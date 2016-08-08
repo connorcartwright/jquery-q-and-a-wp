@@ -53,4 +53,20 @@
     border-color: $poppy;
   }
 
+  &.btn-disabled {
+    background-color: $alto-dark;
+    border-color: $steel;
+    cursor: default;
+  }
+
+  &.btn-disabled:hover {
+    background-color: $alto-dark;
+    border-color: $steel;
+    cursor: default;
+  }
+
+  &.btn-disabled:focus {
+    outline: none;
+  }
+
 }
