@@ -57,8 +57,9 @@ class Plugin
         return $access_token;
     }
 
-    function validateAccessToken($token) {
-        $github = new \QA\GitHub($token, $this->config);
+    function validateAccessToken($access_token) {
+        $this->config['access_token'] = $access_token;
+        $github = new \QA\GitHub($this->config);
         return $github->isValidToken();
     }
 

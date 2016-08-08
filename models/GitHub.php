@@ -12,17 +12,18 @@ class GitHub
 {
     private $client_id;
     private $client_secret;
+    private $access_token;
 
-    function __construct($accessToken, $config)
+    function __construct($config)
     {
-        $this->accessToken = $accessToken;
+        $this->access_token = $config['access_token'];
         $this->client_id = $config['client_id'];
         $this->client_secret = $config['client_secret'];
     }
 
     function isValidToken() {
         $url = 'https://api.github.com/applications/' . $this->client_id  .
-            '/tokens/' . $this->accessToken;
+            '/tokens/' . $this->access_token;
 
         $ch = curl_init($url);
 
