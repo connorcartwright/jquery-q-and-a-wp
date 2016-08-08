@@ -8,15 +8,15 @@ Version: 0.1
 Author URI: http://www.jquery.org
 */
 
+define('BASE_URL', 'http://vagrant.learn.jquery.com/jquery-wp-content/plugins/jquery-q-and-a-wp/');
+
 add_action('admin_menu', 'add_option_page');
-add_action( 'admin_enqueue_scripts', 'my_enqueue' );
-add_action( 'wp_ajax_embedQuestion', 'embedQuestion' );
-// add_action( 'wp_ajax_preview_question', 'preview_question' );
-add_action( 'wp_ajax_updatePage', 'updatePage' );
+
+require_once('models/Plugin.php');
 
 function add_option_page(){
     enqueue_styles();
-    add_menu_page( 'jQuery Question and Answer', 'jQuery Q & A', 'manage_options', 'jquery-q-and-a', 'init_options_page', 'https://upload.wikimedia.org/wikipedia/commons/f/fa/Question_mark_white_icon.svg');
+    add_menu_page( 'jQuery Question and Answer', 'jQuery Q & A', 'manage_options', 'jquery-q-and-a', 'main');
 }
 
 function enqueue_styles() {
@@ -39,25 +39,76 @@ function enqueue_scripts($pages) {
 
     wp_register_script( 'ace', 'https://cdn.jsdelivr.net/ace/1.2.3/min/ace.js' );
     wp_enqueue_script( 'ace' );
-
 }
 
-function init_options_page(){
+function main() {
+    global $wpdb;
+    $config = parse_ini_file('config/qa-config.ini');
+    $plugin = new \QA\Plugin($wpdb, $config, $wpdb->prefix . 'qaUsers', get_current_user_id());
+    $plugin->createUserTable();
+    $plugin->addCurrentUser();
+    $token = $plugin->getAccessToken();
+
+    $_SESSION['token'] = 'good';
+    if(isset($_GET["access-token"])) {
+        $urlToken = $_GET["access-token"];
+            if (validateAccessToken($plugin, $urlToken)) {
+                $plugin->setAccessToken($urlToken);
+                redirectToHomepage();
+            }
+            else {
+                redirectToLogin();
+            }
+    } else if ($token) {
+        if  (validateAccessToken($plugin, $token)) {
+            redirectToHomepage();
+        }
+        else {
+            $_SESSION['token'] = 'bad';
+            redirectToLogin('?error=TOKEN');
+        }
+    }
+    else {
+        redirectToLogin();
+    }
+
+    testDisplayResults();
+}
+
+function testDisplayResults() {
+    global $wpdb;
+    $tableName = $wpdb->prefix . 'qaUsers';
+
+    $results = $wpdb->get_results(
+        "SELECT * FROM {$tableName}"
+    );
+
+    echo '<br>Current Data in DB: <br>';
+    var_dump($results);
+}
+
+function redirectToLogin($params) {
+    wp_redirect(BASE_URL . 'pages/login.php' . $params);
+}
+
+function validateAccessToken($plugin, $token) {
+    return $plugin->validateAccessToken($token);
+}
+
+function redirectToHomepage() {
     ?>
     <div class="wrap q-and-a-plugin" id="q-and-a-plugin">
-            <?php
-                $pages = array();
-                $page_ids=get_all_page_ids();
-                foreach($page_ids as $id)
-                {
-                    array_push( $pages, array($id, get_the_title($id), get_page_link($id) ) );
-                }
-                enqueue_scripts($pages);
-                readfile( 'templates.html' , __FILE__ );
-            ?>
-
+        <?php
+        $pages = array();
+        $page_ids=get_all_page_ids();
+        foreach($page_ids as $id)
+        {
+            array_push( $pages, array($id, get_the_title($id), get_page_link($id) ) );
+        }
+        enqueue_scripts($pages);
+        readfile( 'templates.html' , __FILE__ );
+        ?>
     </div>
-
     <?php
 }
 
@@ -75,9 +126,6 @@ function embedQuestion() {
 
 function updatePage() {
     $post_id = intval( $_POST['pageId'] );
-
-    echo $post_id;
-
     $updated_post = array(
         'ID'           =>  $post_id,
         'post_title'   => get_the_title($post_id),
@@ -87,6 +135,3 @@ function updatePage() {
     wp_update_post( $updated_post ); // Update the post into the database
     wp_die(); // this is required to terminate immediately and return a proper response
 }
-
-
-?>
