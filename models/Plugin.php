@@ -53,8 +53,8 @@ class Plugin
     function getAccessToken() {
         $getAccessTokenQuery = sprintf(self::GET_ACCESS_TOKEN_QUERY, $this->tableName, $this->currentUserID);
         $sanitizedQuery = $this->wpDatabase->prepare($getAccessTokenQuery, array());
-
-        return $this->wpDatabase->get_row($sanitizedQuery);
+        $access_token = $this->wpDatabase->get_row($sanitizedQuery)->access_token;
+        return $access_token;
     }
 
     function validateAccessToken($token) {

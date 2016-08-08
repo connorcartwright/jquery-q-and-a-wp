@@ -47,7 +47,7 @@ function main() {
     $plugin = new \QA\Plugin($wpdb, $config, $wpdb->prefix . 'qaUsers', get_current_user_id());
     $plugin->createUserTable();
     $plugin->addCurrentUser();
-    $token = $plugin->getAccessToken()->access_token;
+    $token = $plugin->getAccessToken();
 
     $_SESSION['token'] = 'good';
     if(isset($_GET["access-token"])) {
@@ -65,7 +65,6 @@ function main() {
         }
         else {
             $_SESSION['token'] = 'bad';
-            redirectToLogin();
             redirectToLogin('?error=TOKEN');
         }
     }
