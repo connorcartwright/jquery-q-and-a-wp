@@ -15,6 +15,8 @@ function getFields() {
 
    var questionType = $('.modal #q-type-select').find('option:selected').text();
 
+   var questionCode = '';
+
    if (questionType === 'Multiple Choice') {
       questionTypeArea.text = [];
       questionTypeArea.correct = [];
@@ -28,6 +30,9 @@ function getFields() {
          questionTypeArea.push(option);
       });
    } else {
+      var editor = ace.edit('qa-code-editor');
+
+      questionCode = editor.getValue();
       $('.modal .input-output-button').each(function() {
          var inputOutput = {
             input: $(this).data('input'),
@@ -44,6 +49,7 @@ function getFields() {
       questionID: questionID,
       questionName: questionName,
       questionStatement: questionStatement,
+      questionCode: questionCode,
       questionHints: questionHints,
       questionType: questionType,
       questionTypeArea: JSON.stringify(questionTypeArea)

@@ -131,6 +131,7 @@ function createQuestionRow(questionRow) {
          'q-name': questionRow.QuestionName,
          'q-type': questionRow.QuestionType,
          'q-statement': questionRow.QuestionStatement,
+         'q-code': questionRow.QuestionCode,
          'q-hint1': questionRow.Hint1,
          'q-hint2': questionRow.Hint2,
          'q-hint3': questionRow.Hint3,

@@ -37,7 +37,7 @@ function setupModals() {
       };
 
       openQuestionModal(pageID, questionData);
-      updateTypeArea($questionRow.data('q-type'), $questionRow.data('q-answers'));
+      updateTypeArea($questionRow.data('q-type'), $questionRow.data('q-answers'), $questionRow.data('q-code'));
    })
 
    // $('.q-and-a-plugin').on('click', '.q-preview>button', function() {

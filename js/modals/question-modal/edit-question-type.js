@@ -87,7 +87,13 @@ function fillCodingOptions(options, $questionForm) {
    outputInput.val(options[0].Output);
 }
 
-function typeChange(questionType, questionAnswers) {
+function fillCodingArea(questionCode) {
+   var editor = ace.edit('qa-code-editor');
+
+   editor.setValue(questionCode, 1);
+}
+
+function typeChange(questionType, questionAnswers, questionCode) {
    var $questionForm = $('.modal .js-question.form');
 
    if (questionType === 'Multiple Choice') {
@@ -98,8 +104,8 @@ function typeChange(questionType, questionAnswers) {
       $typeChangeEvents.questionTypeChange(questionType);
 
       // $('.modal .js-question-type-select').val(questionData.questionType).attr('selected', true);
-
       fillCodingOptions(questionAnswers, $questionForm);
+      fillCodingArea(questionCode);
    }
 }
 

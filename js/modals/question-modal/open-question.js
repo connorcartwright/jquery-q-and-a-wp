@@ -48,8 +48,6 @@ function createQuestionForm(questionData) {
           .val(questionData.questionStatement)
           .end();
 
-      // Var $typeChangeEvents = require('./events/type-change');
-
       $questionForm.append(createHints(questionData.questionHint1, questionData.questionHint2, questionData.questionHint3));
    } else {
       $questionForm.append(createHints());
