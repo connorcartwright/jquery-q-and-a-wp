@@ -15,7 +15,28 @@ var getQuestionsForPage = require('./page-table').getQuestions;
 // QuestionStatement
 // QuestionType
 
-function createQuestionRow(questionRow) {
+function setRowData($row, data) {
+   'use strict';
+
+   $row
+      .data({
+      'q-id': data.questionID,
+      'q-name': data.questionName,
+      'q-type': data.questionType,
+      'q-statement': data.questionStatement,
+      'q-code': data.questionCode,
+      'q-hint1': data.hint1,
+      'q-hint2': data.hint2,
+      'q-hint3': data.hint3,
+      'q-answers': data.answers
+   })
+      .find('.q-name')
+      .text(data.questionName);
+
+   return $row;
+}
+
+function createQuestionRow(data) {
    'use strict';
 
    var $templates = $('.qa-templates');
@@ -23,22 +44,10 @@ function createQuestionRow(questionRow) {
        .clone()
        .children();
 
-   $question
-       .data({
-         'q-id': questionRow.QuestionID,
-         'q-name': questionRow.QuestionName,
-         'q-type': questionRow.QuestionType,
-         'q-statement': questionRow.QuestionStatement,
-         'q-code': questionRow.QuestionCode,
-         'q-hint1': questionRow.Hint1,
-         'q-hint2': questionRow.Hint2,
-         'q-hint3': questionRow.Hint3,
-         'q-answers': questionRow.Answers
-      })
-       .find('.q-name')
-       .text(questionRow.QuestionName);
+   console.log('SETTING DATA ATTRIBUTES');
+   console.log('question id: ' + data.questionID);
 
-   return $question;
+   return setRowData($question, data);
 }
 
 function createQuestionRows(pageID, pageTitle, $row, callback) {
@@ -68,5 +77,6 @@ function createQuestionRows(pageID, pageTitle, $row, callback) {
 
 module.exports = {
    createRows: createQuestionRows,
-   createRow: createQuestionRow
+   createRow: createQuestionRow,
+   setRowData: setRowData
 };
