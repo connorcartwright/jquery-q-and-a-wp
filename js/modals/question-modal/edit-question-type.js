@@ -35,9 +35,9 @@ function fillMultipleChoiceOptions(options, $questionForm) {
          $option = $questionForm.find('.js-mc-text-option-' + (j + 1));
       }
 
-      $option.find('input').val(options[j].OptionText);
+      $option.find('input').val(options[j].optionText);
 
-      if (options[j].Correct) {
+      if (options[j].correct) {
          $makeCorrect($option.find('button'));
          $option
              .find('.mc-correct-answer')
@@ -71,8 +71,8 @@ function fillCodingOptions(options, $questionForm) {
    checkInputOutputButtons(numPairs);
 
    for(var j = 0; j < numPairs; j++) {
-      var input = options[j].Input;
-      var output = options[j].Output;
+      var input = options[j].input;
+      var output = options[j].output;
 
       var inputOutputButton = $questionForm.find('.js-input-output-button[data-io="' + (j + 1) + '"]');
 
@@ -83,8 +83,8 @@ function fillCodingOptions(options, $questionForm) {
    var inputTextarea = $questionForm.find('.js-io-input');
    var outputInput = $questionForm.find('.js-io-output');
 
-   inputTextarea.val(options[0].Input);
-   outputInput.val(options[0].Output);
+   inputTextarea.val(options[0].input);
+   outputInput.val(options[0].output);
 }
 
 function fillCodingArea(questionCode) {

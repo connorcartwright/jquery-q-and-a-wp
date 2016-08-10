@@ -6,6 +6,9 @@ var $multipleChoiceEvents = require('./events/multiple-choice');
 var $ioEvents = require('./events/input-output');
 var validate = require('./validate');
 var createQuestion = require('./events/create-question');
+var createQuestionRow = require('../../tables/question-table').createRow;
+var setRowData = require('../../tables/question-table').setRowData;
+var closeModal = require('../modal.js').closeModal;
 
 function bindHintEvents() {
    var $qaPlugin = $('.q-and-a-plugin');
@@ -72,7 +75,26 @@ function bindCodeAreaEvents() {
 }
 
 function manageData(data) {
-   console.log(data);
+   data.answers = JSON.parse(data.answers);
+   data.hint1 = data.questionHints[0];
+   data.hint2 = data.questionHints[1];
+   data.hint3 = data.questionHints[2];
+
+   if ($('.modal').hasClass('add')) {
+      var newRow = createQuestionRow(data);
+      var rowHeight = 32;
+
+      $('.qa-tbl-row.question').last().before(newRow);
+      $('.qa-tbl-row.blank-row').height($('.qa-tbl-row.blank-row').height() + rowHeight);
+   } else {
+      var $row = $('.qa-tbl-row.question.active');
+
+      $row.removeClass('active');
+
+      setRowData($row, data);
+   }
+
+   closeModal();
 
    // Function to update dom based on the result
 }

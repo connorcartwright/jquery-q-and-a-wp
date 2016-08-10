@@ -18,12 +18,12 @@ function getFields() {
    var questionCode = '';
 
    if (questionType === 'Multiple Choice') {
-      questionTypeArea.text = [];
+      questionTypeArea.optionText = [];
       questionTypeArea.correct = [];
 
       $('.modal .js-option').each(function() {
          var option = {
-            text: $(this).find('input').val(),
+            optionText: $(this).find('input').val(),
             correct: $(this).find('input').hasClass('wrong') ? 0 : 1
          };
 
@@ -52,7 +52,7 @@ function getFields() {
       questionCode: questionCode,
       questionHints: questionHints,
       questionType: questionType,
-      questionTypeArea: JSON.stringify(questionTypeArea)
+      answers: JSON.stringify(questionTypeArea)
    };
 
    return data;
@@ -61,12 +61,14 @@ function getFields() {
 function postQuestionDetails(callback) {
    'use strict';
 
-   var data = getFields();
+   console.log('before post details ajax request');
+
+   var postData = getFields();
 
    $.ajax({
          url: 'http://localhost:8080',
          method: 'POST',
-         data: data,
+         data: postData,
          dataType: 'json',
          crossDomain: true
       })
@@ -79,7 +81,11 @@ function postQuestionDetails(callback) {
        .always(function(data) {
          console.log('always');
 
-         return callback(data);
+         if (!postData.questionID) {
+            postData.questionID = data.questionID;
+         }
+
+         return callback(postData);
       });
 }
 

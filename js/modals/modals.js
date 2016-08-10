@@ -19,11 +19,18 @@ function setupModals() {
    .on('click', '.js-q-add>button', function() {
       var pageID = $(this).closest('.questions').data('p-id');
 
+      $('.modal').addClass('add');
+
       openQuestionModal(pageID);
    })
    .on('click', '.js-q-edit>button', function() {
       var $questionRow = $(this).closest('.qa-tbl-row.question');
+
+      $('.qa-tbl-row.question').removeClass('active');
+      $questionRow.addClass('active');
       var pageID = $(this).closest('.questions').data('p-id');
+
+      $('.modal').addClass('edit');
 
       var questionData = {
          questionID: $questionRow.data('q-id'),
