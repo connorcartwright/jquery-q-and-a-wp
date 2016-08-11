@@ -44,7 +44,7 @@ function getFields() {
    }
 
    var data = {
-      action: 'addQuestion',
+      action: questionID ? 'editQuestion' : 'addQuestion',
       pageID: pageID,
       questionID: questionID,
       questionName: questionName,
