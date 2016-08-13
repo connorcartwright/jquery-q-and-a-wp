@@ -83,7 +83,10 @@ function openQuestionModal(pageID, questionData) {
    if ($modal.hasClass('edit')) {
       $modal
           .find('.btn-success')
-          .text('Update');
+          .text('Update')
+          .end()
+          .find('h1')
+          .text('Update Question');
    }
 
    $modal.fadeIn(600);
