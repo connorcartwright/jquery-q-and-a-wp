@@ -80,6 +80,12 @@ function openQuestionModal(pageID, questionData) {
        .empty()
        .html(createQuestionForm(questionData));
 
+   if ($modal.hasClass('edit')) {
+      $modal
+          .find('.btn-success')
+          .text('Update');
+   }
+
    $modal.fadeIn(600);
    $('body').css('overflow', 'hidden');
    resizeModalBody();
