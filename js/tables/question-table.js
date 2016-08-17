@@ -33,6 +33,10 @@ function setRowData($row, data) {
       .find('.q-name')
       .text(data.questionName);
 
+   var url = 'http://localhost:8080/questions/page-' + data.pageID + '/' + data.questionID + '.html';
+
+   $row.find('.js-q-preview a').attr('href', url);
+
    return $row;
 }
 
@@ -43,9 +47,6 @@ function createQuestionRow(data) {
    var $question = $templates.find('.js-question-row')
        .clone()
        .children();
-
-   console.log('SETTING DATA ATTRIBUTES');
-   console.log('question id: ' + data.questionID);
 
    return setRowData($question, data);
 }
@@ -65,6 +66,7 @@ function createQuestionRows(pageID, pageTitle, $row, callback) {
    if ($row.find('.qa-page-q-count').text() !== '0') {
       getQuestionsForPage(pageID, function(data) {
          for(var i = 0; i < data.length; i++) {
+            data[i].pageID = pageID;
             $questionTable.append(createQuestionRow(data[i]));
          }
 
