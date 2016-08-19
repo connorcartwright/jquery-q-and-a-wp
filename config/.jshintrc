@@ -12,6 +12,7 @@
     "getSelection": false,
     "module": false,
     "pages": false,
+    "accessToken": false,
     "resizeModalBody": false,
     "wpAjax": false
   },

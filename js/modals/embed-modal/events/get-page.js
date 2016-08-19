@@ -8,7 +8,8 @@ function getPage(pageID) {
 
    var data = {
       action: 'embedQuestion',
-      pageId: pageID
+      pageId: pageID,
+      accessToken: accessToken
    };
 
    $.ajax({

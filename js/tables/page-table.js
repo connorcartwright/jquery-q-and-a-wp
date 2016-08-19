@@ -3,11 +3,12 @@ function getQuestionsForPage(pageID, callback) {
 
    var data = {
       action: 'getQuestionsForPage',
-      id: pageID
+      id: pageID,
+      accessToken: accessToken
    };
 
    $.ajax({
-      url: 'http://localhost:8080',
+      url: 'https://cryptic-sands-74858.herokuapp.com',
       method: 'POST',
       data: data,
       dataType: 'json',
@@ -31,11 +32,12 @@ function getQuestionCount(pageID, callback) {
 
    var data = {
       action: 'getQuestionCount',
-      id: pageID
+      id: pageID,
+      accessToken: accessToken
    };
 
    $.ajax({
-      url: 'http://localhost:8080',
+      url: 'https://cryptic-sands-74858.herokuapp.com',
       method: 'POST',
       data: data,
       dataType: 'json',
@@ -48,7 +50,9 @@ function getQuestionCount(pageID, callback) {
          console.log('fail/error');
       })
        .always(function(data) {
-         console.log('always');
+         console.log('get question count');
+         console.log(data);
+         console.log('get question count always');
 
          return callback(data.pageCount);
       });

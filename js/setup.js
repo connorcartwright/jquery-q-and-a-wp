@@ -11,11 +11,12 @@ function addPageToDatabase(page) {
    var data = {
       action: 'addPage',
       id: page[0],
-      title: page[1]
+      title: page[1],
+      accessToken: accessToken
    };
 
    $.ajax({
-      url: 'http://localhost:8080',
+      url: 'https://cryptic-sands-74858.herokuapp.com',
       method: 'POST',
       data: data,
       dataType: 'json',

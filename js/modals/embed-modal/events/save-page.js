@@ -10,7 +10,8 @@ function savePage() {
    var data = {
       action: 'updatePage',
       pageId: pageId,
-      pageContent: pageContent
+      pageContent: pageContent,
+      accessToken: accessToken
    };
 
    $.ajax({

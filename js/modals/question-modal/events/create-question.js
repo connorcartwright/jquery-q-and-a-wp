@@ -52,7 +52,8 @@ function getFields() {
       questionCode: questionCode,
       questionHints: questionHints,
       questionType: questionType,
-      answers: JSON.stringify(questionTypeArea)
+      answers: JSON.stringify(questionTypeArea),
+      accessToken: accessToken
    };
 
    return data;
@@ -66,7 +67,7 @@ function postQuestionDetails(callback) {
    var postData = getFields();
 
    $.ajax({
-         url: 'http://localhost:8080',
+         url: 'https://cryptic-sands-74858.herokuapp.com',
          method: 'POST',
          data: postData,
          dataType: 'json',
