@@ -75,6 +75,16 @@ function postQuestionDetails(callback) {
       })
        .done(function() {
          console.log('done/success');
+         var $row = $('.questions').prev();
+         var currentCount = $row
+             .find('.qa-page-q-count')
+             .text();
+
+         currentCount++;
+
+         $row
+             .find('.qa-page-q-count')
+             .html(currentCount);
       })
        .fail(function() {
          console.log('fail/error');
