@@ -14,23 +14,22 @@ function savePage() {
    };
 
    $.ajax({
-         type: 'post',
-         dataType: 'json',
-         url: wpAjax.ajaxUrl,
-         data: data
-      })
-       .done(function() {
-         $message
-             .find('h2')
-             .text('The ' + pageTitle + ' page has been updated successfully!');
-      })
-       .fail(function() {
-         $message
-             .find('h2')
-             .addClass('error-text')
-             .text('There was an error saving the page! Please try again later.');
-      })
-       .always(function() {
+      type: 'post',
+      url: wpAjax.ajaxUrl,
+      data: data
+   })
+      .done(function() {
+      $message
+          .find('h2')
+          .text('The ' + pageTitle + ' page has been updated successfully!');
+   })
+      .fail(function() {
+      $message
+          .find('h2')
+          .addClass('error-text')
+          .text('There was an error saving the page! Please try again later.');
+   })
+      .always(function() {
          $message
              .addClass('active')
              .fadeIn(600)
