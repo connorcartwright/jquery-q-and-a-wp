@@ -3,7 +3,7 @@
 var modalResize = require('../modal').resizeModalBody;
 var getPage = require('./events/get-page');
 
-function openEmbedModal(pageID, pageTitle, previewLink) {
+function openEmbedModal(pageID, pageTitle, questionUrl, previewLink) {
    var $modal = $('.modal');
 
    $modal
@@ -13,7 +13,7 @@ function openEmbedModal(pageID, pageTitle, previewLink) {
       })
        .addClass('page embed')
        .find('.modal-header>h1')
-       .text(pageTitle + ': <iframe src="http://www.example.com"></iframe>')
+       .text(pageTitle + ': <iframe src="' + questionUrl + '" frameborder="0"></iframe>')
        .end()
        .find('.modal-body')
        .empty()

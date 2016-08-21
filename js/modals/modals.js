@@ -13,7 +13,10 @@ function setupModals() {
       var row = $(this).closest('.questions');
       var pageLink = row.prev().find('.qa-page-preview a').attr('href');
 
-      openEmbedModal(row.data('p-id'), row.data('p-title'), pageLink);
+      var questionRow = $(this).closest('.qa-tbl-row');
+      var url = questionRow.data('q-url');
+
+      openEmbedModal(row.data('p-id'), row.data('p-title'), url, pageLink);
    })
    .on('click', '.modal .js-save-page', savePage)
    .on('click', '.js-q-add>button', function() {

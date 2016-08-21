@@ -18,6 +18,8 @@ var getQuestionsForPage = require('./page-table').getQuestions;
 function setRowData($row, data) {
    'use strict';
 
+   var url = 'http://139.59.179.19:8080/questions/page-' + data.pageID + '/' + data.questionID + '.html';
+
    $row
       .data({
       'q-id': data.questionID,
@@ -28,12 +30,11 @@ function setRowData($row, data) {
       'q-hint1': data.hint1,
       'q-hint2': data.hint2,
       'q-hint3': data.hint3,
-      'q-answers': data.answers
+      'q-answers': data.answers,
+      'q-url': url
    })
       .find('.q-name')
       .text(data.questionName);
-
-   var url = 'http://localhost:8080/questions/page-' + data.pageID + '/' + data.questionID + '.html';
 
    $row.find('.js-q-preview a').attr('href', url);
 
