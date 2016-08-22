@@ -1,6 +1,4 @@
-# jquery-q-and-a-wp
-
-WP Plugin for jQuery Learning Center - GSoC
+# WP Plugin for jQuery Learning Center - GSoC
 
 ## Setup
 
