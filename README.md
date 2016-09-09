@@ -1,6 +1,4 @@
-# jquery-q-and-a-wp
-
-WP Plugin for jQuery Learning Center - GSoC
+# WP Plugin for jQuery Learning Center - GSoC
 
 ## Setup
 
@@ -10,7 +8,12 @@ Update the `jquery-wp-content/sites.php` file:
 
 Add the line `'jquery-q-and-a/jquery-q-and-a.php',` under the active plugins of `learn.jquery.com`.
 
-Run `node install` and `grunt`.
+Run `npm install` and `grunt`.
+
+## Node Server
+
+This repository was built to work with the related [Node server](https://github.com/ConnorCartwright/jquery-q-and-a-node).
+
 
 ## Board
 
