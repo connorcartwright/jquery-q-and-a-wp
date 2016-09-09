@@ -18,7 +18,7 @@ var getQuestionsForPage = require('./page-table').getQuestions;
 function setRowData($row, data) {
    'use strict';
 
-   var url = 'http://139.59.179.19:8080/questions/page-' + data.pageID + '/' + data.questionID + '.html';
+   var url = 'http://SERVER_IP:PORT/questions/page-' + data.pageID + '/' + data.questionID + '.html';
 
    $row
       .data({
