@@ -80,11 +80,12 @@ function postQuestionDetails(callback) {
              .find('.qa-page-q-count')
              .text();
 
-         currentCount++;
-
-         $row
-             .find('.qa-page-q-count')
-             .html(currentCount);
+         if (postData.action === 'addQuestion') {
+            currentCount++;
+            $row
+                .find('.qa-page-q-count')
+                .html(currentCount);
+         }
       })
        .fail(function() {
          console.log('fail/error');
