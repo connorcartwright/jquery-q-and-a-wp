@@ -26,8 +26,6 @@ if ($isLocalhost) { // dev
     define('CLIENT_SECRET', 'INSERT_HERE');
 }
 
-// this is after the click on the 'a' link
-
 $code = '';
 
 if (isset($_GET['code'])) {
