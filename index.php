@@ -29,7 +29,7 @@ function enqueue_styles() {
     wp_enqueue_style( 'glyphicons' );
 }
 
-function enqueue_scripts($pages) {
+function enqueue_scripts($pages, $accessToken) {
     wp_register_script( 'jQuery', 'https://code.jquery.com/jquery-2.2.4.min.js' );
     wp_enqueue_script( 'jQuery' );
 
@@ -37,7 +37,8 @@ function enqueue_scripts($pages) {
     wp_enqueue_script( 'q&a' );
 
     wp_localize_script( 'q&a', 'wpAjax', array( 'ajaxUrl' => admin_url( 'admin-ajax.php' ) ) ); // add wp ajax object into script
-    wp_localize_script( 'q&a', 'pages', $pages ); // pass page data into script
+    wp_localize_script( 'q&a', 'pages', $pages ); // pass page data into js
+    wp_localize_script( 'q&a', 'accessToken', $accessToken ); // pass access token into js
 
     wp_register_script( 'ace', 'https://cdn.jsdelivr.net/ace/1.2.3/min/ace.js' );
     wp_enqueue_script( 'ace' );
@@ -56,14 +57,14 @@ function main() {
         $urlToken = $_GET["access-token"];
             if (validateAccessToken($plugin, $urlToken)) {
                 $plugin->setAccessToken($urlToken);
-                redirectToHomepage();
+                redirectToHomepage($token);
             }
             else {
                 redirectToLogin();
             }
     } else if ($token) {
         if  (validateAccessToken($plugin, $token)) {
-            redirectToHomepage();
+            redirectToHomepage($token);
         }
         else {
             $_SESSION['token'] = 'bad';
@@ -97,7 +98,7 @@ function validateAccessToken($plugin, $token) {
     return $plugin->validateAccessToken($token);
 }
 
-function redirectToHomepage() {
+function redirectToHomepage($accessToken) {
     ?>
     <div class="wrap q-and-a-plugin" id="q-and-a-plugin">
         <?php
@@ -107,7 +108,7 @@ function redirectToHomepage() {
         {
             array_push( $pages, array($id, get_the_title($id), get_page_link($id) ) );
         }
-        enqueue_scripts($pages);
+        enqueue_scripts($pages, $accessToken);
         readfile( 'templates.html' , __FILE__ );
         ?>
     </div>
