@@ -59,7 +59,7 @@ if (isset($_GET['code'])) {
             Your access token has expired.
         </div>
         <div class="login-button">
-            <a href="https://github.com/login/oauth/authorize?scope=user:email,repo&client_id=3abdc7f847c577e30725">Login Via GitHub <i class="fa fa-github" aria-hidden="true"></i></a>
+            <a href="https://github.com/login/oauth/authorize?scope=user:email,repo&client_id=<?php echo CLIENT_ID ?>">Login Via GitHub <i class="fa fa-github" aria-hidden="true"></i></a>
         </div>
     </div>
 </div>
