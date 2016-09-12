@@ -102,7 +102,3 @@ function setup() {
 }
 
 module.exports = setup();
-
-// $('.q-and-a-plugin').on('click', '.q-delete>button', function() {
-//     questionDeleteButtonClick(); // question_id
-// });
