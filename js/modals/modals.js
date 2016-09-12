@@ -3,6 +3,7 @@
 var savePage = require('./embed-modal/events/save-page');
 var openEmbedModal = require('./embed-modal/open');
 var openQuestionModal = require('./question-modal/open-question');
+var deleteQuestion = require('./question-modal/events/delete-question');
 var updateTypeArea = require('./question-modal/edit-question-type');
 var closeModal = require('./modal').closeModal;
 
@@ -54,11 +55,11 @@ function setupModals() {
       openQuestionModal(pageID, questionData);
       updateTypeArea($questionRow.data('q-type'), $questionRow.data('q-answers'), $questionRow.data('q-code'));
    })
+   .on('click', '.q-delete>button', function() {
+      var $questionRow = $(this).closest('.qa-tbl-row.question');
 
-   // $('.q-and-a-plugin').on('click', '.q-preview>button', function() {
-   //     var row = $(this).closest('.questions')
-   //     questionPreviewButtonClick(row.data('p-id'), row.data('p-title'))
-   // })
+      deleteQuestion($questionRow.data('q-id'));
+   })
 
    .on('click', '.js-modal-close', closeModal);
 }
