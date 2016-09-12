@@ -57,7 +57,7 @@ function main() {
         $urlToken = $_GET["access-token"];
             if (validateAccessToken($plugin, $urlToken)) {
                 $plugin->setAccessToken($urlToken);
-                redirectToHomepage($token);
+                redirectToHomepage($urlToken);
             }
             else {
                 redirectToLogin();
