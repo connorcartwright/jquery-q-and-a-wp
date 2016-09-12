@@ -19,11 +19,11 @@ $whitelist = array(
 $isLocalhost = in_array($_SERVER['REMOTE_ADDR'], $whitelist);
 
 if ($isLocalhost) { // dev
+    define('CLIENT_ID', '4de131ee094fcf7d829f');
+    define('CLIENT_SECRET', '4e0010ae22f59c0a2f58b0c42c7601a558b5c8c1');
+} else { //prod
     define('CLIENT_ID', '3abdc7f847c577e30725');
     define('CLIENT_SECRET', 'acbf9ec1fc6064e9d968c34e66ce2e144904e96d');
-} else { //prod
-    define('CLIENT_ID', 'INSERT_HERE');
-    define('CLIENT_SECRET', 'INSERT_HERE');
 }
 
 $code = '';
