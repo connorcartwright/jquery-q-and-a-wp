@@ -20,7 +20,9 @@ function setupModals() {
 
       openEmbedModal(row.data('p-id'), row.data('p-title'), url, pageLink);
    })
+
    .on('click', '.modal .js-save-page', savePage)
+
    .on('click', '.js-q-add>button', function() {
       var pageID = $(this).closest('.questions').data('p-id');
 
@@ -28,6 +30,7 @@ function setupModals() {
 
       openQuestionModal(pageID);
    })
+
    .on('click', '.js-q-edit>button', function() {
       var $questionRow = $(this).closest('.qa-tbl-row.question');
 
