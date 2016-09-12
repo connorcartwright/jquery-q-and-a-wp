@@ -9,7 +9,9 @@ var closeModal = require('./modal').closeModal;
 function setupModals() {
    var $qaPlugin = $('.q-and-a-plugin');
 
-   $qaPlugin.on('click', '.js-q-embed>button', function() {
+   $qaPlugin
+
+    .on('click', '.js-q-embed>button', function() {
       var row = $(this).closest('.questions');
       var pageLink = row.prev().find('.qa-page-preview a').attr('href');
 
