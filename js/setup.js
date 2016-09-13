@@ -4,6 +4,7 @@ jQuery.ajaxSettings.traditional = true;
 
 var createQuestionRows = require('./tables/question-table').createRows;
 var createPageRows = require('./tables/page-table').createPageRows;
+var checkAuth = require('./check-auth');
 
 require('./modals/modals')();
 
@@ -86,18 +87,32 @@ function pageRowClick($row, pageID, pageTitle) {
 function setup() {
    var $pluginBody = $('<div class="plugin-body"></div>');
 
-   $pluginBody.append('<h1 class="plugin-header">Learning Center Pages</h1>');
-   $pluginBody.append(createPageTable());
    $('.q-and-a-plugin').append($pluginBody);
-   $('.q-and-a-plugin').append(createModal());
+   var $message = $('<div class="auth-message"><h2>Checking Authentication...</h2></div>');
 
-   // Stop click of the preview opening/closing a row
-   $('.page-preview').click(function(e) {
-      e.stopPropagation();
-   });
+   $pluginBody.append($message);
 
-   $('.q-and-a-plugin').on('click', '.js-qa-page-row', function() {
-      pageRowClick($(this), $(this).data('p-id'), $(this).data('p-title'));
+   checkAuth(accessToken, function(isMember) {
+      console.log('comes back');
+      console.log(isMember);
+
+      if (isMember) {
+         $pluginBody.append('<h1 class="plugin-header">Learning Center Pages</h1>');
+
+         $pluginBody.append(createPageTable());
+         $('.q-and-a-plugin').append(createModal());
+
+         // Stop click of the preview opening/closing a row
+         $('.page-preview').click(function(e) {
+            e.stopPropagation();
+         });
+
+         $('.q-and-a-plugin').on('click', '.js-qa-page-row', function() {
+            pageRowClick($(this), $(this).data('p-id'), $(this).data('p-title'));
+         });
+      } else {
+         $message.find('h2').text('Only members of the jQuery foundation may use this plugin.');
+      }
    });
 }
 
