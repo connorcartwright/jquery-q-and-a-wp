@@ -97,6 +97,7 @@ function setup() {
       console.log(isMember);
 
       if (isMember) {
+         $message.remove();
          $pluginBody.append('<h1 class="plugin-header">Learning Center Pages</h1>');
 
          $pluginBody.append(createPageTable());
