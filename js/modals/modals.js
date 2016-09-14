@@ -3,7 +3,7 @@
 var savePage = require('./embed-modal/events/save-page');
 var openEmbedModal = require('./embed-modal/open');
 var openQuestionModal = require('./question-modal/open-question');
-var deleteQuestion = require('./question-modal/events/delete-question');
+var openDeleteModal = require('./delete-modal/open');
 var updateTypeArea = require('./question-modal/edit-question-type');
 var closeModal = require('./modal').closeModal;
 
@@ -58,7 +58,7 @@ function setupModals() {
    .on('click', '.q-delete>button', function() {
       var $questionRow = $(this).closest('.qa-tbl-row.question');
 
-      deleteQuestion($questionRow.data('q-id'));
+      openDeleteModal($questionRow.data('q-id'));
    })
 
    .on('click', '.js-modal-close', closeModal);
