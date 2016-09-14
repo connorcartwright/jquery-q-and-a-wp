@@ -61,7 +61,7 @@ function setupModals() {
       openDeleteModal($questionRow.data('q-id'));
    })
 
-   .on('click', '.js-modal-close', closeModal);
+   .on('click', '.modal .js-modal-close', closeModal);
 }
 
 module.exports = setupModals;
