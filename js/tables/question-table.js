@@ -1,20 +1,5 @@
 var getQuestionsForPage = require('./page-table').getQuestions;
 
-// Answers
-// Correct
-// OptionText
-// OR
-// Input
-// Output
-// Hint1
-// Hint2
-// Hint3
-// QuestionCode
-// QuestionID
-// QuestionName
-// QuestionStatement
-// QuestionType
-
 function setRowData($row, data) {
    'use strict';
 
