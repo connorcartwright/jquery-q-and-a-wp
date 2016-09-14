@@ -95,8 +95,6 @@ function manageData(data) {
    }
 
    closeModal();
-
-   // Function to update dom based on the result
 }
 
 function bindCreateQuestion() {
