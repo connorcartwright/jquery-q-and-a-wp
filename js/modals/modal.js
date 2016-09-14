@@ -13,7 +13,7 @@ function closeModal() {
 
          $modal
              .attr('class', 'modal')
-             .find('.modal-footer .btn-success')
+             .find('.modal-footer js-success')
              .attr('class', 'btn btn-success');
       });
       $('body').css('overflow', 'auto');
