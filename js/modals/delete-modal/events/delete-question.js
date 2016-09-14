@@ -1,18 +1,6 @@
 
 var closeModal = require('../../modal').closeModal;
 
-function updatePageCount($questionRow) {
-   'use strict';
-
-   var $pageRow = $questionRow.closest('.questions').prev();
-
-   var questionCount = $pageRow.find('.qa-page-q-count').text();
-
-   $pageRow
-       .find('.qa-page-q-count')
-       .text(parseInt(questionCount) - 1);
-}
-
 function updateQuestionTableHeight() {
    'use strict';
 
@@ -22,9 +10,15 @@ function updateQuestionTableHeight() {
 function deleteQuestion($questionRow, questionID) {
    'use strict';
 
+   var $pageRow = $questionRow.closest('.questions').prev();
+
+   var pageID = $pageRow.find('.qa-page-id span').text();
+
    var data = {
       action: 'deleteQuestion',
-      questionID: questionID
+      questionID: questionID,
+      pageID: pageID,
+      accessToken: accessToken
    };
 
    $.ajax({
@@ -37,7 +31,12 @@ function deleteQuestion($questionRow, questionID) {
        .done(function() {
          console.log('delete question done');
 
-         updatePageCount($questionRow);
+         var questionCount = $pageRow.find('.qa-page-q-count').text();
+
+         $pageRow
+             .find('.qa-page-q-count')
+             .text(parseInt(questionCount) - 1);
+
          $questionRow.remove();
          updateQuestionTableHeight();
          closeModal();
