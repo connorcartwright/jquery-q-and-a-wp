@@ -31,8 +31,6 @@ function addPagesToDatabase() {
    }
 }
 
-addPagesToDatabase();
-
 function createPageTable() {
    var $pageTable = $('<div class="qa-tbl"></div>');
    var $templates = $('.qa-templates');
@@ -97,6 +95,7 @@ function setup() {
       console.log(isMember);
 
       if (isMember) {
+         addPagesToDatabase();
          $message.remove();
          $pluginBody.append('<h1 class="plugin-header">Learning Center Pages</h1>');
 
